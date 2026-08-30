@@ -59,6 +59,31 @@
         "10 connector families across cloud, on-prem, identity and delivery"
       ],
       "publisher": { "@id": "https://kyvar.io/#org" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is autonomous IT?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Autonomous IT means AI agents operating your infrastructure — provisioning, monitoring, diagnosing and fixing — instead of only alerting a human to do it. KYVAR's position: autonomy is only usable in production when it is governed, with RBAC, risk policy, human approval gates and a full audit trail around every action." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is self-healing infrastructure?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Self-healing infrastructure detects a failure, diagnoses the cause, applies a bounded remediation and then re-verifies real health — closing the loop without waiting for a human. In KYVAR, every heal runs behind thresholds, cooldowns and approvals, and leaves evidence that the fix worked." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are Day 0 and Day 2 operations?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Day 0 is building: turning intent into provisioned infrastructure. Day 2 is everything after go-live: monitoring, incident response, patching and recovery. Most tools cover one; KYVAR runs both through the same governed pipeline, so the way you build is also the way you operate." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is KYVAR's automatic monitoring different from a monitoring tool?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict can hand the incident straight to a governed remediation — armed per monitor, off by default, with the same approvals and audit as any human-requested change." }
+        }
+      ]
     }
   ]
 }
@@ -161,7 +186,7 @@
 <section class="section" id="day2"><div class="center reveal">
   <div class="kicker">DAY 2 — OPERATE WITHOUT DRAMA</div>
   <h2>Detect. Heal. Prove it.</h2>
-  <p>Monitoring and self-healing run as one governed loop. Down at 03:14, diagnosed, remediated and re-verified — with a human woken only when policy wants one.</p>
+  <p>Automatic monitoring and self-healing run as one governed loop. Down at 03:14, diagnosed, remediated and re-verified — with a human woken only when policy wants one.</p>
   <div class="shots"><div class="wide">
     <div class="shotframe">
       <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Monitors</span></div>
@@ -238,6 +263,30 @@
     <h2>Where your work actually lives.</h2>
     <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
+  </div>
+</div></section>
+
+<!-- Definitions FAQ -->
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">THE TERMS, PLAINLY</div>
+  <h2>Autonomous IT, defined.</h2>
+  <div class="faq">
+    <details>
+      <summary>What is autonomous IT?</summary>
+      <p>Autonomous IT means AI agents operating your infrastructure — provisioning, monitoring, diagnosing and fixing — instead of only alerting a human to do it. KYVAR's position: autonomy is only usable in production when it is governed, with RBAC, risk policy, human approval gates and a full audit trail around every action.</p>
+    </details>
+    <details>
+      <summary>What is self-healing infrastructure?</summary>
+      <p>Self-healing infrastructure detects a failure, diagnoses the cause, applies a bounded remediation and then re-verifies real health — closing the loop without waiting for a human. In KYVAR, every heal runs behind thresholds, cooldowns and approvals, and leaves evidence that the fix worked.</p>
+    </details>
+    <details>
+      <summary>What are Day 0 and Day 2 operations?</summary>
+      <p>Day 0 is building: turning intent into provisioned infrastructure. Day 2 is everything after go-live: monitoring, incident response, patching and recovery. Most tools cover one; KYVAR runs both through the same governed pipeline, so the way you build is also the way you operate.</p>
+    </details>
+    <details>
+      <summary>How is KYVAR's automatic monitoring different from a monitoring tool?</summary>
+      <p>Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict can hand the incident straight to a governed remediation — armed per monitor, off by default, with the same approvals and audit as any human-requested change.</p>
+    </details>
   </div>
 </div></section>
 
