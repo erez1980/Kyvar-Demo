@@ -135,6 +135,60 @@ body{margin:0;background:var(--navy);color:var(--ink);font-family:Inter,ui-sans-
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1200px;margin:44px auto 0;width:100%}
 .shots .wide{grid-column:1/-1}
 
+/* ---------- Flow diagram (responsive: horizontal → vertical) ---------- */
+.diag{display:flex;align-items:stretch;width:100%;max-width:900px;margin:auto}
+.dstep{flex:1;min-width:0;padding:20px 8px;border:1px solid #365a85;border-radius:18px;background:linear-gradient(160deg,#0e2440,#0a1830);text-align:center;position:relative;display:flex;flex-direction:column;justify-content:center}
+.dstep .dnum{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#05101d;font-weight:900;font-size:13px;margin:0 auto 10px}
+.dstep b{display:block;font-size:clamp(13.5px,1.1vw,15px);margin-bottom:7px}
+.dstep small{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+@media(max-width:760px){.dstep{padding:24px 16px}.dstep b{font-size:17px}.dstep small{font-size:13px}.dstep .dnum{width:34px;height:34px;font-size:14px}}
+.dstep.gate{border-color:#8d7bff;box-shadow:0 0 28px rgba(141,123,255,.20)}
+.dstep .dtag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#151538;border:1px solid #8d7bff;color:#c9bfff;font-size:10px;font-weight:800;letter-spacing:1.5px;border-radius:999px;padding:3px 11px;white-space:nowrap}
+.dstep.core{border-color:#5ee5ff;background:linear-gradient(160deg,#0e2a44,#0a1f38);box-shadow:0 0 30px rgba(47,214,255,.18)}
+.dlink{flex:0 0 26px;position:relative}
+.dlink:before{content:"";position:absolute;top:50%;left:1px;right:1px;height:2px;transform:translateY(-50%);background:linear-gradient(90deg,var(--blue),var(--violet))}
+.dlink:after{content:"";position:absolute;top:50%;right:2px;width:8px;height:8px;border-top:2px solid var(--violet);border-right:2px solid var(--violet);transform:translateY(-50%) rotate(45deg)}
+.dlink i{display:none}
+.dlink.duplex i{display:block;position:absolute;top:50%;left:2px;width:8px;height:8px;border-bottom:2px solid var(--blue);border-left:2px solid var(--blue);transform:translateY(-50%) rotate(45deg)}
+
+/* ---------- Hub diagram (control plane over targets) ---------- */
+.hub{width:100%;max-width:640px;margin:auto}
+.hubtop{position:relative;margin:0 auto;max-width:360px;padding:20px 16px;border:1px solid #5ee5ff;border-radius:18px;background:linear-gradient(160deg,#0e2a44,#0a1f38);box-shadow:0 0 30px rgba(47,214,255,.18);text-align:center}
+.hubtop b{display:block;color:var(--blue);font-size:12px;letter-spacing:2px;margin-bottom:6px}
+.hubtop span{font-weight:800;font-size:18px;display:block}
+.hubtop small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px}
+.hubstem{width:2px;height:18px;margin:0 auto;background:linear-gradient(180deg,var(--blue),#365a85)}
+.hubbar{height:2px;background:#365a85;margin:0 16.6%;border-radius:2px}
+.hubrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hubnode{position:relative;padding:18px 12px;border:1px solid #365a85;border-radius:16px;background:linear-gradient(160deg,#0e2440,#0a1830);text-align:center;margin-top:18px}
+.hubnode:before{content:"";position:absolute;top:-18px;left:50%;width:2px;height:18px;background:linear-gradient(180deg,#365a85,var(--violet));transform:translateX(-50%)}
+.hubnode b{display:block;color:var(--blue);font-size:12px;letter-spacing:2px;margin-bottom:7px}
+.hubnode small{display:block;color:#cce4ef;font-size:13.5px;font-weight:600;line-height:1.5}
+
+/* Day 0 diagram sits in a half-width column — go vertical earlier */
+@media(max-width:1024px){
+  #day0 .diag{flex-direction:column}
+  #day0 .dlink{flex:0 0 34px;height:34px}
+  #day0 .dlink:before{left:50%;top:1px;bottom:1px;right:auto;width:2px;height:auto;transform:translateX(-50%);background:linear-gradient(180deg,var(--blue),var(--violet))}
+  #day0 .dlink:after{left:50%;top:auto;bottom:3px;right:auto;transform:translateX(-50%) rotate(135deg)}
+  #day0 .dstep{padding:22px 16px}
+  #day0 .dstep b{font-size:16px}
+  #day0 .dstep small{font-size:13px}
+}
+
+@media(max-width:760px){
+  .diag{flex-direction:column}
+  .dlink{flex:0 0 34px;height:34px}
+  .dlink:before{left:50%;top:1px;bottom:1px;right:auto;width:2px;height:auto;transform:translateX(-50%);background:linear-gradient(180deg,var(--blue),var(--violet))}
+  .dlink:after{left:50%;top:auto;bottom:3px;right:auto;transform:translateX(-50%) rotate(135deg)}
+  .dlink.duplex i{left:50%;top:3px;transform:translateX(-50%) rotate(-45deg);border-bottom:none;border-left:none;border-top:2px solid var(--blue);border-right:2px solid var(--blue)}
+  .hubbar{display:none}
+  .hubrow{grid-template-columns:1fr;gap:0}
+  .hubnode{margin-top:16px}
+  .hubnode:before{top:-16px;height:16px}
+  .hubstem{height:16px}
+}
+
 /* ---------- FAQ ---------- */
 .faq{max-width:860px;margin:40px auto 0;text-align:left}
 .faq details{border:1px solid var(--line);border-radius:16px;background:var(--panel);margin-bottom:12px;overflow:hidden}

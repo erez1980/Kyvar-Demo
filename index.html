@@ -143,11 +143,14 @@
   <div class="reveal"><div class="kicker">DAY 0 — BUILD WITH CONFIDENCE</div>
     <h2>From idea to infrastructure.</h2>
     <p>Ask for the outcome in plain language. KYVAR plans the change, classifies the risk, parks it on a human approval when policy says so — and what lands is exactly what was approved, with the evidence to prove it.</p></div>
-  <div class="visual reveal"><div class="flow">
-    <div class="node"><b>01</b>Intent</div><div class="arrow">→</div>
-    <div class="node"><b>02</b>Plan</div><div class="arrow">→</div>
-    <div class="node"><b>03</b>Approve</div><div class="arrow">→</div>
-    <div class="node"><b>04</b>Provision</div>
+  <div class="visual reveal" style="padding:40px 24px"><div class="diag">
+    <div class="dstep"><span class="dnum">01</span><b>Intent</b><small>Ask for the outcome in plain language</small></div>
+    <div class="dlink"></div>
+    <div class="dstep"><span class="dnum">02</span><b>Plan</b><small>Change drafted, risk classified</small></div>
+    <div class="dlink"></div>
+    <div class="dstep gate"><span class="dtag">HUMAN GATE</span><span class="dnum">03</span><b>Approve</b><small>A person signs off when policy asks</small></div>
+    <div class="dlink"></div>
+    <div class="dstep"><span class="dnum">04</span><b>Provision</b><small>Exactly what was approved — with evidence</small></div>
   </div></div>
 </div></section>
 
@@ -218,10 +221,15 @@
 
 <!-- Control plane -->
 <section class="section"><div class="grid">
-  <div class="visual reveal"><div class="flow">
-    <div class="node"><b>CLOUD</b>AWS · Azure · OCI</div>
-    <div class="node"><b>ON-PREM</b>Linux · Windows · VMware</div>
-    <div class="node"><b>DELIVERY</b>Terraform · K8s · GitHub</div>
+  <div class="visual reveal" style="padding:40px 24px"><div class="hub">
+    <div class="hubtop"><b>KYVAR</b><span>One control plane</span><small>Policy · Approvals · Audit</small></div>
+    <div class="hubstem"></div>
+    <div class="hubbar"></div>
+    <div class="hubrow">
+      <div class="hubnode"><b>CLOUD</b><small>AWS · Azure · OCI</small></div>
+      <div class="hubnode"><b>ON-PREM</b><small>Linux · Windows · VMware</small></div>
+      <div class="hubnode"><b>DELIVERY</b><small>Terraform · K8s · GitHub</small></div>
+    </div>
   </div></div>
   <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
     <h2>Where your work actually lives.</h2>
