@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script>try{var t=localStorage.getItem('kyvar-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="/assets/theme-init.js"></script>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XD8MVMJ2L"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1XD8MVMJ2L');</script>
+<script src="/assets/ga-init.js"></script>
 <title>Page not found — KYVAR</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -16,7 +18,7 @@
 </head><body><div class="glow"></div>
 <main>
 <section class="hero"><div>
-  <img class="herologo" src="/branding/kyvar-mark.png" alt="KYVAR" style="height:110px" onerror="this.remove()">
+  <img class="herologo" src="/branding/kyvar-mark.png" alt="KYVAR" style="height:110px">
   <div class="eyebrow">404 — NOT FOUND</div>
   <h1 style="font-size:clamp(38px,6vw,80px)">This page <span>doesn't exist.</span></h1>
   <p>Even our self-healing can't recover a page that was never provisioned.</p>

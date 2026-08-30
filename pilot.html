@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script>try{var t=localStorage.getItem('kyvar-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="assets/theme-init.js"></script>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XD8MVMJ2L"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1XD8MVMJ2L');</script>
+<script src="assets/ga-init.js"></script>
 <title>AI IT Automation Pilot in 30–60 Days — KYVAR Customer Pilot</title>
 <meta name="description" content="Prove governed AI automation on one real workload in 30–60 days: start read-only, open one approved write path, and measure fewer incidents, faster recovery and zero ungoverned changes.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -86,7 +88,7 @@
 
 <nav class="nav">
   <a class="brand" href="index.html">
-    <img src="branding/kyvar-mark.png" alt="" onerror="this.remove()">
+    <img src="branding/kyvar-mark.png" alt="">
     <span>KYVAR</span>
   </a>
   <div class="navlinks">
@@ -196,7 +198,7 @@
 <footer class="footer">
   <div class="footgrid">
     <div>
-      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px" onerror="this.remove()"><span>KYVAR</span></a>
+      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
       <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
     </div>
     <div>
