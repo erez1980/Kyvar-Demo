@@ -163,16 +163,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-se
 /* ---------- Theme toggle ---------- */
 .themetoggle{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--pill-border);background:transparent;color:var(--nav-ink);cursor:pointer;padding:0}
 .themetoggle:hover{background:var(--hover);color:var(--ink)}
-.themetoggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.themetoggle .icon-moon{display:none}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]) .themetoggle .icon-sun{display:none}
-  :root:not([data-theme="dark"]) .themetoggle .icon-moon{display:block}
-}
-:root[data-theme="light"] .themetoggle .icon-sun{display:none}
-:root[data-theme="light"] .themetoggle .icon-moon{display:block}
-:root[data-theme="dark"] .themetoggle .icon-sun{display:block!important}
-:root[data-theme="dark"] .themetoggle .icon-moon{display:none!important}
+.themetoggle svg{display:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.themetoggle .icon-auto{display:block}
+:root[data-theme="light"] .themetoggle .icon-auto{display:none}
+:root[data-theme="light"] .themetoggle .icon-sun{display:block}
+:root[data-theme="dark"] .themetoggle .icon-auto{display:none}
+:root[data-theme="dark"] .themetoggle .icon-moon{display:block}
 
 /* ---------- Buttons ---------- */
 .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
@@ -278,6 +274,8 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .shotframe img{display:block;width:100%;height:auto}
 .shotcap{margin:14px 4px 0;font-size:13.5px;color:var(--faint);line-height:1.5}
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1200px;margin:44px auto 0;width:100%}
+.shots>div{min-width:0}
+.shotframe{max-width:100%}
 .shots .wide{grid-column:1/-1}
 
 /* ---------- Flow diagram (responsive: horizontal → vertical) ---------- */
@@ -402,6 +400,10 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
   .pipeline{grid-template-columns:1fr 1fr}
   .pipestep:after{display:none!important}
   .shots{grid-template-columns:1fr}
+  .shotframe:has(img[width="1600"]),.shotframe:has(img[width="1590"]){overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .shotframe .shotbar{position:sticky;left:0}
+  .shotframe img[width="1600"],.shotframe img[width="1590"]{width:780px;max-width:none}
+  .shotframe:has(img[width="1600"]) .shotbar:after,.shotframe:has(img[width="1590"]) .shotbar:after{content:"⟷ swipe";margin-left:auto;font-size:11px;color:var(--faint);letter-spacing:1px;flex-shrink:0}
   .footgrid{grid-template-columns:1fr}
   .postgrid{grid-template-columns:1fr}
 }

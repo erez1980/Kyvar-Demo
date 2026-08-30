@@ -25,10 +25,16 @@ document.querySelectorAll('.reveal').forEach(x=>o.observe(x));
       forced.content = t === 'light' ? '#f4f7fb' : '#050b17';
     } else if (forced) forced.remove();
   }
-  document.querySelectorAll('.themetoggle').forEach(b => b.addEventListener('click', () => {
-    const next = eff() === 'light' ? 'dark' : 'light';
-    root.dataset.theme = next;
-    try { localStorage.setItem('kyvar-theme', next); } catch(e){}
+  const MODES = ['', 'light', 'dark'];
+  const label = t => t === 'light' ? 'Theme: Light' : t === 'dark' ? 'Theme: Dark' : 'Theme: Auto (follows your system)';
+  const btns = document.querySelectorAll('.themetoggle');
+  btns.forEach(b => { b.title = label(root.dataset.theme || ''); });
+  btns.forEach(b => b.addEventListener('click', () => {
+    const cur = root.dataset.theme || '';
+    const next = MODES[(MODES.indexOf(cur) + 1) % MODES.length];
+    if (next) root.dataset.theme = next; else root.removeAttribute('data-theme');
+    try { next ? localStorage.setItem('kyvar-theme', next) : localStorage.removeItem('kyvar-theme'); } catch(e){}
+    btns.forEach(x => { x.title = label(next); });
     sync();
   }));
   if (mq.addEventListener) mq.addEventListener('change', sync);
