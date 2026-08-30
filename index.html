@@ -12,7 +12,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://kyvar.io/">
-<meta name="theme-color" content="#050b17">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050b17">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f7fb">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KYVAR">
 <meta property="og:locale" content="en_US">
@@ -225,12 +226,12 @@
 </div></section>
 
 <!-- Safety -->
-<section class="section" id="safety" style="background:linear-gradient(135deg,#092b3d,#17153e)"><div class="grid">
+<section class="section safety-band" id="safety"><div class="grid">
   <div class="reveal"><div class="kicker">SAFETY IS THE ARCHITECTURE</div>
     <h2>Autonomy with a safety envelope.</h2>
     <p>Every meaningful action travels through a control plane built to say “not yet” when it should. Your own cloud permissions decide what you can do — an admin can do everything, the person who owns the websites acts exactly where they were granted.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="security.html">Explore the security architecture →</a></div></div>
-  <div class="visual reveal" style="background:#071725"><div>
+  <div class="visual reveal safety-visual"><div>
     <div class="check">Deny by default — writes are armed, never assumed</div>
     <div class="check">Requester cannot approve their own change</div>
     <div class="check">Risk classification and human approval on the diff, not a vibe</div>
@@ -296,7 +297,7 @@
 <!-- Final CTA -->
 <section class="section"><div class="center reveal">
   <div class="kicker">START SMALL. PROVE IT.</div>
-  <h2>One real workload. 30–60 days.<br><span style="background:linear-gradient(90deg,var(--blue),#fff,var(--violet));background-clip:text;-webkit-background-clip:text;color:transparent">Evidence you can trust.</span></h2>
+  <h2>One real workload. 30–60 days.<br><span class="grad">Evidence you can trust.</span></h2>
   <p>A focused pilot gives operations, security and leadership measurable automation, explicit control, and a complete action trail.</p>
   <div class="cta">
     <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
