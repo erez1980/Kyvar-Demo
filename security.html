@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security &amp; Compliance — KYVAR</title>
+<meta name="description" content="KYVAR assumes the agent, operator, runtime and surrounding data may all become adversarial. Controls are enforced before execution, not added after the fact.">
+<link rel="icon" type="image/png" href="branding/kyvar-mark.png">
+<link rel="canonical" href="https://kyvar.io/security.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kyvar.io/security.html">
+<meta property="og:title" content="Security &amp; Compliance — KYVAR">
+<meta property="og:description" content="Autonomous operations — without autonomous risk. Controls enforced before execution, not added after the fact.">
+<meta property="og:image" content="https://kyvar.io/branding/Kyvar_Logo_Dark.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/site.css">
+</head><body><div class="glow"></div>
+
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <img src="branding/kyvar-mark.png" alt="" onerror="this.remove()">
+    <span>KYVAR</span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html#platform">Platform</a>
+    <a class="active" href="security.html">Security</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="pilot.html">Pilot</a>
+    <a class="login" href="https://app.kyvar.io/login">Log in</a>
+    <a class="pilotcta" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+  </div>
+</nav>
+
+<main>
+<header class="pagehero reveal">
+  <div class="eyebrow">SECURITY &amp; COMPLIANCE</div>
+  <h1>Autonomous operations —<br><span>without autonomous risk.</span></h1>
+  <p class="lede">KYVAR assumes the agent, operator, runtime, and surrounding data may all become adversarial. Controls are enforced before execution, not added after the fact.</p>
+</header>
+
+<section class="section tight"><div class="center reveal">
+  <div class="cards two">
+    <div class="card"><span class="cardtitle" style="font-weight:800">The write-gate chain</span>
+      <ul>
+        <li>Global and per-connector kill switches</li>
+        <li>Action and parameter allowlists</li>
+        <li>Credential-derived environment classification</li>
+        <li>Risk policy and separation of duties</li>
+        <li>Dry-run and rollback before execution</li>
+        <li>HIGH / CRITICAL real writes refused</li>
+      </ul>
+    </div>
+    <div class="card"><span class="cardtitle" style="font-weight:800">Identity and tenant boundaries</span>
+      <ul>
+        <li>OIDC authorization code + PKCE</li>
+        <li>TOTP MFA and protected break-glass access</li>
+        <li>Role and tenant resolved from the database per request</li>
+        <li>Connector-level RBAC controls both action and visibility</li>
+        <li>Cross-tenant objects return 404 — no ID oracle</li>
+      </ul>
+    </div>
+    <div class="card"><span class="cardtitle" style="font-weight:800">Credentials stay controlled</span>
+      <ul>
+        <li>Encrypted at rest; never echoed by APIs</li>
+        <li>Decryption pinned to the one enrolled runtime</li>
+        <li>Per-run, memory-first delivery</li>
+        <li>Control-plane tokens stripped from agent subprocesses</li>
+        <li>Customer-owned secret stores and model keys supported</li>
+      </ul>
+    </div>
+    <div class="card"><span class="cardtitle" style="font-weight:800">Audit that security can use</span>
+      <ul>
+        <li>Actor, target, connector, policy, approver, and outcome</li>
+        <li>CSV export plus syslog / webhook forwarding</li>
+        <li>Credential-safe run events</li>
+        <li>Retention controls and correlation IDs</li>
+        <li>Authenticated adversarial tests become regressions</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="cards">
+    <div class="card"><span class="cardicon">◈</span><b>Private by architecture</b><p>Deploy in the customer environment. Customer data stays with the customer except model calls they explicitly configure.</p></div>
+    <div class="card"><span class="cardicon">🛡</span><b>Bounded agents</b><p>Step budgets, destructive-command detection, output treated as data, and approval for any write plan.</p></div>
+    <div class="card"><span class="cardicon">◎</span><b>Enterprise perimeter</b><p>TLS, HSTS, CSP, no-store APIs, loopback-only data services, SSRF protection, and least privilege.</p></div>
+  </div>
+  <div class="quote">Every control is enforced in the request path — a policy that only reports after the fact is a dashboard, not a gate.</div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">SEE IT IN THE PRODUCT</div>
+  <h2>The gate, on screen.</h2>
+  <div class="shots">
+    <div>
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Policy &amp; risk classification</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/policy.png" alt="KYVAR policy and risk classification"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Policy &amp; risk view</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">Environment-aware risk policy: the same command is LOW in dev and gated in prod.</div>
+    </div>
+    <div>
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Audit export</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/audit-export.png" alt="KYVAR audit export"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Audit export</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">The full actor → action → outcome chain, exportable to the tools your security team already runs.</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section"><div class="center reveal">
+  <div class="kicker">PUT IT TO THE TEST</div>
+  <h2>Let your security team try to break it.</h2>
+  <p>The best pilot outcome is a security team that observed every decision and found nothing ungoverned. Start read-only, open one narrow write path, and review the evidence.</p>
+  <div class="cta">
+    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button ghost" href="pilot.html">How the pilot works →</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="footgrid">
+    <div>
+      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px" onerror="this.remove()"><span>KYVAR</span></a>
+      <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="index.html#platform">How it works</a>
+      <a href="security.html">Security &amp; Compliance</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="pilot.html">Customer Pilot</a>
+    </div>
+    <div>
+      <h4>Get started</h4>
+      <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+      <a href="https://app.kyvar.io/login">Log in</a>
+      <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
+    </div>
+  </div>
+  <div class="footnote">
+    <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
+    <span>AWS · Azure · OCI · On-prem</span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body></html>

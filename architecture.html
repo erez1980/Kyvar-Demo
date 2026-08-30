@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Architecture &amp; Deployment — KYVAR</title>
+<meta name="description" content="KYVAR separates governance from execution. The control plane decides what may happen; enrolled runtimes execute close to the target — in a cloud account, data center, branch, or isolated network.">
+<link rel="icon" type="image/png" href="branding/kyvar-mark.png">
+<link rel="canonical" href="https://kyvar.io/architecture.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kyvar.io/architecture.html">
+<meta property="og:title" content="Architecture &amp; Deployment — KYVAR">
+<meta property="og:description" content="Cloud control plane. Runtime where the work lives. Zero inbound exposure for on-prem.">
+<meta property="og:image" content="https://kyvar.io/branding/Kyvar_Logo_Dark.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/site.css">
+</head><body><div class="glow"></div>
+
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <img src="branding/kyvar-mark.png" alt="" onerror="this.remove()">
+    <span>KYVAR</span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html#platform">Platform</a>
+    <a href="security.html">Security</a>
+    <a class="active" href="architecture.html">Architecture</a>
+    <a href="pilot.html">Pilot</a>
+    <a class="login" href="https://app.kyvar.io/login">Log in</a>
+    <a class="pilotcta" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+  </div>
+</nav>
+
+<main>
+<header class="pagehero reveal">
+  <div class="eyebrow">ARCHITECTURE &amp; DEPLOYMENT</div>
+  <h1>Cloud control plane.<br><span>Runtime where the work lives.</span></h1>
+  <p class="lede">KYVAR separates governance from execution. The control plane decides what may happen; enrolled runtimes execute close to the target — in a cloud account, data center, branch, or isolated network.</p>
+</header>
+
+<section class="section tight"><div class="center reveal">
+  <div class="visual" style="min-height:auto;padding:44px 30px">
+    <div class="flow">
+      <div class="node"><b>OPERATORS &amp; SYSTEMS</b>People &amp; pipelines<small>Chat, forms, APIs, monitors</small></div>
+      <div class="arrow">→</div>
+      <div class="node core"><b>KYVAR CONTROL PLANE</b>Governance<small>Identity · Policy · Approval<br>Fleet · Audit · Desired state</small></div>
+      <div class="arrow">⟷</div>
+      <div class="node"><b>GOVERNED RUNTIMES</b>Execution<small>Outbound polling · local execution</small></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="cards two">
+    <div class="card"><span class="cardtitle" style="font-weight:800">Zero inbound exposure for on-prem</span>
+      <p>The runtime polls KYVAR over HTTPS 443. No inbound firewall rule, port forwarding, DMZ, or VPN is required. Credentials can remain on the runtime inside the customer network.</p>
+      <div class="pills"><span class="pill">Outbound-only</span><span class="pill">One-time enrollment</span><span class="pill">Per-runtime token</span></div>
+    </div>
+    <div class="card"><span class="cardtitle" style="font-weight:800">Built for replacement and scale</span>
+      <p>PostgreSQL persists state, Redis coordinates work, and runtime heartbeats carry version and capability state. Docker Compose supports evaluation; Helm supports production clusters with HPA, managed data services, migration jobs, and TLS ingress.</p>
+      <div class="pills"><span class="pill">PostgreSQL</span><span class="pill">Redis</span><span class="pill">Helm + HPA</span><span class="pill">Docker Compose</span></div>
+    </div>
+    <div class="card"><span class="cardtitle" style="font-weight:800">Placement is a security decision</span>
+      <ul>
+        <li>Bind each connector to one approved runtime</li>
+        <li>Separate prod/dev, clouds, and network zones</li>
+        <li>Use least-privilege target identities</li>
+        <li>Keep model provider and data residency choices explicit</li>
+      </ul>
+    </div>
+    <div class="card"><span class="cardtitle" style="font-weight:800">Resilient operational lifecycle</span>
+      <ul>
+        <li>Persisted runs and reconnect-safe workers</li>
+        <li>Pre-deploy database backup and restore drill</li>
+        <li>Health endpoints, structured logs, correlation IDs</li>
+        <li>Prebuilt images and rolling releases</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><b>Minimum on-prem runtime:</b> 2 vCPU · 4 GB RAM · 20 GB disk · Docker + Compose · outbound HTTPS to KYVAR and the selected model provider.</div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">SEE IT IN THE PRODUCT</div>
+  <h2>Fleet, runtimes, and enrollment.</h2>
+  <div class="shots">
+    <div>
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Runtime fleet</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/fleet.png" alt="KYVAR runtime fleet"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Runtime fleet</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">Every enrolled runtime with version, capability and heartbeat state — the execution fleet at a glance.</div>
+    </div>
+    <div>
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Connector placement</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/connectors.png" alt="KYVAR connector placement"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Connector placement</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">Connectors bound to approved runtimes — prod, dev, clouds and network zones kept deliberately apart.</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section"><div class="center reveal">
+  <div class="kicker">RUN IT WHERE YOU RUN</div>
+  <h2>An afternoon to evaluate.<br>A cluster for production.</h2>
+  <p>Start with Docker Compose on one VM, prove the loop on a real workload, then graduate to Helm on your cluster — the governance model never changes.</p>
+  <div class="cta">
+    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button ghost" href="pilot.html">How the pilot works →</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="footgrid">
+    <div>
+      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px" onerror="this.remove()"><span>KYVAR</span></a>
+      <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="index.html#platform">How it works</a>
+      <a href="security.html">Security &amp; Compliance</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="pilot.html">Customer Pilot</a>
+    </div>
+    <div>
+      <h4>Get started</h4>
+      <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+      <a href="https://app.kyvar.io/login">Log in</a>
+      <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
+    </div>
+  </div>
+  <div class="footnote">
+    <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
+    <span>AWS · Azure · OCI · On-prem</span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body></html>

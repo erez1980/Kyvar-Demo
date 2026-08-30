@@ -2,101 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KYVAR — Autonomous IT Self-Healing</title>
-<meta name="description" content="KYVAR is the governed autonomous operator for your infrastructure: one control plane that turns intent into approved, audited action across AWS, Azure, OCI and on-prem — and heals what breaks before you're paged.">
+<title>KYVAR — Let AI operate infrastructure. Keep humans in control.</title>
+<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: one controlled path from human intent to approved execution, validation, audit and self-healing — across cloud and on-prem.">
 <link rel="icon" type="image/png" href="branding/kyvar-mark.png">
 <link rel="canonical" href="https://kyvar.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kyvar.io/">
-<meta property="og:title" content="KYVAR — Autonomous IT Self-Healing">
+<meta property="og:title" content="KYVAR — Let AI operate infrastructure. Keep humans in control.">
 <meta property="og:description" content="One governed control plane. Every cloud. Intent in, approved and audited action out — and self-healing that proves the fix.">
 <meta property="og:image" content="https://kyvar.io/branding/Kyvar_Logo_Dark.png">
 <meta name="twitter:card" content="summary_large_image">
-<style>
-:root{--ink:#f5f7fb;--muted:#9aa8bf;--blue:#2fd6ff;--violet:#8d7bff;--green:#77e6ad;--navy:#050b17}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--navy);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
-.glow{position:fixed;pointer-events:none;inset:-30%;background:radial-gradient(circle at 50% 18%,rgba(47,214,255,.16),transparent 24%),radial-gradient(circle at 75% 63%,rgba(141,123,255,.17),transparent 26%);z-index:-1}
-.nav{position:fixed;top:0;width:100%;z-index:9;display:flex;justify-content:space-between;align-items:center;padding:16px 6%;background:linear-gradient(#050b17e8,transparent);backdrop-filter:blur(8px)}
-.brand{display:flex;align-items:center;font-weight:800;letter-spacing:3px;font-size:17px}
-.brand img{height:38px;width:auto;margin-right:10px}
-.mark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;margin-right:9px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#05101d}
-.navlinks{display:flex;align-items:center}
-.nav a{color:#dbe7f7;text-decoration:none;margin-left:22px;font-size:14px}
-.nav a.login{border:1px solid #5ee5ff;border-radius:999px;padding:9px 20px;font-weight:700;background:#0c293c;color:#fff}
-.nav a.login:hover{background:#11364e}
-.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:130px 7% 70px}
-.herologo{height:clamp(120px,22vw,210px);width:auto;margin:0 auto 8px;display:block;filter:drop-shadow(0 0 45px rgba(47,214,255,.35))}
-.eyebrow{color:var(--blue);letter-spacing:3px;font-size:12px;font-weight:800}
-.hero h1{font-size:clamp(44px,7.2vw,104px);letter-spacing:-4px;line-height:.92;max-width:1100px;margin:20px auto}
-.hero h1 span{background:linear-gradient(90deg,var(--blue),#fff,var(--violet));background-clip:text;-webkit-background-clip:text;color:transparent}
-.hero p{font-size:clamp(18px,2vw,24px);color:var(--muted);max-width:760px;line-height:1.45;margin-left:auto;margin-right:auto}
-.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-.button{display:inline-block;padding:15px 27px;border:1px solid #5ee5ff;border-radius:999px;color:#05101d;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#5ee5ff,#7fc4ff)}
-.button.ghost{background:#0c293c;color:#fff;font-weight:700}
-.trust{margin-top:56px;color:#6f83a0;font-size:13px;letter-spacing:1px}
-.section{min-height:88vh;padding:120px 7%;display:grid;align-items:center}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center;max-width:1200px;margin:auto;width:100%}
-.kicker{color:var(--blue);font-weight:800;letter-spacing:2px;font-size:12px}
-.section h2{font-size:clamp(40px,5.6vw,74px);line-height:.95;letter-spacing:-3px;margin:18px 0}
-.section p{font-size:19px;color:var(--muted);line-height:1.55;max-width:560px}
-.visual{min-height:410px;border:1px solid #304a71;border-radius:32px;padding:30px;background:linear-gradient(145deg,#102440aa,#081322aa);display:flex;align-items:center;justify-content:center}
-.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
-.node{padding:18px;border:1px solid #365a85;border-radius:16px;background:#0b1d34;font-weight:700;min-width:120px;text-align:center}
-.node b{display:block;color:var(--blue);font-size:12px;margin-bottom:6px}
-.node.hot{border-color:#e05d5d;box-shadow:0 0 24px #e05d5d33}
-.node.hot b{color:#ff9d9d}
-.arrow{color:var(--blue);font-size:28px}
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
-.tile{padding:24px;border:1px solid #334c70;border-radius:18px;background:#0c1d33}
-.tile b{display:block;font-size:22px;margin-bottom:8px}
-.tile p{font-size:14px;margin:0}
-.safety{background:linear-gradient(135deg,#092b3d,#17153e)}
-.safety .visual{background:#071725}
-.check{padding:15px;border-bottom:1px solid #25445d;color:#cce4ef}
-.check:before{content:"✓";color:var(--green);font-weight:900;margin-right:10px}
-.diff{max-width:1200px;margin:auto;width:100%;text-align:center}
-.diff h2{margin-bottom:50px}
-.diffgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.diffcard{padding:32px 26px;border:1px solid #334c70;border-radius:22px;background:#0c1d33;text-align:left}
-.diffcard b{display:block;font-size:21px;margin-bottom:10px}
-.diffcard p{font-size:15px;color:var(--muted);margin:0;line-height:1.55}
-.estate{position:relative}
-.estate .visual{flex-direction:column;gap:18px}
-.linkline{color:var(--green);font-size:13px;font-weight:700;letter-spacing:.5px}
-.finding{display:flex;align-items:center;gap:10px;border:1px solid #e05d5d55;background:#2a101c;border-radius:14px;padding:12px 16px;font-size:14px}
-.sev{background:#e05d5d;color:#fff;border-radius:6px;font-size:11px;font-weight:800;padding:3px 8px;letter-spacing:1px}
-.footer{padding:90px 7% 70px;text-align:center;color:#7890aa}
-.footer .brand{justify-content:center;margin-bottom:14px}
-.footer a{color:#9fdcff;text-decoration:none}
-.reveal{opacity:0;transform:translateY(28px);transition:.8s ease}
-.reveal.on{opacity:1;transform:none}
-@media(max-width:760px){.navlinks a:not(.login){display:none}.grid{grid-template-columns:1fr;gap:35px}.section{min-height:auto;padding:100px 7%}.visual{min-height:320px}.hero h1{letter-spacing:-3px}.tiles{grid-template-columns:1fr}.diffgrid{grid-template-columns:1fr}.hero{min-height:92vh}}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head><body><div class="glow"></div>
+
 <nav class="nav">
-  <div class="brand">
+  <a class="brand" href="index.html">
     <img src="branding/kyvar-mark.png" alt="" onerror="this.remove()">
     <span>KYVAR</span>
-  </div>
+  </a>
   <div class="navlinks">
-    <a href="#day0">Build</a><a href="#day2">Operate</a><a href="#estate">One estate</a><a href="#safety">Safety</a>
+    <a href="index.html#platform">Platform</a>
+    <a href="security.html">Security</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="pilot.html">Pilot</a>
     <a class="login" href="https://app.kyvar.io/login">Log in</a>
+    <a class="pilotcta" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
   </div>
 </nav>
+
 <main>
 <section class="hero"><div class="reveal">
   <img class="herologo" src="branding/kyvar-mark.png" alt="KYVAR" onerror="this.remove()">
-  <div class="eyebrow">AUTONOMOUS IT SELF-HEALING</div>
-  <h1>Infrastructure that <span>keeps moving.</span><br>Safely.</h1>
-  <p>KYVAR is the governed autonomous operator for your estate: intent in, approved and audited action out — across every cloud, from the first deploy to the thousandth recovery.</p>
+  <div class="eyebrow">AUTONOMOUS IT, GOVERNED BY DESIGN</div>
+  <h1>Let AI operate infrastructure.<br><span>Keep humans in control.</span></h1>
+  <p>KYVAR is the governance plane for autonomous IT operations: one controlled path from human intent to approved execution, validation, audit and self-healing — across cloud and on-prem.</p>
   <div class="cta">
-    <a class="button" href="https://app.kyvar.io/login">Log in to KYVAR</a>
-    <a class="button ghost" href="#day0">See how it works ↓</a>
+    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button ghost" href="#platform">See how it works ↓</a>
   </div>
-  <div class="trust">AWS · MICROSOFT AZURE · ORACLE CLOUD · KUBERNETES · TERRAFORM · GITHUB</div>
+  <div class="trust">AWS · MICROSOFT AZURE · ORACLE CLOUD · VMWARE · KUBERNETES · TERRAFORM · DOCKER · GITHUB · ENTRA ID</div>
 </div></section>
 
+<!-- Governed pipeline -->
+<section class="section" id="platform"><div class="center reveal">
+  <div class="kicker">ONE CONTROLLED PATH</div>
+  <h2>Seven gates between intent and change.</h2>
+  <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence.</p>
+  <div class="pipeline">
+    <div class="pipestep"><b>01 · INTENT</b><span>Ask</span><small>Natural language or catalog</small></div>
+    <div class="pipestep"><b>02 · RBAC</b><span>Scope</span><small>Actor + connector scope</small></div>
+    <div class="pipestep"><b>03 · RISK</b><span>Classify</span><small>Environment-aware policy</small></div>
+    <div class="pipestep"><b>04 · APPROVAL</b><span>Gate</span><small>Second-human gate</small></div>
+    <div class="pipestep"><b>05 · EXECUTE</b><span>Run</span><small>Bounded runtime</small></div>
+    <div class="pipestep"><b>06 · VALIDATE</b><span>Prove</span><small>Outcome + rollback</small></div>
+    <div class="pipestep"><b>07 · AUDIT</b><span>Keep</span><small>Evidence end to end</small></div>
+  </div>
+  <div class="quote">“The agent is replaceable. The governance around it is the product.”</div>
+</div></section>
+
+<!-- Product screenshots -->
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">THE PRODUCT</div>
+  <h2>Governance you can see.</h2>
+  <p>The KYVAR console makes every decision visible — what was asked, what policy said, who approved, what ran, and what proved the fix.</p>
+  <div class="shots">
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Operations console</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/console.png" alt="KYVAR operations console"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Operations console</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">The estate at a glance: fleet health, active runs, pending approvals and the audit stream — one operational view.</div>
+    </div>
+    <div>
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Approval gate</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/approval.png" alt="KYVAR approval gate"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Approval gate</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">Approvers see the exact plan and diff — risk-classified, scoped, and reversible — before a single write is armed.</div>
+    </div>
+    <div>
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Audit trail</span></div>
+        <!-- Replace this placeholder with: <img src="assets/screenshots/audit.png" alt="KYVAR audit trail"> -->
+        <div class="shot-placeholder"><div class="ph-inner"><b>Audit trail</b><span>PRODUCT SCREENSHOT — COMING SOON</span></div></div>
+      </div>
+      <div class="shotcap">Actor, target, connector, policy, approver and outcome — an exportable chain of evidence for every run.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- Day 0 -->
 <section class="section" id="day0"><div class="grid">
   <div class="reveal"><div class="kicker">DAY 0 — BUILD WITH CONFIDENCE</div>
     <h2>From idea to infrastructure.</h2>
@@ -109,19 +106,21 @@ body{margin:0;background:var(--navy);color:var(--ink);font-family:Inter,ui-sans-
   </div></div>
 </div></section>
 
+<!-- Day 2 -->
 <section class="section" id="day2"><div class="grid">
-  <div class="visual reveal"><div class="tiles">
-    <div class="tile"><b>Monitor</b><p>Agent checks and live probes — from inside your network, on your cadence.</p></div>
-    <div class="tile"><b>Diagnose</b><p>Context, inventory, history and policy in one operational view.</p></div>
-    <div class="tile"><b>Heal</b><p>Bounded remediation behind thresholds, cooldowns and approvals.</p></div>
-    <div class="tile"><b>Verify</b><p>Real health checks close the loop — the fix is proven, not assumed.</p></div>
+  <div class="visual reveal"><div class="cards two" style="margin:0;gap:14px">
+    <div class="card"><b>Monitor</b><p>Agent checks and live probes — from inside your network, on your cadence.</p></div>
+    <div class="card"><b>Diagnose</b><p>Context, inventory, history and policy in one operational view.</p></div>
+    <div class="card"><b>Heal</b><p>Bounded remediation behind thresholds, cooldowns and approvals.</p></div>
+    <div class="card"><b>Verify</b><p>Real health checks close the loop — the fix is proven, not assumed.</p></div>
   </div></div>
   <div class="reveal"><div class="kicker">DAY 2 — OPERATE WITHOUT DRAMA</div>
     <h2>Detect. Heal. Prove it.</h2>
     <p>Monitoring and self-healing run as one governed loop. Down at 03:14, diagnosed, remediated and re-verified — with a human woken only when policy wants one.</p></div>
 </div></section>
 
-<section class="section estate" id="estate"><div class="grid">
+<!-- One estate -->
+<section class="section" id="estate"><div class="grid">
   <div class="reveal"><div class="kicker">ONE ESTATE, NOT ONE INVENTORY PER TOOL</div>
     <h2>Every source. One asset.</h2>
     <p>KYVAR discovers what lives behind every connector and links the rows that are the same real machine — matched on hard evidence, never a guess dressed as a fact. A security finding from one tool lands on the asset another cloud runs, and the fix flows through the connector that owns it.</p></div>
@@ -136,46 +135,94 @@ body{margin:0;background:var(--navy);color:var(--ink);font-family:Inter,ui-sans-
   </div></div>
 </div></section>
 
-<section class="section safety" id="safety"><div class="grid">
-  <div class="reveal"><div class="kicker">SAFETY IS THE ARCHITECTURE</div>
-    <h2>Autonomy with boundaries.</h2>
-    <p>Every meaningful action travels through a control plane built to say “not yet” when it should. Your own cloud permissions decide what you can do — an admin can do everything, the person who owns the websites acts exactly where they were granted.</p></div>
-  <div class="visual reveal"><div>
-    <div class="check">Deny by default — writes are armed, never assumed</div>
-    <div class="check">Identity, RBAC, per-user access levels and separation of duties</div>
-    <div class="check">Risk classification and human approval on the diff, not a vibe</div>
-    <div class="check">Scoped execution, cooldowns and rollback</div>
-    <div class="check">Audit evidence from intent to outcome — exportable</div>
-  </div></div>
-</div></section>
-
-<section class="section"><div class="diff reveal">
-  <div class="kicker">WHY THERE IS NO PRODUCT LIKE IT</div>
-  <h2>Not a chatbot over your cloud.</h2>
-  <div class="diffgrid">
-    <div class="diffcard"><b>A governed operator</b><p>Chat assistants suggest commands. KYVAR executes them — inside a policy engine, an approval gate and a full audit trail. The autonomy is the product; the governance is the architecture.</p></div>
-    <div class="diffcard"><b>End to end, one plane</b><p>Discovery, monitoring, self-healing, provisioning and multi-step workflows share one control plane and one evidence trail — not five tools stitched by webhooks.</p></div>
-    <div class="diffcard"><b>Runs where you run</b><p>Execution happens on runtimes inside your network, with credentials that never leave it. Cloud, on-prem, air-gapped-friendly by design.</p></div>
+<!-- Proof points -->
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">BUILT LIKE INFRASTRUCTURE, NOT A DEMO</div>
+  <h2>The numbers behind the platform.</h2>
+  <div class="stats">
+    <div class="stat"><div class="num">10</div><div class="lbl">Connector families</div><p>Linux, Windows, AWS, Azure, OCI, VMware, Terraform, Kubernetes, Docker and Entra ID — infrastructure and identity reach through one governed pipeline.</p></div>
+    <div class="stat"><div class="num">9</div><div class="lbl">Role profiles</div><p>Operational access structured from viewer to platform administration — least privilege as a default, not a configuration project.</p></div>
+    <div class="stat"><div class="num">~750</div><div class="lbl">Automated tests</div><p>Continuous coverage across gates, tenancy, credentials and abuse cases — the safety envelope is tested like the product it is.</p></div>
   </div>
 </div></section>
 
+<!-- Safety -->
+<section class="section" id="safety" style="background:linear-gradient(135deg,#092b3d,#17153e)"><div class="grid">
+  <div class="reveal"><div class="kicker">SAFETY IS THE ARCHITECTURE</div>
+    <h2>Autonomy with a safety envelope.</h2>
+    <p>Every meaningful action travels through a control plane built to say “not yet” when it should. Your own cloud permissions decide what you can do — an admin can do everything, the person who owns the websites acts exactly where they were granted.</p>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="security.html">Explore the security architecture →</a></div></div>
+  <div class="visual reveal" style="background:#071725"><div>
+    <div class="check">Deny by default — writes are armed, never assumed</div>
+    <div class="check">Requester cannot approve their own change</div>
+    <div class="check">Risk classification and human approval on the diff, not a vibe</div>
+    <div class="check">Dry-run, captured rollback, and immutable-style audit</div>
+    <div class="check">Daily model-spend budget and destructive-command guard</div>
+  </div></div>
+</div></section>
+
+<!-- Differentiation -->
+<section class="section"><div class="center reveal">
+  <div class="kicker">WHY THERE IS NO PRODUCT LIKE IT</div>
+  <h2>Not a chatbot over your cloud.</h2>
+  <div class="cards">
+    <div class="card"><b>A governed operator</b><p>Chat assistants suggest commands. KYVAR executes them — inside a policy engine, an approval gate and a full audit trail. The autonomy is the product; the governance is the architecture.</p></div>
+    <div class="card"><b>End to end, one plane</b><p>Discovery, monitoring, self-healing, provisioning and multi-step workflows share one control plane and one evidence trail — not five tools stitched by webhooks.</p></div>
+    <div class="card"><b>Runs where you run</b><p>Execution happens on runtimes inside your network, with credentials that never leave it. Cloud, on-prem, air-gapped-friendly by design.</p></div>
+  </div>
+</div></section>
+
+<!-- Control plane -->
 <section class="section"><div class="grid">
   <div class="visual reveal"><div class="flow">
     <div class="node"><b>CLOUD</b>AWS · Azure · OCI</div>
     <div class="node"><b>ON-PREM</b>Linux · Windows · VMware</div>
-    <div class="node"><b>DELIVERY</b>Terraform · Containers · GitHub</div>
+    <div class="node"><b>DELIVERY</b>Terraform · K8s · GitHub</div>
   </div></div>
   <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
     <h2>Where your work actually lives.</h2>
-    <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status.</p>
-    <div class="cta" style="justify-content:flex-start"><a class="button" href="https://app.kyvar.io/login">Log in to KYVAR</a></div>
+    <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target.</p>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
+  </div>
+</div></section>
+
+<!-- Final CTA -->
+<section class="section"><div class="center reveal">
+  <div class="kicker">START SMALL. PROVE IT.</div>
+  <h2>One real workload. 30–60 days.<br><span style="background:linear-gradient(90deg,var(--blue),#fff,var(--violet));background-clip:text;-webkit-background-clip:text;color:transparent">Evidence you can trust.</span></h2>
+  <p>A focused pilot gives operations, security and leadership measurable automation, explicit control, and a complete action trail.</p>
+  <div class="cta">
+    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button ghost" href="pilot.html">How the pilot works →</a>
   </div>
 </div></section>
 </main>
+
 <footer class="footer">
-  <div class="brand"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px" onerror="this.remove()"><span>KYVAR</span></div>
-  <p>Autonomous IT Self-Healing. From Day 0 to Day 2 — safely.</p>
-  <p><a href="https://app.kyvar.io/login">Log in</a></p>
+  <div class="footgrid">
+    <div>
+      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px" onerror="this.remove()"><span>KYVAR</span></a>
+      <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="index.html#platform">How it works</a>
+      <a href="security.html">Security &amp; Compliance</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="pilot.html">Customer Pilot</a>
+    </div>
+    <div>
+      <h4>Get started</h4>
+      <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+      <a href="https://app.kyvar.io/login">Log in</a>
+      <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
+    </div>
+  </div>
+  <div class="footnote">
+    <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
+    <span>AWS · Azure · OCI · On-prem</span>
+  </div>
 </footer>
-<script>const o=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>o.observe(x));</script>
+
+<script src="assets/site.js"></script>
 </body></html>
