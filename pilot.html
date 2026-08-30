@@ -2,16 +2,77 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Customer Pilot — KYVAR</title>
-<meta name="description" content="Prove governed autonomy on one real workload. A focused 30–60 day pilot gives operations, security and leadership evidence they can all trust.">
+<title>AI IT Automation Pilot in 30–60 Days — KYVAR Customer Pilot</title>
+<meta name="description" content="Prove governed AI automation on one real workload in 30–60 days: start read-only, open one approved write path, and measure fewer incidents, faster recovery and zero ungoverned changes.">
 <link rel="icon" type="image/png" href="branding/kyvar-mark.png">
 <link rel="canonical" href="https://kyvar.io/pilot.html">
+<meta name="theme-color" content="#050b17">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="KYVAR">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kyvar.io/pilot.html">
-<meta property="og:title" content="Customer Pilot — KYVAR">
-<meta property="og:description" content="Prove governed autonomy on one real workload — measurable automation, explicit control, and a complete action trail.">
-<meta property="og:image" content="https://kyvar.io/branding/Kyvar_Logo_Dark.png">
+<meta property="og:title" content="Prove governed autonomy on one real workload | KYVAR">
+<meta property="og:description" content="A focused 30–60 day pilot: measurable automation, explicit control, and a complete action trail.">
+<meta property="og:image" content="https://kyvar.io/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KYVAR — Let AI operate infrastructure. Keep humans in control.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prove governed autonomy on one real workload | KYVAR">
+<meta name="twitter:description" content="A focused 30–60 day pilot: measurable automation, explicit control, and a complete action trail.">
+<meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://kyvar.io/pilot.html",
+      "url": "https://kyvar.io/pilot.html",
+      "name": "Customer Pilot — KYVAR",
+      "isPartOf": { "@id": "https://kyvar.io/#website" },
+      "description": "A focused 30–60 day pilot that proves governed autonomous IT operations on one real workload."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "KYVAR", "item": "https://kyvar.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Customer Pilot", "item": "https://kyvar.io/pilot.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does a KYVAR pilot take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "30–60 days on one real, non-critical workload. The pilot starts read-only, then opens one narrow, allowlisted write path with human approval — enough to measure fewer incidents, faster recovery and zero ungoverned changes." }
+        },
+        {
+          "@type": "Question",
+          "name": "What do we need to provide for a pilot?",
+          "acceptedAnswer": { "@type": "Answer", "text": "One team, one connector, and an operational loop with a measurable baseline. The runtime needs a small host in your environment: 2 vCPU, 4 GB RAM, 20 GB disk, Docker with Compose, and outbound HTTPS." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does KYVAR need inbound access to our network?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The runtime polls KYVAR over outbound HTTPS on port 443 — no inbound firewall rule, port forwarding, DMZ or VPN. Credentials can remain on the runtime inside your network." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can KYVAR make changes without human approval?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Writes are deny-by-default. Risk policy decides when a human approval is required, the requester can never approve their own change, and high-risk real writes are refused outright. Every action leaves audit evidence from intent to outcome." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which platforms does KYVAR support?",
+          "acceptedAnswer": { "@type": "Answer", "text": "AWS, Microsoft Azure, Oracle Cloud (OCI), VMware, Linux, Windows, Kubernetes, Docker, Terraform, GitHub and Entra ID — ten connector families through one governed pipeline." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="assets/site.css">
 </head><body><div class="glow"></div>
 
@@ -77,6 +138,33 @@
     <div class="card"><b style="color:var(--blue)">Operations</b><p>Less toil, faster remediation, consistent runbooks, and one interface across environments.</p></div>
     <div class="card"><b style="color:var(--blue)">Security</b><p>Least privilege, approval gates, bounded execution, encrypted credentials, and tenant isolation.</p></div>
     <div class="card"><b style="color:var(--blue)">Leadership</b><p>A credible path from AI experimentation to controlled operational leverage.</p></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">FREQUENTLY ASKED</div>
+  <h2>Before you ask.</h2>
+  <div class="faq">
+    <details>
+      <summary>How long does a KYVAR pilot take?</summary>
+      <p>30–60 days on one real, non-critical workload. The pilot starts read-only, then opens one narrow, allowlisted write path with human approval — enough to measure fewer incidents, faster recovery and zero ungoverned changes.</p>
+    </details>
+    <details>
+      <summary>What do we need to provide for a pilot?</summary>
+      <p>One team, one connector, and an operational loop with a measurable baseline. The runtime needs a small host in your environment: 2 vCPU, 4 GB RAM, 20 GB disk, Docker with Compose, and outbound HTTPS.</p>
+    </details>
+    <details>
+      <summary>Does KYVAR need inbound access to our network?</summary>
+      <p>No. The runtime polls KYVAR over outbound HTTPS on port 443 — no inbound firewall rule, port forwarding, DMZ or VPN. Credentials can remain on the runtime inside your network.</p>
+    </details>
+    <details>
+      <summary>Can KYVAR make changes without human approval?</summary>
+      <p>Writes are deny-by-default. Risk policy decides when a human approval is required, the requester can never approve their own change, and high-risk real writes are refused outright. Every action leaves audit evidence from intent to outcome.</p>
+    </details>
+    <details>
+      <summary>Which platforms does KYVAR support?</summary>
+      <p>AWS, Microsoft Azure, Oracle Cloud (OCI), VMware, Linux, Windows, Kubernetes, Docker, Terraform, GitHub and Entra ID — ten connector families through one governed pipeline.</p>
+    </details>
   </div>
 </div></section>
 

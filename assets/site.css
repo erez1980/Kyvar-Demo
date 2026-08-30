@@ -135,6 +135,15 @@ body{margin:0;background:var(--navy);color:var(--ink);font-family:Inter,ui-sans-
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1200px;margin:44px auto 0;width:100%}
 .shots .wide{grid-column:1/-1}
 
+/* ---------- FAQ ---------- */
+.faq{max-width:860px;margin:40px auto 0;text-align:left}
+.faq details{border:1px solid var(--line);border-radius:16px;background:var(--panel);margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;padding:20px 24px;font-weight:700;font-size:17px;list-style:none;position:relative;padding-right:52px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:24px;font-weight:400;transition:.25s}
+.faq details[open] summary:after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 24px 20px;margin:0;font-size:15.5px;color:var(--muted);line-height:1.6;max-width:none}
+
 /* ---------- Footer ---------- */
 .footer{padding:90px 7% 60px;border-top:1px solid #16283f;color:#7890aa}
 .footgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 50px}
