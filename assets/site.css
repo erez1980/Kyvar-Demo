@@ -205,11 +205,14 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .pill{border:1px solid var(--pill-border);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--pill-ink);background:var(--pill-bg)}
 
-/* ---------- Product screenshot frames (stay dark — the product is dark) ---------- */
-.shotframe{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#081322;box-shadow:0 30px 80px rgba(2,8,20,.35)}
-.shotbar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#0d1f36;border-bottom:1px solid #1c3450}
-.shotbar i{width:11px;height:11px;border-radius:50%;background:#28496e;display:inline-block}
-.shotbar span{margin-left:10px;font-size:12px;color:#6f83a0;letter-spacing:.5px}
+/* ---------- Product screenshot frames (theme-matched via tokens + <picture>) ---------- */
+.shotframe{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--shot-bg,#081322);box-shadow:0 30px 80px rgba(2,8,20,.35)}
+.shotbar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:var(--shotbar-bg,#0d1f36);border-bottom:1px solid var(--shotbar-line,#1c3450)}
+.shotbar i{width:11px;height:11px;border-radius:50%;background:var(--shot-dot,#28496e);display:inline-block}
+.shotbar span{margin-left:10px;font-size:12px;color:var(--faint);letter-spacing:.5px}
+@media (prefers-color-scheme: light){
+  .shotframe{--shot-bg:#fbfdff;--shotbar-bg:#eef3f9;--shotbar-line:#dde6f0;--shot-dot:#c2d2e2;box-shadow:0 26px 60px rgba(30,55,90,.14)}
+}
 .shotframe img{display:block;width:100%;height:auto}
 .shotcap{margin:14px 4px 0;font-size:13.5px;color:var(--faint);line-height:1.5}
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1200px;margin:44px auto 0;width:100%}
