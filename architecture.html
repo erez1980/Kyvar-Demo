@@ -4,7 +4,10 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Multi-Cloud &amp; On-Prem IT Automation Architecture — KYVAR</title>
 <meta name="description" content="KYVAR's architecture: a cloud control plane for governance and enrolled runtimes that execute close to the target — zero inbound exposure for on-prem, Docker Compose to Helm, AWS, Azure, OCI and VMware.">
-<link rel="icon" type="image/png" href="branding/kyvar-mark.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://kyvar.io/architecture.html">
 <meta name="theme-color" content="#050b17">
 <meta property="og:type" content="website">
@@ -117,21 +120,21 @@
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Connectors</span></div>
-        <img src="assets/screenshots/connectors.webp" alt="KYVAR connectors: each cloud's credentials paired with the one runtime allowed to use them" width="1600" height="1000" loading="lazy">
+        <img src="assets/screenshots/connectors.webp" alt="KYVAR connectors: each cloud's credentials paired with the one runtime allowed to use them" width="1600" height="514" loading="lazy">
       </div>
       <div class="shotcap">Each connector pairs a provider's credentials with the one runtime allowed to use them — encrypted at rest, write-only, never returned by an API.</div>
     </div>
     <div>
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Runtimes</span></div>
-        <img src="assets/screenshots/runtimes.webp" alt="KYVAR runtimes: an enrolled runtime with heartbeat, versions, capabilities and enrollment token flow" width="1600" height="1000" loading="lazy">
+        <img src="assets/screenshots/runtimes.webp" alt="KYVAR runtimes: an enrolled runtime with heartbeat, versions, capabilities and enrollment token flow" width="790" height="936" loading="lazy">
       </div>
       <div class="shotcap">Every enrolled runtime with its heartbeat, versions and capabilities — and a one-time enrollment token, so a new host never touches your service token.</div>
     </div>
     <div>
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory · Map</span></div>
-        <img src="assets/screenshots/inventory-map.webp" alt="KYVAR inventory map: VPCs, subnets and workloads per connector across AWS and Azure" width="1600" height="1000" loading="lazy">
+        <img src="assets/screenshots/inventory-map.webp" alt="KYVAR inventory map: VPCs, subnets and workloads per connector across AWS and Azure" width="1600" height="744" loading="lazy">
       </div>
       <div class="shotcap">The estate mapped per connector — VPCs, subnets and workloads across AWS and Azure, with managed assets marked and cross-connector links inferred.</div>
     </div>
