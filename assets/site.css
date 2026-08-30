@@ -292,6 +292,11 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .prose a:hover{color:var(--ink)}
 .prose .takeaway{border:1px solid var(--callout-border);background:linear-gradient(135deg,var(--callout-a),var(--callout-b));border-radius:18px;padding:22px 26px;margin:34px 0;font-size:16px;line-height:1.6}
 .prose .takeaway b{color:var(--accent)}
+.prose .tablewrap{overflow-x:auto;margin:26px 0}
+.prose table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+.prose th{text-align:left;padding:12px 14px;color:var(--accent);font-size:12px;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid var(--line);white-space:nowrap}
+.prose td{padding:12px 14px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);line-height:1.5;vertical-align:top}
+.prose td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
 .postgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1000px;margin:44px auto 0;width:100%}
 .postgrid .post h3{font-size:19px;margin:10px 0;line-height:1.3;letter-spacing:-.3px}
 .postgrid .post .tag{font-size:11px;letter-spacing:1.5px;font-weight:800;color:var(--accent);text-transform:uppercase}
