@@ -1,4 +1,6 @@
-const o=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:.12});
+// Fire as soon as any part of the element enters the viewport. A ratio-based
+// threshold never triggers for very tall blocks (long articles), leaving them blank.
+const o=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:0,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(x=>o.observe(x));
 
 // Theme toggle: manual override of the system color scheme, persisted per visitor
