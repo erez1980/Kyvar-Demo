@@ -100,6 +100,7 @@
         <li>Self-service TOTP MFA — armed only once a code is proven</li>
         <li>Sessions listed and revocable; logout revokes server-side</li>
         <li>Single-use invitations, hashed at rest</li>
+        <li>SCIM 2.0 provisioning from Entra ID or Okta — joiners, movers and leavers, including group-driven access</li>
         <li>Role and tenant resolved from the database per request</li>
         <li>Connector-level RBAC controls both action and visibility</li>
         <li>Cross-tenant objects return 404 — no ID oracle</li>
@@ -112,12 +113,16 @@
         <li>Per-run, memory-first delivery</li>
         <li>Control-plane tokens stripped from agent subprocesses</li>
         <li>Customer-owned secret stores and model keys supported</li>
+        <li>Credentials verified where they live: a read-only identity check runs on the runtime itself, with no model involved</li>
+        <li>AWS roles supported directly — the runtime assumes a role, so no long-lived key need exist at all</li>
       </ul>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Audit that security can use</span>
       <ul>
         <li>Actor, target, connector, policy, approver, and outcome</li>
-        <li>CSV export plus syslog / webhook forwarding</li>
+        <li>Tamper-evident: every event is hash-chained to the one before it, and the trail can be verified on demand</li>
+        <li>Streamed off the box as it is written — HTTP collector or RFC 5424 syslog, with every delivery attempt on the record</li>
+        <li>CSV export with the hash of each event</li>
         <li>Credential-safe run events</li>
         <li>Per-tenant retention windows — off by default, every purge on the record</li>
         <li>Policy rehearsal: see how a request would be judged, with nothing recorded</li>
@@ -155,6 +160,17 @@
       </div>
       <div class="shotcap">Everything KYVAR has run, with the full story behind each one — who asked, which runtime executed, what completed and what is still held for approval.</div>
     </div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">WHERE WE STAND, PLAINLY</div>
+  <h2>Compliance posture.</h2>
+  <p>Security questionnaires come early, so here is the honest position rather than a badge wall.</p>
+  <div class="cards" style="text-align:left">
+    <div class="card"><b>Built in today</b><p>Deploy in your own environment; SSO with OIDC and SCIM provisioning; role- and tenant-scoped access enforced per request; encryption at rest for every credential; a hash-chained audit trail with SIEM forwarding and per-tenant retention; separation of duties on every approval.</p></div>
+    <div class="card"><b>Evidence we can hand over</b><p>The security architecture on this page, an authenticated adversarial test suite that runs on every change, the audit export with a hash per event, and a pilot in which your own security team observes every decision as it is made.</p></div>
+    <div class="card"><b>Not claimed</b><p>KYVAR is not SOC 2 or ISO 27001 certified today, and we will not imply otherwise in a procurement conversation. Deploying inside your environment means the platform runs under the controls you already hold, and formal certification is on the roadmap — ask us where it stands.</p></div>
   </div>
 </div></section>
 
