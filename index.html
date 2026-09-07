@@ -59,6 +59,11 @@
       "featureList": [
         "Governed pipeline: intent, RBAC, risk classification, human approval, bounded execution, validation, audit",
         "Autonomous monitoring and self-healing with per-monitor arming",
+        "Incident triage: one open incident per monitor, acknowledged and resolved on the record, recovery tracked",
+        "An unhealthy verdict can launch a named runbook or workflow behind the same gates",
+        "Policy rehearsal: preview how a request would be judged, with nothing recorded",
+        "TOTP MFA, listable and revocable sessions, single-use invitations",
+        "Prometheus metrics, request IDs and per-tenant data retention",
         "Cross-connector asset inventory and linking",
         "Zero-inbound-exposure on-prem runtimes",
         "10 connector families across cloud, on-prem, identity and delivery"
@@ -86,7 +91,7 @@
         {
           "@type": "Question",
           "name": "How is KYVAR's automatic monitoring different from a monitoring tool?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict can hand the incident straight to a governed remediation — armed per monitor, off by default, with the same approvals and audit as any human-requested change." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict opens an incident somebody can take, and — armed per monitor, off by default — can launch a bounded fix, a named runbook or a whole workflow, behind the same thresholds, cooldowns, approvals and audit as any human-requested change." }
         }
       ]
     }
@@ -172,7 +177,7 @@
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Approvals</span></div>
         <picture><source srcset="assets/screenshots/approvals-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/approvals.webp" alt="KYVAR approvals: a high-risk provisioning action held by policy until a person approves it" width="1600" height="296" loading="lazy"></picture>
       </div>
-      <div class="shotcap">Nothing here runs until a person says yes: the matched policy rule, the risk class, and an approve/deny whose reason lands in the audit trail.</div>
+      <div class="shotcap">Nothing here runs until a person says yes: the matched policy rule and the exact word that tripped it, the risk class, and an approve or deny — one at a time or in bulk — whose reason lands in the audit trail.</div>
     </div>
   </div>
 </div></section>
@@ -197,7 +202,7 @@
 <section class="section" id="day2"><div class="center reveal">
   <div class="kicker">DAY 2 — OPERATE WITHOUT DRAMA</div>
   <h2>Detect. Heal. Prove it.</h2>
-  <p>Automatic monitoring and self-healing run as one governed loop. Down at 03:14, diagnosed, remediated and re-verified — with a human woken only when policy wants one.</p>
+  <p>Automatic monitoring, incidents and self-healing run as one governed loop. Down at 03:14, an incident opened, diagnosed, remediated by the runbook you already wrote and re-verified — with a human woken only when policy wants one, and the whole story on one timeline.</p>
   <div class="shots"><div class="wide">
     <div class="shotframe">
       <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Monitors</span></div>
@@ -205,6 +210,11 @@
     </div>
     <div class="shotcap">Health checks on a schedule, with self-healing armed per monitor — off by default, on deliberately. Each check follows the same rules and leaves the same records as a chat request.</div>
   </div></div>
+  <div class="cards">
+    <div class="card"><b>Incidents, with an owner</b><p>What is broken right now, who has it, and how it ended. One open incident per monitor — a check failing every minute is one problem getting older, not sixty — resolved as “recovered” when the next check passes, or by the person who fixed it. Different facts, said differently.</p></div>
+    <div class="card"><b>Remediation you already wrote</b><p>An unhealthy verdict can launch a named runbook or a multi-step workflow instead of an improvised fix — behind the same arming, threshold and cooldown. A procedure that was turned off or deleted suppresses with a reason; it never quietly improvises instead.</p></div>
+    <div class="card"><b>Every heal on the record</b><p>Dispatched or suppressed, and why — the gate that held it, the cooldown still running, the procedure that no longer exists. The heal’s outcome lands on the incident’s timeline, and recovery is only ever claimed by the next check, never by a fix that says it worked.</p></div>
+  </div>
 </div></section>
 
 <!-- One estate -->
@@ -228,7 +238,7 @@
   <div class="stats">
     <div class="stat"><div class="num">10</div><div class="lbl">Connector families</div><p>Linux, Windows, AWS, Azure, OCI, VMware, Terraform, Kubernetes, Docker and Entra ID — infrastructure and identity reach through one governed pipeline.</p></div>
     <div class="stat"><div class="num">9</div><div class="lbl">Role profiles</div><p>Operational access structured from viewer to platform administration — least privilege as a default, not a configuration project.</p></div>
-    <div class="stat"><div class="num">~750</div><div class="lbl">Automated tests</div><p>Continuous coverage across gates, tenancy, credentials and abuse cases — the safety envelope is tested like the product it is.</p></div>
+    <div class="stat"><div class="num">~975</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
   </div>
 </div></section>
 
@@ -243,7 +253,9 @@
     <div class="check">Requester cannot approve their own change</div>
     <div class="check">Risk classification and human approval on the diff, not a vibe</div>
     <div class="check">Dry-run, captured rollback, and immutable-style audit</div>
-    <div class="check">Daily model-spend budget and destructive-command guard</div>
+    <div class="check">Destructive-command guard and a daily model-spend budget — spend visible by day, model and kind of work</div>
+    <div class="check">Rehearse any request against policy before it is sent — nothing recorded</div>
+    <div class="check">TOTP second factor, sessions you can see and revoke, single-use invitations</div>
   </div></div>
 </div></section>
 
@@ -253,7 +265,7 @@
   <h2>Not a chatbot over your cloud.</h2>
   <div class="cards">
     <div class="card"><b>A governed operator</b><p>Chat assistants suggest commands. KYVAR executes them — inside a policy engine, an approval gate and a full audit trail. The autonomy is the product; the governance is the architecture.</p></div>
-    <div class="card"><b>End to end, one plane</b><p>Discovery, monitoring, self-healing, provisioning and multi-step workflows share one control plane and one evidence trail — not five tools stitched by webhooks.</p></div>
+    <div class="card"><b>End to end, one plane</b><p>Discovery, monitoring, incidents, self-healing, provisioning and multi-step workflows share one control plane and one evidence trail — not five tools stitched by webhooks.</p></div>
     <div class="card"><b>Runs where you run</b><p>Execution happens on runtimes inside your network, with credentials that never leave it. Cloud, on-prem, air-gapped-friendly by design.</p></div>
   </div>
 </div></section>
@@ -296,7 +308,7 @@
     </details>
     <details>
       <summary>How is KYVAR's automatic monitoring different from a monitoring tool?</summary>
-      <p>Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict can hand the incident straight to a governed remediation — armed per monitor, off by default, with the same approvals and audit as any human-requested change.</p>
+      <p>Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict opens an incident somebody can take, and — armed per monitor, off by default — can launch a bounded fix, a named runbook or a whole workflow, behind the same thresholds, cooldowns, approvals and audit as any human-requested change.</p>
     </details>
   </div>
 </div></section>

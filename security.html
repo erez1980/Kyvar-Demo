@@ -97,7 +97,9 @@
     <div class="card"><span class="cardtitle" style="font-weight:800">Identity and tenant boundaries</span>
       <ul>
         <li>OIDC authorization code + PKCE</li>
-        <li>TOTP MFA and protected break-glass access</li>
+        <li>Self-service TOTP MFA — armed only once a code is proven</li>
+        <li>Sessions listed and revocable; logout revokes server-side</li>
+        <li>Single-use invitations, hashed at rest</li>
         <li>Role and tenant resolved from the database per request</li>
         <li>Connector-level RBAC controls both action and visibility</li>
         <li>Cross-tenant objects return 404 — no ID oracle</li>
@@ -117,7 +119,9 @@
         <li>Actor, target, connector, policy, approver, and outcome</li>
         <li>CSV export plus syslog / webhook forwarding</li>
         <li>Credential-safe run events</li>
-        <li>Retention controls and correlation IDs</li>
+        <li>Per-tenant retention windows — off by default, every purge on the record</li>
+        <li>Policy rehearsal: see how a request would be judged, with nothing recorded</li>
+        <li>Prometheus metrics and a request ID on every response</li>
         <li>Authenticated adversarial tests become regressions</li>
       </ul>
     </div>

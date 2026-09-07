@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://kyvar.io/</loc><lastmod>2026-08-30</lastmod><priority>1.0</priority></url>
-  <url><loc>https://kyvar.io/security.html</loc><lastmod>2026-08-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://kyvar.io/architecture.html</loc><lastmod>2026-08-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://kyvar.io/pilot.html</loc><lastmod>2026-08-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://kyvar.io/</loc><lastmod>2026-09-05</lastmod><priority>1.0</priority></url>
+  <url><loc>https://kyvar.io/security.html</loc><lastmod>2026-09-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://kyvar.io/architecture.html</loc><lastmod>2026-09-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://kyvar.io/pilot.html</loc><lastmod>2026-09-05</lastmod><priority>0.8</priority></url>
   <url><loc>https://kyvar.io/insights/</loc><lastmod>2026-08-30</lastmod><priority>0.7</priority></url>
   <url><loc>https://kyvar.io/insights/what-is-self-healing-infrastructure.html</loc><lastmod>2026-08-30</lastmod><priority>0.7</priority></url>
   <url><loc>https://kyvar.io/insights/day-0-vs-day-2-operations.html</loc><lastmod>2026-08-30</lastmod><priority>0.7</priority></url>

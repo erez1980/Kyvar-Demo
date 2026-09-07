@@ -101,8 +101,8 @@
       <div class="pills"><span class="pill">Outbound-only</span><span class="pill">One-time enrollment</span><span class="pill">Per-runtime token</span></div>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Built for replacement and scale</span>
-      <p>PostgreSQL persists state, Redis coordinates work, and runtime heartbeats carry version and capability state. Docker Compose supports evaluation; Helm supports production clusters with HPA, managed data services, migration jobs, and TLS ingress.</p>
-      <div class="pills"><span class="pill">PostgreSQL</span><span class="pill">Redis</span><span class="pill">Helm + HPA</span><span class="pill">Docker Compose</span></div>
+      <p>PostgreSQL persists state and is the work queue — runtimes claim from it directly, so there is no broker to run or secure. Multiple control-plane replicas coordinate their schedulers through advisory locks, and runtime heartbeats carry version and capability state. Docker Compose supports evaluation; Helm supports production clusters with HPA, managed data services, migration jobs, and TLS ingress.</p>
+      <div class="pills"><span class="pill">PostgreSQL</span><span class="pill">Multi-replica safe</span><span class="pill">Helm + HPA</span><span class="pill">Docker Compose</span></div>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Placement is a security decision</span>
       <ul>
@@ -116,7 +116,8 @@
       <ul>
         <li>Persisted runs and reconnect-safe workers</li>
         <li>Pre-deploy database backup and restore drill</li>
-        <li>Health endpoints, structured logs, correlation IDs</li>
+        <li>Health endpoints, Prometheus metrics, JSON access logs with request IDs</li>
+        <li>Per-tenant data retention, off by default</li>
         <li>Prebuilt images and rolling releases</li>
       </ul>
     </div>
