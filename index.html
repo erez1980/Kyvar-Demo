@@ -55,7 +55,7 @@
       "url": "https://kyvar.io/",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, Linux, Windows",
-      "description": "Governed autonomous IT operations platform: AI-driven infrastructure automation, monitoring and self-healing with human approval gates, RBAC and end-to-end audit across AWS, Azure, Oracle Cloud, Kubernetes, GitHub and on-prem.",
+      "description": "Governed autonomous IT operations platform: AI-driven infrastructure automation, monitoring and self-healing with human approval gates, RBAC and end-to-end audit across AWS, Azure, Oracle Cloud, Kubernetes, GitHub and on-prem — an extensible connector model designed to cover more of the estate over time.",
       "featureList": [
         "Governed pipeline: intent, RBAC, risk classification, human approval, bounded execution, validation, audit",
         "Autonomous monitoring and self-healing with per-monitor arming",
@@ -69,7 +69,7 @@
         "Tamper-evident hash-chained audit trail with SIEM forwarding over HTTP or RFC 5424 syslog",
         "SCIM 2.0 directory provisioning from Entra ID or Okta, with group-driven connector access",
         "Deterministic on-runtime credential verification, with no model involved",
-        "Five connector families — AWS, Azure, Oracle Cloud, Kubernetes and GitHub — plus governed Terraform provisioning"
+        "An extensible connector model — AWS, Azure, Oracle Cloud, Kubernetes and GitHub today, plus governed Terraform provisioning — where every new integration inherits the same RBAC, approvals and audit"
       ],
       "publisher": { "@id": "https://kyvar.io/#org" }
     },
@@ -135,7 +135,7 @@
     <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
     <a class="button ghost" href="#platform">See how it works ↓</a>
   </div>
-  <div class="trust">AWS · MICROSOFT AZURE · ORACLE CLOUD · KUBERNETES · GITHUB · TERRAFORM</div>
+  <div class="trust">AWS · MICROSOFT AZURE · ORACLE CLOUD · KUBERNETES · GITHUB · TERRAFORM · AND GROWING</div>
 </div></section>
 
 <!-- Governed pipeline -->
@@ -239,7 +239,7 @@
   <div class="kicker">BUILT LIKE INFRASTRUCTURE, NOT A DEMO</div>
   <h2>The numbers behind the platform.</h2>
   <div class="stats">
-    <div class="stat"><div class="num">5</div><div class="lbl">Connector families</div><p>AWS, Microsoft Azure, Oracle Cloud, Kubernetes and GitHub — each discovered, credential-scoped and governed through one pipeline, with Terraform provisioning on top of them.</p></div>
+    <div class="stat"><div class="num">5<span style="font-size:.42em;vertical-align:super;letter-spacing:0">+</span></div><div class="lbl">Connector families, and counting</div><p>AWS, Microsoft Azure, Oracle Cloud, Kubernetes and GitHub today, with Terraform provisioning on top of them. The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged — so coverage grows without re-earning the governance.</p></div>
     <div class="stat"><div class="num">0</div><div class="lbl">Inbound ports</div><p>An on-prem runtime opens nothing. It dials out to the control plane, is enrolled by single-use invitation, and is the only place your credentials are ever decrypted.</p></div>
     <div class="stat"><div class="num">~1,090</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
   </div>
@@ -288,7 +288,7 @@
   </div></div>
   <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
     <h2>Where your work actually lives.</h2>
-    <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target.</p>
+    <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target — and each new system we connect plugs into that same decision, without a second set of rules.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
   </div>
 </div></section>
