@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://formspree.io https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="assets/theme-init.js"></script>
+<script src="assets/consent.js"></script>
+<title>Talk to KYVAR — Start a Pilot or Book a Live Demo</title>
+<meta name="description" content="Tell us what you run and what you need to prove. We reply within one business day with a live demo against real infrastructure, a pilot scope, or the security detail your team needs.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://kyvar.io/contact.html">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050b17">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f7fb">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KYVAR">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://kyvar.io/contact.html">
+<meta property="og:title" content="Talk to KYVAR | Start a pilot or book a live demo">
+<meta property="og:description" content="Tell us what you run and what you need to prove. We reply within one business day.">
+<meta property="og:image" content="https://kyvar.io/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KYVAR — Let AI operate infrastructure. Keep humans in control.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Talk to KYVAR | Start a pilot or book a live demo">
+<meta name="twitter:description" content="Tell us what you run and what you need to prove. We reply within one business day.">
+<meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://kyvar.io/contact.html",
+      "url": "https://kyvar.io/contact.html",
+      "name": "Contact KYVAR",
+      "description": "Start a pilot, book a live demo against real infrastructure, or request the security detail your team needs.",
+      "isPartOf": { "@id": "https://kyvar.io/#website" },
+      "publisher": { "@id": "https://kyvar.io/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://kyvar.io/#org",
+      "name": "KYVAR",
+      "url": "https://kyvar.io/",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "hello@kyvar.io",
+        "availableLanguage": ["en", "he"]
+      }]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.formwrap{max-width:760px;margin:0 auto}
+.formcard{border:1px solid var(--line);border-radius:28px;padding:34px;background:var(--panel)}
+.field{margin-bottom:20px}
+.field > label{display:block;font-weight:700;font-size:15px;margin-bottom:7px;color:var(--ink)}
+.field .hint{display:block;font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:3px}
+.field input[type=text],.field input[type=email],.field select,.field textarea{
+  width:100%;box-sizing:border-box;font:inherit;font-size:16px;color:var(--ink);
+  background:var(--input-bg,transparent);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.field input[aria-invalid=true],.field textarea[aria-invalid=true]{border-color:#e5484d}
+.err{display:none;color:#e5484d;font-size:13.5px;margin-top:6px}
+.err.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14.5px;cursor:pointer;color:var(--ink-soft);user-select:none}
+.chip input{margin:0;accent-color:var(--accent)}
+.chip:has(input:checked){border-color:var(--accent);color:var(--ink);background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.chip:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.consent{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+.consent input{margin-top:3px;accent-color:var(--accent);flex:0 0 auto}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.formfoot{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:6px}
+.formnote{font-size:13.5px;color:var(--ink-soft);margin:16px 0 0}
+.formmsg{display:none;border-radius:16px;padding:16px 18px;margin-bottom:22px;font-size:15px;line-height:1.6}
+.formmsg.on{display:block}
+.formmsg.ok{border:1px solid color-mix(in srgb,#30a46c 45%,var(--line));background:color-mix(in srgb,#30a46c 10%,transparent);color:var(--ink)}
+.formmsg.bad{border:1px solid color-mix(in srgb,#e5484d 45%,var(--line));background:color-mix(in srgb,#e5484d 10%,transparent);color:var(--ink)}
+.sidenote{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:34px}
+.sidenote .card{margin:0}
+@media(max-width:640px){.formcard{padding:24px 20px;border-radius:22px}}
+</style>
+</head><body><div class="glow"></div>
+
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <img src="branding/kyvar-mark.png" alt="">
+    <span>KYVAR</span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html#platform">Platform</a>
+    <a href="security.html">Security</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="pilot.html">Pilot</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="insights/">Insights</a>
+    <button class="themetoggle" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
+      <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="login" href="https://app.kyvar.io/login">Log in</a>
+    <a class="pilotcta active" href="contact.html">Start a pilot</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="section"><div class="center reveal">
+  <div class="eyebrow">TELL US WHAT YOU RUN</div>
+  <h1>Start with a live run,<br><span>not a slide deck.</span></h1>
+  <p>Fill this in and we reply within one business day — usually with a 30-minute session where KYVAR performs a real operation against real infrastructure, parks it for approval, and shows you the audit trail afterwards. If your security team wants the architecture first, say so and we lead with that instead.</p>
+</div></section>
+
+<section class="section tight"><div class="formwrap reveal">
+
+  <div class="formmsg ok" id="ok" role="status" aria-live="polite">
+    <b>Thank you — that reached us.</b><br>
+    We reply within one business day, from a person, to the address you gave. If it is urgent, <a href="mailto:hello@kyvar.io">hello@kyvar.io</a> reaches the same inbox.
+  </div>
+  <div class="formmsg bad" id="bad" role="alert" aria-live="assertive">
+    <b>That did not send.</b><br>
+    Something on our side refused it — which is embarrassing on a page about reliability. Please email <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">hello@kyvar.io</a> directly and we will pick it up from there.
+  </div>
+
+  <form class="formcard" id="contactform" novalidate>
+    <div class="field">
+      <label for="f-name">Your name <span aria-hidden="true">*</span></label>
+      <input type="text" id="f-name" name="name" autocomplete="name" required>
+      <p class="err" id="e-name">Please tell us who you are.</p>
+    </div>
+
+    <div class="field">
+      <label for="f-email">Work email <span aria-hidden="true">*</span>
+        <span class="hint">We reply here. A work address helps us bring the right person to the call.</span>
+      </label>
+      <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
+      <p class="err" id="e-email">That does not look like an email address we can reply to.</p>
+    </div>
+
+    <div class="field">
+      <label for="f-company">Company <span aria-hidden="true">*</span></label>
+      <input type="text" id="f-company" name="company" autocomplete="organization" required>
+      <p class="err" id="e-company">Please name your organisation.</p>
+    </div>
+
+    <div class="field">
+      <label for="f-role">Your role
+        <span class="hint">Optional — it tells us whether to open with the operations story or the security one.</span>
+      </label>
+      <input type="text" id="f-role" name="role" autocomplete="organization-title" placeholder="e.g. Head of Platform, IT Director, CISO">
+    </div>
+
+    <div class="field">
+      <label for="f-intent">What would help most? <span aria-hidden="true">*</span></label>
+      <select id="f-intent" name="intent" required>
+        <option value="">Choose one…</option>
+        <option>A live demo against real infrastructure</option>
+        <option>Scope a paid pilot</option>
+        <option>Pricing and licensing for my situation</option>
+        <option>Security architecture review / questionnaire</option>
+        <option>Running KYVAR on-prem or air-gapped</option>
+        <option>Something else</option>
+      </select>
+      <p class="err" id="e-intent">Pick the one closest to what you need.</p>
+    </div>
+
+    <div class="field">
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend style="font-weight:700;font-size:15px;margin-bottom:7px;padding:0;color:var(--ink)">What do you run?
+          <span class="hint" style="font-weight:400">Pick any. If something you run is not listed, name it in the message — the connector model is built to grow, and what customers run decides what we build next.</span>
+        </legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="stack" value="AWS"> AWS</label>
+          <label class="chip"><input type="checkbox" name="stack" value="Microsoft Azure"> Microsoft Azure</label>
+          <label class="chip"><input type="checkbox" name="stack" value="Oracle Cloud"> Oracle Cloud</label>
+          <label class="chip"><input type="checkbox" name="stack" value="Google Cloud"> Google Cloud</label>
+          <label class="chip"><input type="checkbox" name="stack" value="Kubernetes"> Kubernetes</label>
+          <label class="chip"><input type="checkbox" name="stack" value="VMware"> VMware</label>
+          <label class="chip"><input type="checkbox" name="stack" value="On-prem Linux / Windows"> On-prem Linux / Windows</label>
+          <label class="chip"><input type="checkbox" name="stack" value="Terraform"> Terraform</label>
+          <label class="chip"><input type="checkbox" name="stack" value="GitHub"> GitHub</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="field">
+      <label for="f-message">What are you trying to prove, or worried about?
+        <span class="hint">The more specific, the better the first call. "Our on-call gets paged for the same three things every week" is a perfect answer.</span>
+      </label>
+      <textarea id="f-message" name="message"></textarea>
+    </div>
+
+    <div class="field hp" aria-hidden="true">
+      <label for="f-website">Leave this field empty</label>
+      <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label class="consent" for="f-consent">
+        <input type="checkbox" id="f-consent" name="consent" required>
+        <span>I agree that KYVAR may store what I submit here and contact me about it, as described in the <a href="privacy.html">Privacy Policy</a>. <span aria-hidden="true">*</span></span>
+      </label>
+      <p class="err" id="e-consent">We need your agreement before we can hold your details.</p>
+    </div>
+
+    <div class="formfoot">
+      <button class="button" type="submit" id="submitbtn">Send</button>
+      <span class="hint" style="margin:0">We reply within one business day. No newsletter, no sequence, no reselling your details.</span>
+    </div>
+  </form>
+
+  <p class="formnote">Would rather just email? <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">hello@kyvar.io</a> reaches the same people.</p>
+
+  <div class="sidenote">
+    <div class="card"><b>What the first call looks like</b><p>Thirty minutes. We ask what breaks most often, then run a real operation — it gets risk-classified, parked for approval, approved by a second person, executed and audited while you watch. No mock data.</p></div>
+    <div class="card"><b>If security asks first</b><p>Say so and we start there instead: the write-gate chain, credential handling, tenancy, and the audit trail. Your security team is welcome to try to break it during the pilot — that is the best outcome we can ask for.</p></div>
+    <div class="card"><b>Where it runs</b><p>In your environment. A runtime opens no inbound ports, dials out to the control plane, and is the only place your credentials are ever decrypted. On-prem and air-gapped-friendly by design.</p></div>
+  </div>
+
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="footgrid">
+    <div>
+      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
+      <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="index.html#platform">How it works</a>
+      <a href="security.html">Security &amp; Compliance</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="pilot.html">Customer Pilot</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="insights/">Insights</a>
+    </div>
+    <div>
+      <h4>Get started</h4>
+      <a href="contact.html">Start a pilot</a>
+      <a href="https://app.kyvar.io/login">Log in</a>
+      <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookies.html">Cookie Policy</a>
+      <a href="#" data-cookie-settings>Cookie settings</a>
+    </div>
+  </div>
+  <div class="footnote">
+    <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
+    <span>AWS · Azure · OCI · On-prem</span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/contact.js"></script>
+</body></html>
