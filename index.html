@@ -250,11 +250,12 @@
 <section class="section safety-band" id="safety"><div class="grid">
   <div class="reveal"><div class="kicker">SAFETY IS THE ARCHITECTURE</div>
     <h2>Autonomy with a safety envelope.</h2>
-    <p>Every meaningful action travels through a control plane built to say “not yet” when it should. Your own cloud permissions decide what you can do — an admin can do everything, the person who owns the websites acts exactly where they were granted.</p>
+    <p>Every meaningful action travels through a control plane built to say “not yet” when it should. And your own cloud permissions decide what you can do — on AWS, literally: the grant you were given selects the role your run receives, so an admin can do everything and the person who owns the websites is stopped by AWS, not by a filter in front of the model.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="security.html">Explore the security architecture →</a></div></div>
   <div class="visual reveal safety-visual"><div>
     <div class="check">Deny by default — writes are armed, never assumed</div>
     <div class="check">Requester cannot approve their own change</div>
+    <div class="check">Your grant picks the cloud role the run acts with — and your name is on every call in your own CloudTrail</div>
     <div class="check">Risk classification and human approval on the diff, not a vibe</div>
     <div class="check">Dry-run, captured rollback, and immutable-style audit</div>
     <div class="check">Destructive-command guard and a daily model-spend budget — spend visible by day, model and kind of work</div>
