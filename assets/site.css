@@ -428,3 +428,16 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
   .cbanner-btns{width:100%}
   .cbtn{flex:1;min-width:0}
 }
+
+/* The phone frame on the "On your phone" section: a device-shaped column,
+   never a swipe box — the image is 780px wide, so the mobile swipe rule
+   (keyed on width="1600") leaves it alone. */
+.phone-visual{padding:34px 24px}
+.phoneframe{width:min(300px,100%);margin:0 auto;border-radius:34px;overflow:hidden;border:1px solid var(--line);background:var(--shot-bg,#081322);box-shadow:0 30px 80px rgba(2,8,20,.35)}
+.phoneframe img{display:block;width:100%;height:auto}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .phoneframe{--shot-bg:#fbfdff;box-shadow:0 26px 60px rgba(30,55,90,.14)}}
+:root[data-theme="light"] .phoneframe{--shot-bg:#fbfdff;box-shadow:0 26px 60px rgba(30,55,90,.14)}
+/* A shotframe inside a text column (not the .shots grid) must be allowed to
+   shrink, or its 780px swipe image sets the column's min-content and the
+   whole page pans sideways on a phone — the same rule .shots>div carries. */
+#phone .grid>div{min-width:0}

@@ -165,23 +165,23 @@
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Operations overview</span></div>
-        <picture><source srcset="assets/screenshots/overview-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/overview.webp" alt="KYVAR operations overview: connected architecture, runtimes online, runs, approvals waiting and inventory" width="1600" height="961"></picture>
+        <picture><source srcset="assets/screenshots/overview-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/overview.webp" alt="KYVAR operations overview: readiness, what needs a person, and the connected architecture from tenant to clouds" width="1600" height="664"></picture>
       </div>
-      <div class="shotcap">The estate at a glance: connected architecture from tenant to clouds, runtimes online, runs, approvals waiting on you, and everything discovered — one operational view.</div>
+      <div class="shotcap">The estate at a glance: can KYVAR run right now, what needs a person, and the live architecture from tenant to clouds.</div>
     </div>
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Chat · governed run</span></div>
-        <picture><source srcset="assets/screenshots/chat-approval-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/chat-approval.webp" alt="KYVAR chat: a CVE patched through a governed run, with the next change waiting for approval" width="1590" height="1000" loading="lazy"></picture>
+        <picture><source srcset="assets/screenshots/chat-approval-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/chat-approval.webp" alt="KYVAR chat: a CVE patched through a governed run — the steps it took, what changed, how long it took — and the next change waiting for approval" width="1600" height="893" loading="lazy"></picture>
       </div>
-      <div class="shotcap">One ask in plain English: a critical CVE patched with zero downtime — drained, upgraded, verified — and the next write parked on the approval gate.</div>
+      <div class="shotcap">One ask in plain English. The steps it took, what changed, how long it took — and the next write parked on the approval gate.</div>
     </div>
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Approvals</span></div>
-        <picture><source srcset="assets/screenshots/approvals-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/approvals.webp" alt="KYVAR approvals: a high-risk provisioning action held by policy until a person approves it" width="1600" height="296" loading="lazy"></picture>
+        <picture><source srcset="assets/screenshots/approvals-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/approvals.webp" alt="KYVAR approvals: a provisioning request held by policy until a person approves it" width="1600" height="404" loading="lazy"></picture>
       </div>
-      <div class="shotcap">Nothing here runs until a person says yes: the matched policy rule and the exact word that tripped it, the risk class, and an approve or deny — one at a time or in bulk — whose reason lands in the audit trail.</div>
+      <div class="shotcap">Nothing runs until a person says yes: the rule that parked it, the word that tripped it, the risk — and a reason that lands in the audit trail.</div>
     </div>
   </div>
 </div></section>
@@ -207,13 +207,22 @@
   <div class="kicker">DAY 2 — OPERATE WITHOUT DRAMA</div>
   <h2>Detect. Heal. Prove it.</h2>
   <p>Automatic monitoring, incidents and self-healing run as one governed loop. Down at 03:14, an incident opened, diagnosed, remediated by the runbook you already wrote and re-verified — with a human woken only when policy wants one, and the whole story on one timeline.</p>
-  <div class="shots"><div class="wide">
-    <div class="shotframe">
-      <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Monitors</span></div>
-      <picture><source srcset="assets/screenshots/monitors-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/monitors.webp" alt="KYVAR monitors: scheduled health checks with autonomous remediation armed per monitor" width="1600" height="725" loading="lazy"></picture>
+  <div class="shots">
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Incidents</span></div>
+        <picture><source srcset="assets/screenshots/incidents-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/incidents.webp" alt="KYVAR incidents: what is broken right now, who has it, and how it ended" width="1600" height="524" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">What broke while nobody was watching, and where it stands — take it, investigate with KYVAR, or let the next check close it.</div>
     </div>
-    <div class="shotcap">Health checks on a schedule, with self-healing armed per monitor — off by default, on deliberately. Each check follows the same rules and leaves the same records as a chat request.</div>
-  </div></div>
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Monitors</span></div>
+        <picture><source srcset="assets/screenshots/monitors-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/monitors.webp" alt="KYVAR monitors: a live probe and agent checks on a schedule, with self-healing armed per monitor" width="1600" height="1127" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">Probes and agent checks on a schedule. Self-healing is armed per monitor — off by default, on deliberately.</div>
+    </div>
+  </div>
   <div class="cards">
     <div class="card"><b>Incidents, with an owner</b><p>What is broken right now, who has it, and how it ended. One open incident per monitor — a check failing every minute is one problem getting older, not sixty — resolved as “recovered” when the next check passes, or by the person who fixed it. Different facts, said differently.</p></div>
     <div class="card"><b>Remediation you already wrote</b><p>An unhealthy verdict can launch a named runbook or a multi-step workflow instead of an improvised fix — behind the same arming, threshold and cooldown. A procedure that was turned off or deleted suppresses with a reason; it never quietly improvises instead.</p></div>
@@ -221,18 +230,34 @@
   </div>
 </div></section>
 
+<!-- On your phone -->
+<section class="section" id="phone"><div class="grid">
+  <div class="reveal"><div class="kicker">ON YOUR PHONE</div>
+    <h2>The gate follows you.</h2>
+    <p>An approval parks, a monitor fires, and the person who has to decide is not at a desk. KYVAR installs to the home screen and reaches the phone with push notifications — alarms for the team, finished tasks for the person who asked — without opening anything inbound.</p>
+    <div class="shotframe" style="margin-top:22px">
+      <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Security · Push notifications</span></div>
+      <picture><source srcset="assets/screenshots/security-push-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/security-push.webp" alt="KYVAR push notifications: alarms and finished chat turns as system notifications on a phone or computer" width="1600" height="245" loading="lazy"></picture>
+    </div></div>
+  <div class="visual reveal phone-visual"><div class="phoneframe">
+    <img src="assets/screenshots/chat-phone.webp" alt="KYVAR on a phone: a governed run's steps, what changed, and the next change waiting for approval" width="780" height="1576" loading="lazy">
+  </div></div>
+</div></section>
+
 <!-- One estate -->
 <section class="section" id="estate"><div class="center reveal">
   <div class="kicker">ONE ESTATE, NOT ONE INVENTORY PER TOOL</div>
   <h2>Every source. One asset.</h2>
   <p>KYVAR discovers what lives behind every connector and links the rows that are the same real machine — matched on hard evidence, never a guess dressed as a fact. A security finding from one tool lands on the asset another cloud runs, and the fix flows through the connector that owns it.</p>
-  <div class="shots"><div class="wide">
-    <div class="shotframe">
-      <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory · Assets</span></div>
-      <picture><source srcset="assets/screenshots/inventory-assets-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/inventory-assets.webp" alt="KYVAR inventory: one asset seen by two connectors, linked on the same public IP, with a critical CVE finding mapped to it" width="1600" height="483" loading="lazy"></picture>
+  <div class="shots">
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory · Assets</span></div>
+        <picture><source srcset="assets/screenshots/inventory-assets-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/inventory-assets.webp" alt="KYVAR inventory: one asset with its provider record and the CNAPP's critical CVE finding mapped straight onto it" width="1600" height="854" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">One asset, every source that sees it — and the CNAPP's critical CVE mapped straight onto the machine that has to be fixed.</div>
     </div>
-    <div class="shotcap"><span class="linkline">⛓ Linked: same public IP — high confidence.</span> One asset seen by AWS and Azure, with the CNAPP's critical CVE mapped straight onto it.</div>
-  </div></div>
+  </div>
 </div></section>
 
 <!-- Proof points -->
