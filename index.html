@@ -7,7 +7,7 @@
 <script src="assets/theme-init.js"></script>
 <script src="assets/consent.js"></script>
 <title>KYVAR — Governed Autonomous IT Operations &amp; Self-Healing Infrastructure</title>
-<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: AI-driven infrastructure automation and self-healing with human approval, RBAC and full audit — across AWS, Azure, OCI, Kubernetes and on-prem.">
+<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: AI-driven infrastructure automation, service-desk investigation and self-healing with human approval, RBAC and full audit — across AWS, Azure, OCI, VMware, Nutanix, Proxmox, Hyper-V, Kubernetes, Intune and the service desk.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kyvar.io/">
 <meta property="og:title" content="KYVAR — Let AI operate infrastructure. Keep humans in control.">
-<meta property="og:description" content="Governed autonomous IT operations and self-healing across AWS, Azure, OCI and on-prem. Intent in, approved and audited action out.">
+<meta property="og:description" content="Governed autonomous IT operations, service-desk investigation and self-healing across cloud, on-prem virtualization, servers, laptops and the service desk. Intent in, approved and audited action out.">
 <meta property="og:image" content="https://kyvar.io/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -55,7 +55,7 @@
       "url": "https://kyvar.io/",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, Linux, Windows",
-      "description": "Governed autonomous IT operations platform: AI-driven infrastructure automation, monitoring and self-healing with human approval gates, RBAC and end-to-end audit across AWS, Azure, Oracle Cloud, Kubernetes, GitHub and on-prem — an extensible connector model designed to cover more of the estate over time.",
+      "description": "Governed autonomous IT operations platform: AI-driven infrastructure automation, service-desk investigation, monitoring and self-healing with human approval gates, RBAC and end-to-end audit — across cloud (AWS, Azure, Oracle Cloud), on-prem virtualization (VMware, Nutanix, Proxmox, Hyper-V), servers, end-user devices through Intune, and the service desk (Jira, ServiceNow).",
       "featureList": [
         "Governed pipeline: intent, RBAC, risk classification, human approval, bounded execution, validation, audit",
         "Autonomous monitoring and self-healing with per-monitor arming",
@@ -69,7 +69,17 @@
         "Tamper-evident hash-chained audit trail with SIEM forwarding over HTTP or RFC 5424 syslog",
         "SCIM 2.0 directory provisioning from Entra ID or Okta, with group-driven connector access",
         "Deterministic on-runtime credential verification, with no model involved",
-        "An extensible connector model — AWS, Azure, Oracle Cloud, Kubernetes and GitHub today, plus governed Terraform provisioning — where every new integration inherits the same RBAC, approvals and audit"
+        "Service-desk intake from Jira Service Management and ServiceNow, investigated automatically and written back to the ticket",
+        "Root-cause reports with confidence and evidence, and a proposed fix that still crosses the approval gate",
+        "Alert correlation: a probe, a monitor and a ticket about the same asset are one incident",
+        "A knowledge base that writes itself from resolved incidents, reviewed by a person and published to Confluence or ServiceNow",
+        "Recurring-problem analysis over resolved incidents, with the assets and the time lost",
+        "On-prem virtualization: VMware vSphere, Nutanix, Proxmox VE and Microsoft Hyper-V through SCVMM, discovered and governed",
+        "47 governed virtual-machine and host actions \u2014 power, snapshots, migration, resize, clone, host maintenance, deletion",
+        "Read-only server diagnostics over SSH from a fixed vocabulary, with no model composing a command",
+        "Governed Intune device actions on end-user laptops \u2014 sync, Defender scan, lock, restart, retire and erase",
+        "Telemetry queried at investigation time from Datadog and Splunk, never copied into KYVAR",
+        "An extensible connector model — 17 connectors across cloud, virtualization, endpoints, identity, service desk, observability, knowledge and delivery — where every new integration inherits the same RBAC, approvals and audit"
       ],
       "publisher": { "@id": "https://kyvar.io/#org" }
     },
@@ -136,7 +146,7 @@
     <a class="button" href="contact.html">Start a pilot</a>
     <a class="button ghost" href="#platform">See how it works ↓</a>
   </div>
-  <div class="trust">AWS · MICROSOFT AZURE · ORACLE CLOUD · KUBERNETES · GITHUB · TERRAFORM · AND GROWING</div>
+  <div class="trust">AWS · AZURE · ORACLE CLOUD · VMWARE · NUTANIX · PROXMOX · HYPER-V · KUBERNETES · ENTRA ID + INTUNE · JIRA · SERVICENOW · DATADOG · SPLUNK · TERRAFORM</div>
 </div></section>
 
 <!-- Governed pipeline -->
@@ -244,6 +254,52 @@
   </div></div>
 </div></section>
 
+<!-- Service desk -->
+<section class="section" id="servicedesk"><div class="center reveal">
+  <div class="kicker">THE TICKET, ANSWERED</div>
+  <h2>A ticket arrives. A root cause comes back.</h2>
+  <p>An issue raised in Jira Service Management or ServiceNow becomes an incident here and is investigated before anyone has read it — against a brief the control plane composes from the assets the report names, the monitors watching them, what changed in the last day, what your observability tools see right now, and what fixed this before. The agent gets a starting point, not a blank page.</p>
+  <div class="cards">
+    <div class="card"><b>A report, not an opinion</b><p>Root cause, confidence, the evidence behind it and a proposed fix — four named fields, so a diagnosis with nothing to show for itself reads as exactly that. Investigating changes nothing: it is dispatched read-only and never parks on the approval queue, because the word “delete” in a ticket must not stop a diagnosis.</p></div>
+    <div class="card"><b>Applying it is a person’s act</b><p>The proposed fix runs as the clicking person’s own turn — policy, approval, separation of duties and their own cloud permissions all apply, with no waiver. What a second human approves is a diagnosis they can read. “None needed” and “needs a person” are not fixes to apply, and KYVAR says so instead of trying.</p></div>
+    <div class="card"><b>Back on the ticket</b><p>Opened, diagnosed, remediation requested, waiting for approval, finished — each posted to the issue as a work note, and resolving the incident transitions the ticket. Close it in Jira or ServiceNow and the incident closes here. Never echoed back: whichever side closed it, the other is not told to close it again.</p></div>
+  </div>
+  <div class="cards">
+    <div class="card"><b>Several signals, one incident</b><p>A probe seeing the checkout API down, the monitor on the machine behind it, and the service desk’s ticket for the same outage are one problem — joined on the asset, within a window you set. One investigation, one set of notifications, and the first ticket becomes the ticket.</p></div>
+    <div class="card"><b>What fixed it last time</b><p>A resolved incident with a root cause becomes a draft article. A person reads it before anything else does — an article the next investigation is handed is an instruction in all but name — and once published it can go outward to Confluence or a ServiceNow knowledge base, where your service desk already looks.</p></div>
+    <div class="card"><b>The problem behind the tickets</b><p>The same cause twice is a recurring problem, not two tickets: how often, on which machines, through which sources, what was done about it, and the hours it has cost. Computed from the record, with no model deciding what counts as the same problem.</p></div>
+  </div>
+</div></section>
+
+<!-- On-prem virtualization -->
+<section class="section" id="virtualization"><div class="grid">
+  <div class="reveal"><div class="kicker">THE ESTATE YOU ALREADY RUN</div>
+    <h2>VMware, Nutanix, Proxmox, Hyper-V.</h2>
+    <p>Most estates are not only cloud. KYVAR discovers clusters, hosts, datastores and virtual machines from all four — from a runtime inside your network, because that is the only place an on-prem hypervisor answers, and because SCVMM has no REST API at all, so Hyper-V is reached over PowerShell remoting rather than pretended at.</p>
+    <p>Forty-seven governed actions across them: power, snapshots, live migration, CPU and memory resize, disk growth, clone, host maintenance mode and deletion. Graceful and forced are separate verbs, never a flag — an approver reading “stop the database VM” is told which one they are authorising — and the values are in the sentence, so it says “sets the virtual machine to 8 vCPU and 16384 MB” rather than “Resize web-01”.</p>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See where it executes →</a></div></div>
+  <div class="visual reveal"><div>
+    <div class="check">vSphere — clusters, hosts, datastores, VMs, guest IPs and tags</div>
+    <div class="check">Nutanix — Prism Central clusters, hosts and VMs</div>
+    <div class="check">Proxmox VE — nodes, QEMU guests, containers and storage</div>
+    <div class="check">Hyper-V — the SCVMM fabric, over PowerShell remoting</div>
+    <div class="check">Addressed by the platform’s own id, never by name — two machines called “web01” cannot be confused</div>
+    <div class="check">Reverting or deleting a snapshot is destructive, so a second person decides</div>
+  </div></div>
+</div></section>
+
+<!-- Endpoints -->
+<section class="section" id="endpoints"><div class="center reveal">
+  <div class="kicker">DOWN TO THE MACHINE</div>
+  <h2>Ask a server how it is. Act on a laptop.</h2>
+  <p>The ticket is usually about a machine, and until you can reach it the investigation is guesswork. There are two populations and they are not reachable the same way — so KYVAR does not pretend one design serves both.</p>
+  <div class="cards two">
+    <div class="card"><b>Servers, over SSH</b><p>Nine read-only checks from a fixed vocabulary — failed services, a named service, top processes, load and memory, disk, listening ports, reachability, recent errors, pending patches. <strong>No model composes a command against your production server.</strong> The checks are typed, a parameter that could be shell is refused by whitelist rather than escaped, host keys are pinned and a host with no confirmed fingerprint is refused before anything connects. One connection carries every check, and what it found is cited in the next investigation.</p></div>
+    <div class="card"><b>Laptops, through the agent already on them</b><p>A machine behind NAT and asleep in somebody’s bag answers nothing — so it is reached through Intune: sync, Defender signatures and scan, screen lock, restart, shut down, retire and erase. The four that interrupt somebody or cannot be undone are held for a second person, and the erase states in words which of the two erases was chosen, because “Erase the device” tells an approver the verb and not the change.</p></div>
+  </div>
+  <div class="quote">“A command the agent writes is a command nobody approved.”</div>
+</div></section>
+
 <!-- One estate -->
 <section class="section" id="estate"><div class="center reveal">
   <div class="kicker">ONE ESTATE, NOT ONE INVENTORY PER TOOL</div>
@@ -265,9 +321,9 @@
   <div class="kicker">BUILT LIKE INFRASTRUCTURE, NOT A DEMO</div>
   <h2>The numbers behind the platform.</h2>
   <div class="stats">
-    <div class="stat"><div class="num">5<span style="font-size:.42em;vertical-align:super;letter-spacing:0">+</span></div><div class="lbl">Connector families, and counting</div><p>AWS, Microsoft Azure, Oracle Cloud, Kubernetes and GitHub today, with Terraform provisioning on top of them. The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged — so coverage grows without re-earning the governance.</p></div>
+    <div class="stat"><div class="num">17</div><div class="lbl">Connectors, eight categories</div><p>Cloud (AWS, Azure, Oracle Cloud), virtualization (vSphere, Nutanix, Proxmox, Hyper-V), endpoints (Linux, macOS and Windows servers), identity and devices (Entra ID + Intune), service desk (Jira, ServiceNow), observability (Datadog, Splunk), knowledge (Confluence) and delivery (Kubernetes, GitHub, with Terraform on top). The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged.</p></div>
     <div class="stat"><div class="num">0</div><div class="lbl">Inbound ports</div><p>An on-prem runtime opens nothing. It dials out to the control plane, is enrolled by single-use invitation, and is the only place your credentials are ever decrypted.</p></div>
-    <div class="stat"><div class="num">~1,090</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
+    <div class="stat"><div class="num">1,433</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
   </div>
 </div></section>
 
@@ -296,7 +352,7 @@
   <h2>Not a chatbot over your cloud.</h2>
   <div class="cards">
     <div class="card"><b>A governed operator</b><p>Chat assistants suggest commands. KYVAR executes them — inside a policy engine, an approval gate and a full audit trail. The autonomy is the product; the governance is the architecture.</p></div>
-    <div class="card"><b>End to end, one plane</b><p>Discovery, monitoring, incidents, self-healing, provisioning and multi-step workflows share one control plane and one evidence trail — not five tools stitched by webhooks.</p></div>
+    <div class="card"><b>End to end, one plane</b><p>A ticket, the estate it names, the diagnosis, the fix, the proof and the article that stops it happening again share one control plane and one evidence trail — not five tools stitched by webhooks. Discovery, monitoring, incidents, self-healing, provisioning and multi-step workflows are the same pipeline seen from different sides.</p></div>
     <div class="card"><b>Runs where you run</b><p>Execution happens on runtimes inside your network, with credentials that never leave it. Cloud, on-prem, air-gapped-friendly by design.</p></div>
   </div>
 </div></section>
@@ -308,14 +364,14 @@
     <div class="hubstem"></div>
     <div class="hubbar"></div>
     <div class="hubrow">
-      <div class="hubnode"><b>CLOUD</b><small>AWS · Azure · OCI</small></div>
-      <div class="hubnode"><b>ON-PREM</b><small>Runtime inside your network</small></div>
-      <div class="hubnode"><b>DELIVERY</b><small>Terraform · Kubernetes · GitHub</small></div>
+      <div class="hubnode"><b>CLOUD &amp; DELIVERY</b><small>AWS · Azure · OCI · Terraform · Kubernetes · GitHub</small></div>
+      <div class="hubnode"><b>ON-PREM</b><small>vSphere · Nutanix · Proxmox · Hyper-V · servers over SSH</small></div>
+      <div class="hubnode"><b>PEOPLE &amp; SERVICE DESK</b><small>Entra ID + Intune · Jira · ServiceNow · Datadog · Splunk</small></div>
     </div>
   </div></div>
   <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
     <h2>Where your work actually lives.</h2>
-    <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target — and each new system we connect plugs into that same decision, without a second set of rules.</p>
+    <p>KYVAR operates across cloud, on-prem, end-user and service-desk systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target — and each new system we connect plugs into that same decision, without a second set of rules.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
   </div>
 </div></section>
