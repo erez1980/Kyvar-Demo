@@ -143,22 +143,42 @@
     --glow-2:rgba(141,123,255,.10);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
 .glow{position:fixed;pointer-events:none;inset:-30%;background:radial-gradient(circle at 50% 18%,var(--glow-1),transparent 24%),radial-gradient(circle at 75% 63%,var(--glow-2),transparent 26%);z-index:-1}
 .grad{background:linear-gradient(90deg,var(--accent),var(--grad-mid),var(--violet));background-clip:text;-webkit-background-clip:text;color:transparent}
 
 /* ---------- Navigation ---------- */
-.nav{position:fixed;top:0;width:100%;z-index:9;display:flex;justify-content:space-between;align-items:center;padding:14px 5%;background:linear-gradient(var(--nav-a),var(--nav-b));backdrop-filter:blur(10px);border-bottom:1px solid var(--line-faint)}
+.nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 5%;background:linear-gradient(var(--nav-a),var(--nav-b));backdrop-filter:blur(10px);border-bottom:1px solid var(--line-faint)}
 .brand{display:flex;align-items:center;font-weight:800;letter-spacing:3px;font-size:17px;color:var(--ink);text-decoration:none}
 .brand img{height:36px;width:auto;margin-right:10px}
 .navlinks{display:flex;align-items:center;gap:22px}
 .nav a{color:var(--nav-ink);text-decoration:none;font-size:14px}
 .nav a:hover{color:var(--ink)}
 .nav a.active{color:var(--accent);font-weight:700}
-.nav a.login{border:1px solid var(--pill-border);border-radius:999px;padding:8px 18px;font-weight:700;background:transparent;color:var(--nav-ink)}
+.nav a.login{border:1px solid var(--pill-border);border-radius:999px;padding:8px 18px;font-weight:700;background:transparent;color:var(--nav-ink);white-space:nowrap}
 .nav a.login:hover{background:var(--hover);color:var(--ink)}
-.nav a.pilotcta{border:1px solid #5ee5ff;border-radius:999px;padding:8px 18px;font-weight:800;background:linear-gradient(90deg,#5ee5ff,#7fc4ff);color:#05101d}
+.nav a.pilotcta{border:1px solid #5ee5ff;border-radius:999px;padding:8px 18px;font-weight:800;background:linear-gradient(90deg,#5ee5ff,#7fc4ff);color:#05101d;white-space:nowrap}
+
+/* ---------- Mobile menu ---------- */
+.navtoggle{display:none;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--pill-border);background:transparent;color:var(--nav-ink);cursor:pointer;padding:0}
+.navtoggle:hover{background:var(--hover);color:var(--ink)}
+.navtoggle svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.navpanel{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:78px 7% 48px;display:none}
+.navpanel.on{display:block}
+body.navopen{overflow:hidden}
+body.navopen .cbanner{display:none}
+.navpanel h5{margin:26px 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--faint);font-weight:800}
+.navpanel h5:first-child{margin-top:0}
+.navpanel a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft);color:var(--ink);font-size:18px;font-weight:700;text-decoration:none}
+.navpanel a:after{content:"›";color:var(--accent);font-size:20px;font-weight:400}
+.navpanel a.current{color:var(--accent)}
+.navpanel .onpage a{font-size:15.5px;font-weight:600;color:var(--muted);padding:13px 0}
+.navpanel .panelcta{display:flex;flex-direction:column;gap:12px;margin-top:30px}
+.navpanel .panelcta a{justify-content:center;border-radius:999px;padding:15px 24px;border-bottom:none;font-size:16px}
+.navpanel .panelcta a:after{content:none}
+.navpanel .panelcta a.p{border:1px solid #5ee5ff;background:linear-gradient(90deg,#5ee5ff,#7fc4ff);color:#05101d;font-weight:800}
+.navpanel .panelcta a.s{border:1px solid var(--pill-border);background:var(--ghost-bg);color:var(--ghost-ink)}
 
 /* ---------- Theme toggle ---------- */
 .themetoggle{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--pill-border);background:transparent;color:var(--nav-ink);cursor:pointer;padding:0}
@@ -387,9 +407,17 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
   .pipestep:nth-child(4):after{display:none}
   .cards,.cards.four{grid-template-columns:1fr 1fr}
 }
+@media(max-width:344px){
+  .brand span{display:none}
+  .brand img{margin-right:0}
+}
 @media(max-width:760px){
-  .navlinks{gap:14px}
-  .navlinks a:not(.login):not(.pilotcta){display:none}
+  .navlinks{gap:10px}
+  .navlinks a:not(.pilotcta){display:none}
+  .navtoggle{display:inline-grid}
+  .nav{padding:12px 4%}
+  .nav a.pilotcta{padding:8px 14px;font-size:13px}
+  .themetoggle,.navtoggle{width:36px;height:36px}
   .grid{grid-template-columns:1fr;gap:35px}
   .section{padding:90px 7%}
   .visual{min-height:300px}
