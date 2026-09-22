@@ -7,7 +7,7 @@
 <script src="assets/theme-init.js"></script>
 <script src="assets/consent.js"></script>
 <title>KYVAR — Governed Autonomous IT Operations &amp; Self-Healing Infrastructure</title>
-<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: AI-driven infrastructure automation and self-healing with human approval, RBAC and full audit — across AWS, Azure, OCI, Kubernetes and on-prem.">
+<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: AI-driven infrastructure automation, service-desk investigation and self-healing with human approval, RBAC and full audit — across AWS, Azure, OCI, VMware, Nutanix, Proxmox, Hyper-V, Kubernetes, Intune and the service desk.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kyvar.io/">
 <meta property="og:title" content="KYVAR — Let AI operate infrastructure. Keep humans in control.">
-<meta property="og:description" content="Governed autonomous IT operations and self-healing across AWS, Azure, OCI and on-prem. Intent in, approved and audited action out.">
+<meta property="og:description" content="Governed autonomous IT operations, service-desk investigation and self-healing across cloud, on-prem virtualization, servers, laptops and the service desk. Intent in, approved and audited action out.">
 <meta property="og:image" content="https://kyvar.io/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -55,13 +55,31 @@
       "url": "https://kyvar.io/",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, Linux, Windows",
-      "description": "Governed autonomous IT operations platform: AI-driven infrastructure automation, monitoring and self-healing with human approval gates, RBAC and end-to-end audit across AWS, Azure, OCI, VMware, Kubernetes, Docker, Terraform and on-prem.",
+      "description": "Governed autonomous IT operations platform: AI-driven infrastructure automation, service-desk investigation, monitoring and self-healing with human approval gates, RBAC and end-to-end audit — across cloud (AWS, Azure, Oracle Cloud), on-prem virtualization (VMware, Nutanix, Proxmox, Hyper-V), servers, end-user devices through Intune, and the service desk (Jira, ServiceNow).",
       "featureList": [
         "Governed pipeline: intent, RBAC, risk classification, human approval, bounded execution, validation, audit",
         "Autonomous monitoring and self-healing with per-monitor arming",
+        "Incident triage: one open incident per monitor, acknowledged and resolved on the record, recovery tracked",
+        "An unhealthy verdict can launch a named runbook or workflow behind the same gates",
+        "Policy rehearsal: preview how a request would be judged, with nothing recorded",
+        "TOTP MFA, listable and revocable sessions, single-use invitations",
+        "Prometheus metrics, request IDs and per-tenant data retention",
         "Cross-connector asset inventory and linking",
         "Zero-inbound-exposure on-prem runtimes",
-        "10 connector families across cloud, on-prem, identity and delivery"
+        "Tamper-evident hash-chained audit trail with SIEM forwarding over HTTP or RFC 5424 syslog",
+        "SCIM 2.0 directory provisioning from Entra ID or Okta, with group-driven connector access",
+        "Deterministic on-runtime credential verification, with no model involved",
+        "Service-desk intake from Jira Service Management and ServiceNow, investigated automatically and written back to the ticket",
+        "Root-cause reports with confidence and evidence, and a proposed fix that still crosses the approval gate",
+        "Alert correlation: a probe, a monitor and a ticket about the same asset are one incident",
+        "A knowledge base that writes itself from resolved incidents, reviewed by a person and published to Confluence or ServiceNow",
+        "Recurring-problem analysis over resolved incidents, with the assets and the time lost",
+        "On-prem virtualization: VMware vSphere, Nutanix, Proxmox VE and Microsoft Hyper-V through SCVMM, discovered and governed",
+        "47 governed virtual-machine and host actions \u2014 power, snapshots, migration, resize, clone, host maintenance, deletion",
+        "Read-only server diagnostics over SSH from a fixed vocabulary, with no model composing a command",
+        "Governed Intune device actions on end-user laptops \u2014 sync, Defender scan, lock, restart, retire and erase",
+        "Telemetry queried at investigation time from Datadog and Splunk, never copied into KYVAR",
+        "An extensible connector model — 17 connectors across cloud, virtualization, endpoints, identity, service desk, observability, knowledge and delivery — where every new integration inherits the same RBAC, approvals and audit"
       ],
       "publisher": { "@id": "https://kyvar.io/#org" }
     },
@@ -86,7 +104,7 @@
         {
           "@type": "Question",
           "name": "How is KYVAR's automatic monitoring different from a monitoring tool?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict can hand the incident straight to a governed remediation — armed per monitor, off by default, with the same approvals and audit as any human-requested change." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict opens an incident somebody can take, and — armed per monitor, off by default — can launch a bounded fix, a named runbook or a whole workflow, behind the same thresholds, cooldowns, approvals and audit as any human-requested change." }
         }
       ]
     }
@@ -106,6 +124,7 @@
     <a href="security.html">Security</a>
     <a href="architecture.html">Architecture</a>
     <a href="pilot.html">Pilot</a>
+    <a href="pricing.html">Pricing</a>
     <a href="insights/">Insights</a>
     <button class="navtoggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -116,7 +135,7 @@
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
     <a class="login" href="https://app.kyvar.io/login">Log in</a>
-    <a class="pilotcta" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="pilotcta" href="contact.html">Start a pilot</a>
   </div>
 </nav>
 
@@ -127,10 +146,10 @@
   <h1>Let AI operate infrastructure.<br><span>Keep humans in control.</span></h1>
   <p>KYVAR is the governance plane for autonomous IT operations: one controlled path from human intent to approved execution, validation, audit and self-healing — across cloud and on-prem.</p>
   <div class="cta">
-    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button" href="contact.html">Start a pilot</a>
     <a class="button ghost" href="#platform">See how it works ↓</a>
   </div>
-  <div class="trust">AWS · MICROSOFT AZURE · ORACLE CLOUD · VMWARE · KUBERNETES · TERRAFORM · DOCKER · GITHUB · ENTRA ID</div>
+  <div class="trust">AWS · AZURE · ORACLE CLOUD · VMWARE · NUTANIX · PROXMOX · HYPER-V · KUBERNETES · ENTRA ID + INTUNE · JIRA · SERVICENOW · DATADOG · SPLUNK · TERRAFORM</div>
 </div></section>
 
 <!-- Governed pipeline -->
@@ -159,23 +178,23 @@
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Operations overview</span></div>
-        <picture><source srcset="assets/screenshots/overview-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/overview.webp" alt="KYVAR operations overview: connected architecture, runtimes online, runs, approvals waiting and inventory" width="1600" height="961"></picture>
+        <picture><source srcset="assets/screenshots/overview-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/overview.webp" alt="KYVAR operations overview: readiness, what needs a person, and the connected architecture from tenant to clouds" width="1266" height="700"></picture>
       </div>
-      <div class="shotcap">The estate at a glance: connected architecture from tenant to clouds, runtimes online, runs, approvals waiting on you, and everything discovered — one operational view.</div>
+      <div class="shotcap">The estate at a glance: can KYVAR run right now, what needs a person, and the live architecture from tenant to clouds.</div>
     </div>
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Chat · governed run</span></div>
-        <picture><source srcset="assets/screenshots/chat-approval-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/chat-approval.webp" alt="KYVAR chat: a CVE patched through a governed run, with the next change waiting for approval" width="1590" height="1000" loading="lazy"></picture>
+        <picture><source srcset="assets/screenshots/chat-approval-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/chat-approval.webp" alt="KYVAR chat: a CVE patched through a governed run — the steps it took, what changed, how long it took — and the next change waiting for approval" width="1540" height="944" loading="lazy"></picture>
       </div>
-      <div class="shotcap">One ask in plain English: a critical CVE patched with zero downtime — drained, upgraded, verified — and the next write parked on the approval gate.</div>
+      <div class="shotcap">One ask in plain English. The steps it took, what changed, how long it took — and the next write parked on the approval gate.</div>
     </div>
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Approvals</span></div>
-        <picture><source srcset="assets/screenshots/approvals-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/approvals.webp" alt="KYVAR approvals: a high-risk provisioning action held by policy until a person approves it" width="1600" height="296" loading="lazy"></picture>
+        <picture><source srcset="assets/screenshots/approvals-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/approvals.webp" alt="KYVAR approvals: a provisioning request held by policy until a person approves it" width="1250" height="404" loading="lazy"></picture>
       </div>
-      <div class="shotcap">Nothing here runs until a person says yes: the matched policy rule, the risk class, and an approve/deny whose reason lands in the audit trail.</div>
+      <div class="shotcap">Nothing runs until a person says yes: the rule that parked it, the word that tripped it, the risk — and a reason that lands in the audit trail.</div>
     </div>
   </div>
 </div></section>
@@ -200,14 +219,88 @@
 <section class="section" id="day2" data-navlabel="Day 2 — Operate"><div class="center reveal">
   <div class="kicker">DAY 2 — OPERATE WITHOUT DRAMA</div>
   <h2>Detect. Heal. Prove it.</h2>
-  <p>Automatic monitoring and self-healing run as one governed loop. Down at 03:14, diagnosed, remediated and re-verified — with a human woken only when policy wants one.</p>
-  <div class="shots"><div class="wide">
-    <div class="shotframe">
-      <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Monitors</span></div>
-      <picture><source srcset="assets/screenshots/monitors-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/monitors.webp" alt="KYVAR monitors: scheduled health checks with autonomous remediation armed per monitor" width="1600" height="725" loading="lazy"></picture>
+  <p>Automatic monitoring, incidents and self-healing run as one governed loop. Down at 03:14, an incident opened, diagnosed, remediated by the runbook you already wrote and re-verified — with a human woken only when policy wants one, and the whole story on one timeline.</p>
+  <div class="shots">
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Incidents</span></div>
+        <picture><source srcset="assets/screenshots/incidents-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/incidents.webp" alt="KYVAR incidents: what is broken right now, who has it, and how it ended" width="1250" height="524" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">What broke while nobody was watching, and where it stands — take it, investigate with KYVAR, or let the next check close it.</div>
     </div>
-    <div class="shotcap">Health checks on a schedule, with self-healing armed per monitor — off by default, on deliberately. Each check follows the same rules and leaves the same records as a chat request.</div>
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Monitors</span></div>
+        <picture><source srcset="assets/screenshots/monitors-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/monitors.webp" alt="KYVAR monitors: a live probe and agent checks on a schedule, with self-healing armed per monitor" width="1249" height="1127" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">Probes and agent checks on a schedule. Self-healing is armed per monitor — off by default, on deliberately.</div>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><b>Incidents, with an owner</b><p>What is broken right now, who has it, and how it ended. One open incident per monitor — a check failing every minute is one problem getting older, not sixty — resolved as “recovered” when the next check passes, or by the person who fixed it. Different facts, said differently.</p></div>
+    <div class="card"><b>Remediation you already wrote</b><p>An unhealthy verdict can launch a named runbook or a multi-step workflow instead of an improvised fix — behind the same arming, threshold and cooldown. A procedure that was turned off or deleted suppresses with a reason; it never quietly improvises instead.</p></div>
+    <div class="card"><b>Every heal on the record</b><p>Dispatched or suppressed, and why — the gate that held it, the cooldown still running, the procedure that no longer exists. The heal’s outcome lands on the incident’s timeline, and recovery is only ever claimed by the next check, never by a fix that says it worked.</p></div>
+  </div>
+</div></section>
+
+<!-- On your phone -->
+<section class="section" id="phone" data-navlabel="On your phone"><div class="grid">
+  <div class="reveal"><div class="kicker">ON YOUR PHONE</div>
+    <h2>The gate follows you.</h2>
+    <p>An approval parks, a monitor fires, and the person who has to decide is not at a desk. KYVAR installs to the home screen and reaches the phone with push notifications — alarms for the team, finished tasks for the person who asked — without opening anything inbound.</p>
+    <div class="shotframe" style="margin-top:22px">
+      <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Security · Push notifications</span></div>
+      <picture><source srcset="assets/screenshots/security-push-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/security-push.webp" alt="KYVAR push notifications: alarms and finished chat turns as system notifications on a phone or computer" width="1600" height="245" loading="lazy"></picture>
+    </div></div>
+  <div class="visual reveal phone-visual"><div class="phoneframe">
+    <img src="assets/screenshots/chat-phone.webp" alt="KYVAR on a phone: a governed run's steps, what changed, and the next change waiting for approval" width="780" height="1576" loading="lazy">
   </div></div>
+</div></section>
+
+<!-- Service desk -->
+<section class="section" id="servicedesk" data-navlabel="Service desk"><div class="center reveal">
+  <div class="kicker">THE TICKET, ANSWERED</div>
+  <h2>A ticket arrives. A root cause comes back.</h2>
+  <p>An issue raised in Jira Service Management or ServiceNow becomes an incident here and is investigated before anyone has read it — against a brief the control plane composes from the assets the report names, the monitors watching them, what changed in the last day, what your observability tools see right now, and what fixed this before. The agent gets a starting point, not a blank page.</p>
+  <div class="cards">
+    <div class="card"><b>A report, not an opinion</b><p>Root cause, confidence, the evidence behind it and a proposed fix — four named fields, so a diagnosis with nothing to show for itself reads as exactly that. Investigating changes nothing: it is dispatched read-only and never parks on the approval queue, because the word “delete” in a ticket must not stop a diagnosis.</p></div>
+    <div class="card"><b>Applying it is a person’s act</b><p>The proposed fix runs as the clicking person’s own turn — policy, approval, separation of duties and their own cloud permissions all apply, with no waiver. What a second human approves is a diagnosis they can read. “None needed” and “needs a person” are not fixes to apply, and KYVAR says so instead of trying.</p></div>
+    <div class="card"><b>Back on the ticket</b><p>Opened, diagnosed, remediation requested, waiting for approval, finished — each posted to the issue as a work note, and resolving the incident transitions the ticket. Close it in Jira or ServiceNow and the incident closes here. Never echoed back: whichever side closed it, the other is not told to close it again.</p></div>
+  </div>
+  <div class="cards">
+    <div class="card"><b>Several signals, one incident</b><p>A probe seeing the checkout API down, the monitor on the machine behind it, and the service desk’s ticket for the same outage are one problem — joined on the asset, within a window you set. One investigation, one set of notifications, and the first ticket becomes the ticket.</p></div>
+    <div class="card"><b>What fixed it last time</b><p>A resolved incident with a root cause becomes a draft article. A person reads it before anything else does — an article the next investigation is handed is an instruction in all but name — and once published it can go outward to Confluence or a ServiceNow knowledge base, where your service desk already looks.</p></div>
+    <div class="card"><b>The problem behind the tickets</b><p>The same cause twice is a recurring problem, not two tickets: how often, on which machines, through which sources, what was done about it, and the hours it has cost. Computed from the record, with no model deciding what counts as the same problem.</p></div>
+  </div>
+</div></section>
+
+<!-- On-prem virtualization -->
+<section class="section" id="virtualization" data-navlabel="Virtualization"><div class="grid">
+  <div class="reveal"><div class="kicker">THE ESTATE YOU ALREADY RUN</div>
+    <h2>VMware, Nutanix, Proxmox, Hyper-V.</h2>
+    <p>Most estates are not only cloud. KYVAR discovers clusters, hosts, datastores and virtual machines from all four — from a runtime inside your network, because that is the only place an on-prem hypervisor answers, and because SCVMM has no REST API at all, so Hyper-V is reached over PowerShell remoting rather than pretended at.</p>
+    <p>Forty-seven governed actions across them: power, snapshots, live migration, CPU and memory resize, disk growth, clone, host maintenance mode and deletion. Graceful and forced are separate verbs, never a flag — an approver reading “stop the database VM” is told which one they are authorising — and the values are in the sentence, so it says “sets the virtual machine to 8 vCPU and 16384 MB” rather than “Resize web-01”.</p>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See where it executes →</a></div></div>
+  <div class="visual reveal"><div>
+    <div class="check">vSphere — clusters, hosts, datastores, VMs, guest IPs and tags</div>
+    <div class="check">Nutanix — Prism Central clusters, hosts and VMs</div>
+    <div class="check">Proxmox VE — nodes, QEMU guests, containers and storage</div>
+    <div class="check">Hyper-V — the SCVMM fabric, over PowerShell remoting</div>
+    <div class="check">Addressed by the platform’s own id, never by name — two machines called “web01” cannot be confused</div>
+    <div class="check">Reverting or deleting a snapshot is destructive, so a second person decides</div>
+  </div></div>
+</div></section>
+
+<!-- Endpoints -->
+<section class="section" id="endpoints" data-navlabel="Endpoints"><div class="center reveal">
+  <div class="kicker">DOWN TO THE MACHINE</div>
+  <h2>Ask a server how it is. Act on a laptop.</h2>
+  <p>The ticket is usually about a machine, and until you can reach it the investigation is guesswork. There are two populations and they are not reachable the same way — so KYVAR does not pretend one design serves both.</p>
+  <div class="cards two">
+    <div class="card"><b>Servers, over SSH</b><p>Nine read-only checks from a fixed vocabulary — failed services, a named service, top processes, load and memory, disk, listening ports, reachability, recent errors, pending patches. <strong>No model composes a command against your production server.</strong> The checks are typed, a parameter that could be shell is refused by whitelist rather than escaped, host keys are pinned and a host with no confirmed fingerprint is refused before anything connects. One connection carries every check, and what it found is cited in the next investigation.</p></div>
+    <div class="card"><b>Laptops, through the agent already on them</b><p>A machine behind NAT and asleep in somebody’s bag answers nothing — so it is reached through Intune: sync, Defender signatures and scan, screen lock, restart, shut down, retire and erase. The four that interrupt somebody or cannot be undone are held for a second person, and the erase states in words which of the two erases was chosen, because “Erase the device” tells an approver the verb and not the change.</p></div>
+  </div>
+  <div class="quote">“A command the agent writes is a command nobody approved.”</div>
 </div></section>
 
 <!-- One estate -->
@@ -215,13 +308,15 @@
   <div class="kicker">ONE ESTATE, NOT ONE INVENTORY PER TOOL</div>
   <h2>Every source. One asset.</h2>
   <p>KYVAR discovers what lives behind every connector and links the rows that are the same real machine — matched on hard evidence, never a guess dressed as a fact. A security finding from one tool lands on the asset another cloud runs, and the fix flows through the connector that owns it.</p>
-  <div class="shots"><div class="wide">
-    <div class="shotframe">
-      <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory · Assets</span></div>
-      <picture><source srcset="assets/screenshots/inventory-assets-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/inventory-assets.webp" alt="KYVAR inventory: one asset seen by two connectors, linked on the same public IP, with a critical CVE finding mapped to it" width="1600" height="483" loading="lazy"></picture>
+  <div class="shots">
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory · Assets</span></div>
+        <picture><source srcset="assets/screenshots/inventory-assets-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/inventory-assets.webp" alt="KYVAR inventory: one asset with its provider record and the CNAPP's critical CVE finding mapped straight onto it" width="1250" height="854" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">One asset, every source that sees it — and the CNAPP's critical CVE mapped straight onto the machine that has to be fixed.</div>
     </div>
-    <div class="shotcap"><span class="linkline">⛓ Linked: same public IP — high confidence.</span> One asset seen by AWS and Azure, with the CNAPP's critical CVE mapped straight onto it.</div>
-  </div></div>
+  </div>
 </div></section>
 
 <!-- Proof points -->
@@ -229,9 +324,9 @@
   <div class="kicker">BUILT LIKE INFRASTRUCTURE, NOT A DEMO</div>
   <h2>The numbers behind the platform.</h2>
   <div class="stats">
-    <div class="stat"><div class="num">10</div><div class="lbl">Connector families</div><p>Linux, Windows, AWS, Azure, OCI, VMware, Terraform, Kubernetes, Docker and Entra ID — infrastructure and identity reach through one governed pipeline.</p></div>
-    <div class="stat"><div class="num">9</div><div class="lbl">Role profiles</div><p>Operational access structured from viewer to platform administration — least privilege as a default, not a configuration project.</p></div>
-    <div class="stat"><div class="num">~750</div><div class="lbl">Automated tests</div><p>Continuous coverage across gates, tenancy, credentials and abuse cases — the safety envelope is tested like the product it is.</p></div>
+    <div class="stat"><div class="num">17</div><div class="lbl">Connectors, eight categories</div><p>Cloud (AWS, Azure, Oracle Cloud), virtualization (vSphere, Nutanix, Proxmox, Hyper-V), endpoints (Linux, macOS and Windows servers), identity and devices (Entra ID + Intune), service desk (Jira, ServiceNow), observability (Datadog, Splunk), knowledge (Confluence) and delivery (Kubernetes, GitHub, with Terraform on top). The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged.</p></div>
+    <div class="stat"><div class="num">0</div><div class="lbl">Inbound ports</div><p>An on-prem runtime opens nothing. It dials out to the control plane, is enrolled by single-use invitation, and is the only place your credentials are ever decrypted.</p></div>
+    <div class="stat"><div class="num">1,433</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
   </div>
 </div></section>
 
@@ -239,14 +334,18 @@
 <section class="section safety-band" id="safety" data-navlabel="Safety envelope"><div class="grid">
   <div class="reveal"><div class="kicker">SAFETY IS THE ARCHITECTURE</div>
     <h2>Autonomy with a safety envelope.</h2>
-    <p>Every meaningful action travels through a control plane built to say “not yet” when it should. Your own cloud permissions decide what you can do — an admin can do everything, the person who owns the websites acts exactly where they were granted.</p>
+    <p>Every meaningful action travels through a control plane built to say “not yet” when it should. And your own cloud permissions decide what you can do — on AWS, literally: the grant you were given selects the role your run receives, so an admin can do everything and the person who owns the websites is stopped by AWS, not by a filter in front of the model.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="security.html">Explore the security architecture →</a></div></div>
   <div class="visual reveal safety-visual"><div>
     <div class="check">Deny by default — writes are armed, never assumed</div>
     <div class="check">Requester cannot approve their own change</div>
+    <div class="check">Your grant picks the cloud role the run acts with — and your name is on every call in your own CloudTrail</div>
     <div class="check">Risk classification and human approval on the diff, not a vibe</div>
     <div class="check">Dry-run, captured rollback, and immutable-style audit</div>
-    <div class="check">Daily model-spend budget and destructive-command guard</div>
+    <div class="check">Destructive-command guard and a daily model-spend budget — spend visible by day, model and kind of work</div>
+    <div class="check">Rehearse any request against policy before it is sent — nothing recorded</div>
+    <div class="check">TOTP second factor, sessions you can see and revoke, single-use invitations, SCIM provisioning from your directory</div>
+    <div class="check">A hash-chained audit trail you can verify, streamed to your SIEM as it is written</div>
   </div></div>
 </div></section>
 
@@ -256,7 +355,7 @@
   <h2>Not a chatbot over your cloud.</h2>
   <div class="cards">
     <div class="card"><b>A governed operator</b><p>Chat assistants suggest commands. KYVAR executes them — inside a policy engine, an approval gate and a full audit trail. The autonomy is the product; the governance is the architecture.</p></div>
-    <div class="card"><b>End to end, one plane</b><p>Discovery, monitoring, self-healing, provisioning and multi-step workflows share one control plane and one evidence trail — not five tools stitched by webhooks.</p></div>
+    <div class="card"><b>End to end, one plane</b><p>A ticket, the estate it names, the diagnosis, the fix, the proof and the article that stops it happening again share one control plane and one evidence trail — not five tools stitched by webhooks. Discovery, monitoring, incidents, self-healing, provisioning and multi-step workflows are the same pipeline seen from different sides.</p></div>
     <div class="card"><b>Runs where you run</b><p>Execution happens on runtimes inside your network, with credentials that never leave it. Cloud, on-prem, air-gapped-friendly by design.</p></div>
   </div>
 </div></section>
@@ -268,14 +367,14 @@
     <div class="hubstem"></div>
     <div class="hubbar"></div>
     <div class="hubrow">
-      <div class="hubnode"><b>CLOUD</b><small>AWS · Azure · OCI</small></div>
-      <div class="hubnode"><b>ON-PREM</b><small>Linux · Windows · VMware</small></div>
-      <div class="hubnode"><b>DELIVERY</b><small>Terraform · K8s · GitHub</small></div>
+      <div class="hubnode"><b>CLOUD &amp; DELIVERY</b><small>AWS · Azure · OCI · Terraform · Kubernetes · GitHub</small></div>
+      <div class="hubnode"><b>ON-PREM</b><small>vSphere · Nutanix · Proxmox · Hyper-V · servers over SSH</small></div>
+      <div class="hubnode"><b>PEOPLE &amp; SERVICE DESK</b><small>Entra ID + Intune · Jira · ServiceNow · Datadog · Splunk</small></div>
     </div>
   </div></div>
   <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
     <h2>Where your work actually lives.</h2>
-    <p>KYVAR operates across cloud, on-prem and delivery systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target.</p>
+    <p>KYVAR operates across cloud, on-prem, end-user and service-desk systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target — and each new system we connect plugs into that same decision, without a second set of rules.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
   </div>
 </div></section>
@@ -299,7 +398,7 @@
     </details>
     <details>
       <summary>How is KYVAR's automatic monitoring different from a monitoring tool?</summary>
-      <p>Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict can hand the incident straight to a governed remediation — armed per monitor, off by default, with the same approvals and audit as any human-requested change.</p>
+      <p>Classic monitoring ends at an alert. KYVAR's monitors are allowed to act: an unhealthy verdict opens an incident somebody can take, and — armed per monitor, off by default — can launch a bounded fix, a named runbook or a whole workflow, behind the same thresholds, cooldowns, approvals and audit as any human-requested change.</p>
     </details>
   </div>
 </div></section>
@@ -310,7 +409,7 @@
   <h2>One real workload. 30–60 days.<br><span class="grad">Evidence you can trust.</span></h2>
   <p>A focused pilot gives operations, security and leadership measurable automation, explicit control, and a complete action trail.</p>
   <div class="cta">
-    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button" href="contact.html">Start a pilot</a>
     <a class="button ghost" href="pilot.html">How the pilot works →</a>
   </div>
 </div></section>
@@ -328,11 +427,12 @@
       <a href="security.html">Security &amp; Compliance</a>
       <a href="architecture.html">Architecture</a>
       <a href="pilot.html">Customer Pilot</a>
+      <a href="pricing.html">Pricing</a>
       <a href="insights/">Insights</a>
     </div>
     <div>
       <h4>Get started</h4>
-      <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+      <a href="contact.html">Start a pilot</a>
       <a href="https://app.kyvar.io/login">Log in</a>
       <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
     </div>

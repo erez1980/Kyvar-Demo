@@ -64,6 +64,7 @@
     <a class="active" href="security.html">Security</a>
     <a href="architecture.html">Architecture</a>
     <a href="pilot.html">Pilot</a>
+    <a href="pricing.html">Pricing</a>
     <a href="insights/">Insights</a>
     <button class="navtoggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -74,7 +75,7 @@
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
     <a class="login" href="https://app.kyvar.io/login">Log in</a>
-    <a class="pilotcta" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="pilotcta" href="contact.html">Start a pilot</a>
   </div>
 </nav>
 
@@ -100,9 +101,15 @@
     <div class="card"><span class="cardtitle" style="font-weight:800">Identity and tenant boundaries</span>
       <ul>
         <li>OIDC authorization code + PKCE</li>
-        <li>TOTP MFA and protected break-glass access</li>
+        <li>Self-service TOTP MFA — armed only once a code is proven</li>
+        <li>Sessions listed and revocable; logout revokes server-side</li>
+        <li>Single-use invitations, hashed at rest</li>
+        <li>SCIM 2.0 provisioning from Entra ID or Okta — joiners, movers and leavers, including group-driven access</li>
         <li>Role and tenant resolved from the database per request</li>
         <li>Connector-level RBAC controls both action and visibility</li>
+        <li>On AWS, that grant selects the role a run receives — so what a person may do is enforced by AWS, not by a filter in front of the model</li>
+        <li>The requester is named in the assumed-role session, so every call lands in <em>your</em> CloudTrail under their name — &ldquo;who did this?&rdquo; is answerable from your own account</li>
+        <li>Scheduled work acts as a separate automation identity, never as the administrator who armed it</li>
         <li>Cross-tenant objects return 404 — no ID oracle</li>
       </ul>
     </div>
@@ -113,14 +120,21 @@
         <li>Per-run, memory-first delivery</li>
         <li>Control-plane tokens stripped from agent subprocesses</li>
         <li>Customer-owned secret stores and model keys supported</li>
+        <li>Credentials verified where they live: a read-only identity check runs on the runtime itself, with no model involved</li>
+        <li>AWS roles supported directly — the runtime assumes a role, so no long-lived key need exist at all</li>
+        <li>The account or subscription a connector reaches is <em>proven</em> by that check, not typed into a form — and a connector that is not the account it claims says so on its own card</li>
       </ul>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Audit that security can use</span>
       <ul>
         <li>Actor, target, connector, policy, approver, and outcome</li>
-        <li>CSV export plus syslog / webhook forwarding</li>
+        <li>Tamper-evident: every event is hash-chained to the one before it, and the trail can be verified on demand</li>
+        <li>Streamed off the box as it is written — HTTP collector or RFC 5424 syslog, with every delivery attempt on the record</li>
+        <li>CSV export with the hash of each event</li>
         <li>Credential-safe run events</li>
-        <li>Retention controls and correlation IDs</li>
+        <li>Per-tenant retention windows — off by default, every purge on the record</li>
+        <li>Policy rehearsal: see how a request would be judged, with nothing recorded</li>
+        <li>Prometheus metrics and a request ID on every response</li>
         <li>Authenticated adversarial tests become regressions</li>
       </ul>
     </div>
@@ -142,18 +156,36 @@
   <div class="shots">
     <div class="wide">
       <div class="shotframe">
-        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory · findings</span></div>
-        <picture><source srcset="assets/screenshots/inventory-list-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/inventory-list.webp" alt="KYVAR inventory list with security findings as first-class objects, mapped to the assets that own them" width="1600" height="869" loading="lazy"></picture>
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Inventory</span></div>
+        <picture><source srcset="assets/screenshots/inventory-list-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/inventory-list.webp" alt="KYVAR inventory list: everything discovered, filterable by type, with security findings as first-class rows" width="1250" height="906" loading="lazy"></picture>
       </div>
-      <div class="shotcap">Findings are first-class inventory: a CNAPP finding lands on the asset that owns it, filterable and tracked from open to closed.</div>
+      <div class="shotcap">Everything discovered, filterable — managed assets are the ones KYVAR watches and acts on; findings are rows like any other.</div>
     </div>
     <div class="wide">
       <div class="shotframe">
         <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Runs</span></div>
-        <picture><source srcset="assets/screenshots/runs-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/runs.webp" alt="KYVAR runs: every action recorded with its runtime, status and full story" width="1600" height="397" loading="lazy"></picture>
+        <picture><source srcset="assets/screenshots/runs-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/runs.webp" alt="KYVAR runs: every action recorded with who asked, how long it took, and what is still held" width="1250" height="596" loading="lazy"></picture>
       </div>
-      <div class="shotcap">Everything KYVAR has run, with the full story behind each one — who asked, which runtime executed, what completed and what is still held for approval.</div>
+      <div class="shotcap">Everything KYVAR has run — who asked, which runtime, how long it took, and what is still held for approval.</div>
     </div>
+    <div class="wide">
+      <div class="shotframe">
+        <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Run · the record</span></div>
+        <picture><source srcset="assets/screenshots/run-detail-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/run-detail.webp" alt="KYVAR run detail: the answer, the steps it took, what changed, and the timeline behind it" width="1265" height="1044" loading="lazy"></picture>
+      </div>
+      <div class="shotcap">Every run has a record: the answer, the steps, what changed, and the timeline behind it — what a reviewer opens.</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">WHERE WE STAND, PLAINLY</div>
+  <h2>Compliance posture.</h2>
+  <p>Security questionnaires come early, so here is the honest position rather than a badge wall.</p>
+  <div class="cards" style="text-align:left">
+    <div class="card"><b>Built in today</b><p>Deploy in your own environment; SSO with OIDC and SCIM provisioning; role- and tenant-scoped access enforced per request, with the AWS role a run receives chosen by the requester&rsquo;s own grant; encryption at rest for every credential; a hash-chained audit trail with SIEM forwarding and per-tenant retention; separation of duties on every approval.</p></div>
+    <div class="card"><b>Evidence we can hand over</b><p>The security architecture on this page, an authenticated adversarial test suite that runs on every change, the audit export with a hash per event, and a pilot in which your own security team observes every decision as it is made.</p></div>
+    <div class="card"><b>Not claimed</b><p>KYVAR is not SOC 2 or ISO 27001 certified today, and we will not imply otherwise in a procurement conversation. Deploying inside your environment means the platform runs under the controls you already hold, and formal certification is on the roadmap — ask us where it stands.</p></div>
   </div>
 </div></section>
 
@@ -162,7 +194,7 @@
   <h2>Let your security team try to break it.</h2>
   <p>The best pilot outcome is a security team that observed every decision and found nothing ungoverned. Start read-only, open one narrow write path, and review the evidence.</p>
   <div class="cta">
-    <a class="button" href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+    <a class="button" href="contact.html">Start a pilot</a>
     <a class="button ghost" href="pilot.html">How the pilot works →</a>
   </div>
 </div></section>
@@ -180,11 +212,12 @@
       <a href="security.html">Security &amp; Compliance</a>
       <a href="architecture.html">Architecture</a>
       <a href="pilot.html">Customer Pilot</a>
+      <a href="pricing.html">Pricing</a>
       <a href="insights/">Insights</a>
     </div>
     <div>
       <h4>Get started</h4>
-      <a href="mailto:hello@kyvar.io?subject=KYVAR%20pilot">Start a pilot</a>
+      <a href="contact.html">Start a pilot</a>
       <a href="https://app.kyvar.io/login">Log in</a>
       <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
     </div>
