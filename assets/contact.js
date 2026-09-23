@@ -30,6 +30,18 @@ var MAIL_TO = "hello@kyvar.io";
   var typed = false;
   form.addEventListener("keydown", function () { typed = true; }, true);
 
+  /* ?intent=security (the Trust Center's "Request the security package")
+     preselects the matching option, so the visitor does not have to find it. */
+  try {
+    var want = new URLSearchParams(location.search).get("intent");
+    var sel = document.getElementById("f-intent");
+    if (want === "security" && sel) {
+      for (var i = 0; i < sel.options.length; i++) {
+        if (/^Security/.test(sel.options[i].text)) { sel.selectedIndex = i; break; }
+      }
+    }
+  } catch (e) {}
+
   var REQUIRED = [
     /* These check for emptiness, not for shape. A one-letter company name and
        an unfamiliar personal name are both real; refusing them would turn the
