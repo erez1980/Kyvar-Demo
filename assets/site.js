@@ -165,5 +165,5 @@ document.querySelectorAll('.reveal').forEach(x=>o.observe(x));
   btn.addEventListener('click', () => setOpen(!panel.classList.contains('on')));
   panel.addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
-  window.matchMedia('(min-width:761px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
+  window.matchMedia('(min-width:1041px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
 })();

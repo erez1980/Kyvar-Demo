@@ -411,6 +411,15 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
   .brand span{display:none}
   .brand img{margin-right:0}
 }
+/* The full link row needs ~1000px. Below that it used to be clipped off the
+   right edge (tablets, small laptops), so the menu takes over earlier than the
+   rest of the mobile layout does. Keep this width in step with the
+   matchMedia in site.js that closes the menu when the window grows. */
+@media(max-width:1040px){
+  .navlinks{gap:12px}
+  .navlinks a:not(.pilotcta):not(.login){display:none}
+  .navtoggle{display:inline-grid}
+}
 @media(max-width:760px){
   .navlinks{gap:10px}
   .navlinks a:not(.pilotcta){display:none}
