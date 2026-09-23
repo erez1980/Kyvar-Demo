@@ -7,7 +7,7 @@
 <script src="assets/theme-init.js"></script>
 <script src="assets/consent.js"></script>
 <title>KYVAR Pricing — Packages for Governed AI Operations</title>
-<meta name="description" content="Four packages, from a fixed-fee pilot to Enterprise: a platform fee plus governed-runtime capacity, with model tokens at cost. See exactly what each tier includes, and get a figure in one reply.">
+<meta name="description" content="Four packages with starting prices: a pilot from $12k credited against year one, Team from $36k/yr, Business from $110k/yr, Enterprise from $180k/yr. A platform fee plus governed-runtime capacity, model tokens at cost.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -48,7 +48,7 @@
         {
           "@type": "Question",
           "name": "How much does KYVAR cost?",
-          "acceptedAnswer": { "@type": "Answer", "text": "KYVAR is priced as an annual platform fee plus governed-runtime capacity, with model tokens passed through at cost. There are four packages: a fixed-fee pilot of 30 to 60 days credited in full against the first year, then Team, Business and Enterprise, separated by how many governed runtimes you need and how much of the estate they cover. Figures are quoted per situation because the estate size, the number of runtimes, whether a runtime must run on-premises or air-gapped, and the support commitment each move the number materially. Tell us the shape of your estate and you get a figure in one reply." }
+          "acceptedAnswer": { "@type": "Answer", "text": "KYVAR is priced as an annual platform fee plus governed-runtime capacity, with model tokens passed through at cost. There are four packages: a fixed-fee pilot of 30 to 60 days credited in full against the first year, then Team, Business and Enterprise, separated by how many governed runtimes you need and how much of the estate they cover. Starting prices are published: the pilot from $12,000 (credited in full against year one), Team from $36,000 a year, Business from $110,000 a year and Enterprise from $180,000 a year. The exact figure depends on the situation because the estate size, the number of runtimes, whether a runtime must run on-premises or air-gapped, and the support commitment each move the number materially. Tell us the shape of your estate and you get a figure in one reply." }
         },
         {
           "@type": "Question",
@@ -78,6 +78,10 @@
 .tier .tname{font-weight:800;font-size:18px;color:var(--ink)}
 .tier .tfor{font-size:13.5px;color:var(--ink-soft);margin:4px 0 18px}
 .tier .tprice{font-size:29px;font-weight:800;color:var(--accent);line-height:1.15;letter-spacing:-.5px}
+.tier .tprice{white-space:nowrap}
+.tier .tprice small{font-size:15px;font-weight:700;color:var(--ink-soft);letter-spacing:0;margin-left:2px}
+.tier .tprice small.from{margin:0 2px 0 0;font-weight:600}
+.tiernote{margin-top:18px;font-size:14px;color:var(--ink-soft);text-align:left}
 .tier .tunit{font-size:13.5px;color:var(--ink-soft);margin:5px 0 18px}
 .tier ul{list-style:none;padding:0;margin:0 0 22px;font-size:14.5px;color:var(--ink-soft);line-height:1.6}
 .tier ul li{padding-left:22px;position:relative;margin-bottom:9px}
@@ -132,8 +136,8 @@
 
 <section class="section"><div class="center reveal">
   <div class="eyebrow">PACKAGES, AND WHAT MOVES A QUOTE</div>
-  <h1>Four packages.<br><span>A number in one reply.</span></h1>
-  <p>No platform in this category publishes a price list, and neither will we — deals in governed infrastructure differ by an order of magnitude, and a list price would be wrong for almost everyone who read it. What we can do is stop making you wait. Here is exactly what each package contains, the meter underneath all four, and the handful of things that actually move a quote — so you can see where you fit before you talk to anyone, and get a real figure back in one reply rather than three meetings.</p>
+  <h1>Four packages.<br><span>Starting prices, in the open.</span></h1>
+  <p>Most platforms in this category hide their prices behind a sales call. We would rather you knew whether you are in range before you talk to anyone. Deals in governed infrastructure still differ by an order of magnitude, so these are starting points rather than a list price — and the real figure comes back in one reply. Here is exactly what each package contains, the meter underneath all four, and the handful of things that actually move a quote — so you can see where you fit before you talk to anyone, and get a real figure back in one reply rather than three meetings.</p>
 </div></section>
 
 <section class="section tight"><div class="center reveal">
@@ -148,7 +152,7 @@
     <div class="tier">
       <div class="tname">Pilot</div>
       <div class="tfor">Prove it on one real workload</div>
-      <div class="tprice">Fixed fee</div>
+      <div class="tprice"><small class="from">from </small>$12k</div>
       <div class="tunit">one-off · 30–60 days · credited in full against your first year</div>
       <ul>
         <li>One connector, one team, one operational loop</li>
@@ -164,7 +168,7 @@
       <span class="tag">MOST PILOTS LAND HERE</span>
       <div class="tname">Team</div>
       <div class="tfor">One team, one cloud</div>
-      <div class="tprice">Annual</div>
+      <div class="tprice"><small class="from">from </small>$36k<small>/yr</small></div>
       <div class="tunit">up to 2 governed runtimes</div>
       <ul>
         <li>Up to 3 connectors</li>
@@ -180,7 +184,7 @@
     <div class="tier">
       <div class="tname">Business</div>
       <div class="tfor">A division, multi-cloud</div>
-      <div class="tprice">Annual</div>
+      <div class="tprice"><small class="from">from </small>$110k<small>/yr</small></div>
       <div class="tunit">up to 8 governed runtimes</div>
       <ul>
         <li>Every connector, and new ones as they ship</li>
@@ -196,8 +200,8 @@
     <div class="tier">
       <div class="tname">Enterprise</div>
       <div class="tfor">Regulated, or many business units</div>
-      <div class="tprice">Annual</div>
-      <div class="tunit">unlimited governed runtimes</div>
+      <div class="tprice"><small class="from">from </small>$180k<small>/yr</small></div>
+      <div class="tunit">unlimited governed runtimes · quoted individually</div>
       <ul>
         <li>Multi-tenant isolation across business units</li>
         <li>SCIM 2.0 provisioning from your directory</li>
@@ -210,6 +214,7 @@
     </div>
 
   </div>
+  <p class="tiernote">Starting prices in US dollars, billed annually. Model tokens are separate — your own provider key, or passed through at cost. Your figure depends on the five things below, and comes back in one reply.</p>
 
   <div class="callout" style="margin-top:32px;text-align:left">
     <b>Five things move a quote, and none of them is your headcount.</b> How many governed runtimes you need; how much of the estate they cover; whether a runtime has to run on-premises or air-gapped; the support commitment; and how much security review and procurement work the deal carries. That is the whole list — tell us where you land on those five and you get a figure back in one reply, not a discovery sequence. The pilot fee is fixed before it starts and credited in full against your first year, so the cheapest way to find out what this costs is to run one.
@@ -228,7 +233,7 @@
       <tr><td>Observability<br>and monitoring</td><td>Per host or per node</td><td>Yes</td><td>Predictable until the estate grows, then it becomes one of the largest lines in the budget. Prices watching, not acting.</td></tr>
       <tr><td>IT automation<br>platforms</td><td>Per managed node, annually</td><td>Partly</td><td>Closest to a fair meter, but it charges for reach rather than for the governance around what is done with that reach.</td></tr>
       <tr><td>AIOps and<br>ITSM suites</td><td>Bundled enterprise agreement</td><td>No</td><td>Six figures and up, negotiated per deal, usually alongside modules you did not ask for.</td></tr>
-      <tr><td><b>KYVAR</b></td><td><b>Platform fee + governed runtimes</b></td><td><b>Quoted, in one reply</b></td><td>Your bill tracks how much of your estate is actually operated under governance — not how many people you employ or how many machines you own.</td></tr>
+      <tr><td><b>KYVAR</b></td><td><b>Platform fee + governed runtimes</b></td><td><b>Starting prices, yes</b></td><td>Your bill tracks how much of your estate is actually operated under governance — not how many people you employ or how many machines you own.</td></tr>
     </tbody>
   </table>
   </div>
