@@ -121,6 +121,8 @@
   </a>
   <div class="navlinks">
     <a href="index.html#platform">Platform</a>
+    <a href="index.html#identity">Identity</a>
+    <a href="index.html#vdi">Virtual desktops</a>
     <a href="security.html">Security</a>
     <a href="trust.html">Trust</a>
     <a href="architecture.html">Architecture</a>
@@ -249,6 +251,7 @@
   <div class="reveal"><div class="kicker">ON YOUR PHONE</div>
     <h2>The gate follows you.</h2>
     <p>An approval parks, a monitor fires, and the person who has to decide is not at a desk. KYVAR installs to the home screen and reaches the phone with push notifications — alarms for the team, finished tasks for the person who asked — without opening anything inbound.</p>
+    <p><strong>And the decision happens where the team already is.</strong> Approve or deny from Slack: the request arrives as a card and the buttons decide it. Slack&rsquo;s signature is verified against the raw request body before anything is parsed, and a Slack user id is <em>not</em> an identity — the press resolves to a KYVAR account an administrator mapped, so separation of duties, the approver group and the audit actor all apply exactly as they do in the console. It is a different door onto the same gate, never a second gate.</p>
     <div class="shotframe" style="margin-top:22px">
       <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Security · Push notifications</span></div>
       <picture><source srcset="assets/screenshots/security-push-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/security-push.webp" alt="KYVAR push notifications: alarms and finished chat turns as system notifications on a phone or computer" width="1600" height="245" loading="lazy"></picture>
@@ -262,7 +265,7 @@
 <section class="section" id="servicedesk" data-navlabel="Service desk"><div class="center reveal">
   <div class="kicker">THE TICKET, ANSWERED</div>
   <h2>A ticket arrives. A root cause comes back.</h2>
-  <p>An issue raised in Jira Service Management or ServiceNow becomes an incident here and is investigated before anyone has read it — against a brief the control plane composes from the assets the report names, the monitors watching them, what changed in the last day, what your observability tools see right now, and what fixed this before. The agent gets a starting point, not a blank page.</p>
+  <p>An issue raised in Jira Service Management or ServiceNow becomes an incident here and is investigated before anyone has read it — against a brief the control plane composes from the assets the report names, the monitors watching them, what changed in the last day, what <strong>Datadog, Splunk and Prometheus</strong> see right now, and what fixed this before. The agent gets a starting point, not a blank page.</p>
   <div class="cards">
     <div class="card"><b>A report, not an opinion</b><p>Root cause, confidence, the evidence behind it and a proposed fix — four named fields, so a diagnosis with nothing to show for itself reads as exactly that. Investigating changes nothing: it is dispatched read-only and never parks on the approval queue, because the word “delete” in a ticket must not stop a diagnosis.</p></div>
     <div class="card"><b>Applying it is a person’s act</b><p>The proposed fix runs as the clicking person’s own turn — policy, approval, separation of duties and their own cloud permissions all apply, with no waiver. What a second human approves is a diagnosis they can read. “None needed” and “needs a person” are not fixes to apply, and KYVAR says so instead of trying.</p></div>
@@ -271,6 +274,7 @@
   <div class="cards">
     <div class="card"><b>Several signals, one incident</b><p>A probe seeing the checkout API down, the monitor on the machine behind it, and the service desk’s ticket for the same outage are one problem — joined on the asset, within a window you set. One investigation, one set of notifications, and the first ticket becomes the ticket.</p></div>
     <div class="card"><b>What fixed it last time</b><p>A resolved incident with a root cause becomes a draft article. A person reads it before anything else does — an article the next investigation is handed is an instruction in all but name — and once published it can go outward to Confluence or a ServiceNow knowledge base, where your service desk already looks.</p></div>
+    <div class="card"><b>And your own wiki is read back</b><p>KYVAR wrote reviewed articles into your ServiceNow knowledge base and Confluence space for weeks &mdash; and never read one. So an organisation with fifteen years of runbooks got an investigation that started from nothing, while KYVAR was writing into the very shelf it was ignoring. The brief now searches those bases too, <strong>cited, never copied</strong>: article titles and links, no bodies, because a knowledge base is exactly where somebody pastes a password &ldquo;temporarily&rdquo;. And it is framed as unreviewed and placed below KYVAR&rsquo;s own articles, because nobody vetted your wiki for this purpose.</p></div>
     <div class="card"><b>The problem behind the tickets</b><p>The same cause twice is a recurring problem, not two tickets: how often, on which machines, through which sources, what was done about it, and the hours it has cost. Computed from the record, with no model deciding what counts as the same problem.</p></div>
   </div>
 </div></section>
@@ -298,10 +302,46 @@
   <h2>Ask a server how it is. Act on a laptop.</h2>
   <p>The ticket is usually about a machine, and until you can reach it the investigation is guesswork. There are two populations and they are not reachable the same way — so KYVAR does not pretend one design serves both.</p>
   <div class="cards two">
-    <div class="card"><b>Servers, over SSH</b><p>Nine read-only checks from a fixed vocabulary — failed services, a named service, top processes, load and memory, disk, listening ports, reachability, recent errors, pending patches. <strong>No model composes a command against your production server.</strong> The checks are typed, a parameter that could be shell is refused by whitelist rather than escaped, host keys are pinned and a host with no confirmed fingerprint is refused before anything connects. One connection carries every check, and what it found is cited in the next investigation.</p></div>
+    <div class="card"><b>Servers, over SSH</b><p>Twelve read-only checks from a fixed vocabulary — failed services, a named service, top processes, load and memory, disk, listening ports, reachability, which resolver answered, which gateway the packet would take and where the path stops, recent errors, pending patches, and what changed on the machine lately. <strong>No model composes a command against your production server.</strong> The checks are typed, a parameter that could be shell is refused by whitelist rather than escaped, host keys are pinned and a host with no confirmed fingerprint is refused before anything connects. One connection carries every check, and what it found is cited in the next investigation.</p></div>
     <div class="card"><b>Laptops, through the agent already on them</b><p>A machine behind NAT and asleep in somebody’s bag answers nothing — so it is reached through Intune: sync, Defender signatures and scan, screen lock, restart, shut down, retire and erase. The four that interrupt somebody or cannot be undone are held for a second person, and the erase states in words which of the two erases was chosen, because “Erase the device” tells an approver the verb and not the change.</p></div>
   </div>
   <div class="quote">“A command the agent writes is a command nobody approved.”</div>
+</div></section>
+
+<!-- Identity -->
+<section class="section" id="identity"><div class="center reveal">
+  <div class="kicker">THE PEOPLE, NOT ONLY THE MACHINES</div>
+  <h2>Four directories. One person.</h2>
+  <p>A ticket names a human being before it names a server, and most estates keep their people in more than one place. KYVAR reads all four — <strong>Microsoft Entra ID</strong>, <strong>Okta</strong>, <strong>on-premises Active Directory</strong> over LDAP, and <strong>Google Workspace</strong> — and one person present in three of them is one asset here, joined on the address they sign in with.</p>
+  <div class="cards two">
+    <div class="card"><b>Each directory&rsquo;s own words, never flattened</b><p>Okta has eight account states and exactly one of them means &ldquo;signed out on purpose&rdquo;; Active Directory answers <em>locked out</em>, <em>password expired</em> and <em>must change at next logon</em>; Google reports <em>suspended</em> and <em>archived</em> as separate facts. Collapsing any of them into a tidy enabled/disabled destroys the three states a &ldquo;cannot sign in&rdquo; ticket is actually about, so KYVAR keeps the source&rsquo;s own vocabulary and says which source said it.</p></div>
+    <div class="card"><b>Ask about one person, now</b><p>The scan says who exists; an on-demand read says what happened when they tried. Okta&rsquo;s System Log for this account&rsquo;s sign-in attempts, with the vendor&rsquo;s own reason on each — and four of Okta&rsquo;s twelve outcome values are perfectly ordinary, including an MFA challenge, so a naive &ldquo;not SUCCESS is a failure&rdquo; rule would report every properly protected account in the org as failing. Plus which applications they can actually reach, which is the other half of &ldquo;I cannot get into Salesforce&rdquo;.</p></div>
+  </div>
+  <div class="quote">&ldquo;Entra ID is not Active Directory. They are usually the same people and always two different systems.&rdquo;</div>
+</div></section>
+
+<!-- VDI -->
+<section class="section" id="vdi"><div class="center reveal">
+  <div class="kicker">WHERE PEOPLE ACTUALLY WORK</div>
+  <h2>The desktop is the workplace.</h2>
+  <p>For a large part of the workforce the estate that matters is a virtual desktop, and &ldquo;it is slow today&rdquo; is the hardest ticket in IT. KYVAR reads all three platforms — <strong>Azure Virtual Desktop</strong>, <strong>Citrix DaaS</strong> and <strong>Omnissa Horizon</strong> — into one vocabulary, so &ldquo;show me every disconnected session&rdquo; is a question with one answer.</p>
+  <div class="cards">
+    <div class="card"><b>The three ways a healthy host takes nobody</b><p>AVD&rsquo;s drain mode, Citrix&rsquo;s maintenance mode, and a Citrix VDA with a reboot scheduled: in every case the machine is powered on, registered, and accepting no one — and every other field reports it healthy. KYVAR says <em>DRAINING</em>, <em>IN MAINTENANCE</em> and names the scheduled reboot, because a collector that reports only the status word says &ldquo;Available&rdquo; about a desktop nobody can reach.</p></div>
+    <div class="card"><b>Why the logon was slow, as numbers</b><p>Citrix answers with the total and the broker&rsquo;s share of it. Horizon answers with the logon broken into <em>segments</em> and the live protocol measurement — latency, bandwidth, packet loss, frame rate — for the session somebody is sitting in right now. Measured live, and the page says so, because every other endpoint reading in this product is a cache and states its age.</p></div>
+    <div class="card"><b>And it can act</b><p>Log a session off or disconnect it, reset or restart a desktop, put a VDA into maintenance. On Citrix the two are named the opposite way round from intuition — <em>disconnect keeps the seat, logoff frees it</em> — and since a &ldquo;full&rdquo; delivery group is usually full of disconnected sessions, the effect sentence an approver reads says which one they are authorising.</p></div>
+  </div>
+</div></section>
+
+<!-- Network -->
+<section class="section" id="network"><div class="center reveal">
+  <div class="kicker">THE PATH BETWEEN THE TWO ENDPOINTS</div>
+  <h2>&ldquo;It is blocked&rdquo; should not be a deduction from silence.</h2>
+  <p>A server can say which resolver answered, which gateway it would use and where the path stops. No host can see the rule that would stop it. With a <strong>Palo Alto PAN-OS</strong> connector, KYVAR asks the firewall itself.</p>
+  <div class="cards">
+    <div class="card"><b>Would this flow be allowed?</b><p>A simulated policy match against the live rulebase — the deciding rule, its index, and the vendor&rsquo;s own action word, because <em>deny</em>, <em>drop</em> and <em>reset</em> all mean the traffic does not get through and are not the same event. Nothing is committed; the policy is evaluated.</p></div>
+    <div class="card"><b>An empty answer is an answer</b><p>When a flow matches no configured rule, PAN-OS applies one of two implicit rules that <em>disagree</em> — intrazone allows, interzone denies. So &ldquo;no rules matched&rdquo; tells an operator nothing and &ldquo;denied&rdquo; is flatly untrue for traffic staying inside one zone. KYVAR answers three ways, and says plainly when it cannot tell which applies.</p></div>
+    <div class="card"><b>The certificate, and the rule nobody uses</b><p>Expiry dates on the firewall&rsquo;s own certificates — the requirement&rsquo;s worked example for a VPN that stopped working — and a hit count per security rule, so a rule that has matched nothing since it was written is visible as the audit finding it is. A private key on the firewall stays on the firewall; a test proves it cannot reach the inventory.</p></div>
+  </div>
 </div></section>
 
 <!-- One estate -->
@@ -369,13 +409,15 @@
     <div class="hubbar"></div>
     <div class="hubrow">
       <div class="hubnode"><b>CLOUD &amp; DELIVERY</b><small>AWS · Azure · OCI · Terraform · Kubernetes · GitHub</small></div>
-      <div class="hubnode"><b>ON-PREM</b><small>vSphere · Nutanix · Proxmox · Hyper-V · servers over SSH</small></div>
-      <div class="hubnode"><b>PEOPLE &amp; SERVICE DESK</b><small>Entra ID + Intune · Jira · ServiceNow · Datadog · Splunk</small></div>
+      <div class="hubnode"><b>ON-PREM &amp; DESKTOPS</b><small>vSphere · Nutanix · Proxmox · Hyper-V · Citrix · Horizon · AVD · servers over SSH</small></div>
+      <div class="hubnode"><b>PEOPLE &amp; ENDPOINTS</b><small>Entra ID · Okta · Active Directory · Google Workspace · Intune · Jamf · Configuration Manager</small></div>
+      <div class="hubnode"><b>SERVICE DESK &amp; SIGNALS</b><small>Jira · ServiceNow · Confluence · Datadog · Splunk · Prometheus · Palo Alto PAN-OS</small></div>
     </div>
   </div></div>
   <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
     <h2>Where your work actually lives.</h2>
     <p>KYVAR operates across cloud, on-prem, end-user and service-desk systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target — and each new system we connect plugs into that same decision, without a second set of rules.</p>
+    <p><strong>Twenty-six connectors today</strong>, and a connector stays read-only until a governed runner exists for it, because the product must not offer a button it can only refuse. Where one does exist there are <strong>82 action verbs</strong> across seven platforms behind the same gate chain — each stating in plain words what it will change before anybody approves it.</p>
     <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
   </div>
 </div></section>

@@ -323,7 +323,7 @@ a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .hubtop small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px}
 .hubstem{width:2px;height:18px;margin:0 auto;background:linear-gradient(180deg,var(--accent),var(--line-strong))}
 .hubbar{height:2px;background:var(--line-strong);margin:0 16.6%;border-radius:2px}
-.hubrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hubrow{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .hubnode{position:relative;padding:18px 12px;border:1px solid var(--line-strong);border-radius:16px;background:linear-gradient(160deg,var(--pgrad-a),var(--pgrad-b));text-align:center;margin-top:18px}
 .hubnode:before{content:"";position:absolute;top:-18px;left:50%;width:2px;height:18px;background:linear-gradient(180deg,var(--line-strong),var(--violet));transform:translateX(-50%)}
 .hubnode b{display:block;color:var(--accent);font-size:12px;letter-spacing:2px;margin-bottom:7px}
