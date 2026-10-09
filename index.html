@@ -13,8 +13,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://kyvar.io/">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050b17">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f7fb">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1b2a">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2f6">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KYVAR">
 <meta property="og:locale" content="en_US">
@@ -141,39 +141,58 @@
 </nav>
 
 <main>
-<section class="hero"><div class="reveal">
-  <img class="herologo" src="branding/kyvar-mark.png" alt="KYVAR">
-  <div class="meaning"><b>K</b>now · <b>Y</b>ield · <b>V</b>erify · <b>A</b>ct · <b>R</b>ecord</div>
-  <div class="eyebrow">AUTONOMOUS IT, GOVERNED BY DESIGN</div>
-  <h1>Let AI operate infrastructure.<br><span>Keep humans in control.</span></h1>
-  <p>KYVAR is the governance plane for autonomous IT operations: one controlled path from human intent to approved execution, validation, audit and self-healing — across cloud and on-prem.</p>
-  <div class="cta">
-    <a class="button" href="contact.html">Start a pilot</a>
-    <a class="button ghost" href="#platform">See how it works ↓</a>
+<section class="hero">
+  <div class="herocopy">
+    <p class="meaning"><b>K</b>now. <b>Y</b>ield. <b>V</b>erify. <b>A</b>ct. <b>R</b>ecord.</p>
+    <h1>Let AI operate infrastructure. <span>Keep humans in control.</span></h1>
+    <p>KYVAR is the governance plane for autonomous IT operations: one controlled path from human intent to approved execution, validation, audit and self-healing, across cloud and on-prem.</p>
+    <div class="cta">
+      <a class="button" href="contact.html">Start a pilot</a>
+      <a class="button ghost" href="#platform">See how it works</a>
+    </div>
   </div>
-  <div class="trust">AWS · AZURE · ORACLE CLOUD · VMWARE · NUTANIX · PROXMOX · HYPER-V · KUBERNETES · ENTRA ID + INTUNE · JIRA · SERVICENOW · DATADOG · SPLUNK · TERRAFORM</div>
-</div></section>
+
+  <!-- The finished record is the static markup; assets/record.js replays it
+       and holds at the approval gate until the visitor approves. -->
+  <figure class="record" id="runrecord" aria-label="Example run record: an OpenSSH patch on a production server" style="margin:0">
+    <div class="rhead">
+      <div class="rwho"><span>Requested by Dana K., Platform team</span><span>Production</span></div>
+      <q>Patch the OpenSSH vulnerability on web-prod-1, one instance at a time.</q>
+    </div>
+    <ol class="rsteps">
+      <li class="rstep done"><span class="ri" aria-hidden="true"></span><span class="rn">Intent</span><span class="rd">Upgrade openssh-server on web-prod-1</span></li>
+      <li class="rstep done"><span class="ri" aria-hidden="true"></span><span class="rn">Scope</span><span class="rd">Dana may act on aws/prod, eu-west-1</span></li>
+      <li class="rstep done"><span class="ri" aria-hidden="true"></span><span class="rn">Classify</span><span class="rd">High risk: a write to production</span></li>
+      <li class="rstep gate done" data-gate><span class="ri" aria-hidden="true"></span><span class="rn">Approve</span><span class="rd" data-wait="Waiting for a second person" data-done="Approved by you. A requester never approves their own change.">Approved by Sam R. A requester never approves their own change.</span>
+        <span class="rapprove"><button type="button">Approve change</button><span>You are the second person.</span></span></li>
+      <li class="rstep done"><span class="ri" aria-hidden="true"></span><span class="rn">Run</span><span class="rd">Drained, upgraded 9.6p1 to 9.8p2, sshd restarted</span></li>
+      <li class="rstep done verified"><span class="ri" aria-hidden="true"></span><span class="rn">Verify</span><span class="rd">2 of 2 targets healthy, CVE no longer found</span></li>
+      <li class="rstep done"><span class="ri" aria-hidden="true"></span><span class="rn">Record</span><span class="rd">Audit entry 48213, hash-chained to the last</span></li>
+    </ol>
+    <div class="rfoot"><span data-status>Recorded in 3 min 12 s</span><button type="button" data-replay hidden>Replay</button></div>
+  </figure>
+
+  <p class="trust"><b>Works with</b> AWS, Azure, Oracle Cloud, VMware, Nutanix, Proxmox, Hyper-V, Kubernetes, Entra ID and Intune, Jira, ServiceNow, Datadog, Splunk and Terraform.</p>
+</section>
 
 <!-- Governed pipeline -->
 <section class="section" id="platform" data-navlabel="How it works"><div class="center reveal">
-  <div class="kicker">ONE CONTROLLED PATH</div>
   <h2>Seven gates between intent and change.</h2>
   <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence.</p>
   <div class="pipeline">
-    <div class="pipestep"><b>01 · INTENT</b><span>Ask</span><small>Natural language or catalog</small></div>
-    <div class="pipestep"><b>02 · RBAC</b><span>Scope</span><small>Actor + connector scope</small></div>
-    <div class="pipestep"><b>03 · RISK</b><span>Classify</span><small>Environment-aware policy</small></div>
-    <div class="pipestep"><b>04 · APPROVAL</b><span>Gate</span><small>Second-human gate</small></div>
-    <div class="pipestep"><b>05 · EXECUTE</b><span>Run</span><small>Bounded runtime</small></div>
-    <div class="pipestep"><b>06 · VALIDATE</b><span>Prove</span><small>Outcome + rollback</small></div>
-    <div class="pipestep"><b>07 · AUDIT</b><span>Keep</span><small>Evidence end to end</small></div>
+    <div class="pipestep"><b>1</b><span>Intent</span><small>Ask in plain language or pick from the catalog</small></div>
+    <div class="pipestep"><b>2</b><span>Scope</span><small>Who is asking, and on which connectors they may act</small></div>
+    <div class="pipestep"><b>3</b><span>Classify</span><small>Risk from policy and the environment it touches</small></div>
+    <div class="pipestep gate"><b>4</b><span>Approve</span><small>A second person decides when policy says so</small></div>
+    <div class="pipestep"><b>5</b><span>Run</span><small>On a bounded runtime, with the requester's identity</small></div>
+    <div class="pipestep"><b>6</b><span>Verify</span><small>Check the outcome, roll back if it did not hold</small></div>
+    <div class="pipestep"><b>7</b><span>Record</span><small>Evidence from every step, hash-chained</small></div>
   </div>
   <div class="quote">“The agent is replaceable. The governance around it is the product.”</div>
 </div></section>
 
 <!-- Product screenshots -->
 <section class="section tight"><div class="center reveal">
-  <div class="kicker">THE PRODUCT</div>
   <h2>Governance you can see.</h2>
   <p>The KYVAR console makes every decision visible — what was asked, what policy said, who approved, what ran, and what proved the fix.</p>
   <div class="shots">
@@ -203,7 +222,7 @@
 
 <!-- Day 0 -->
 <section class="section" id="day0" data-navlabel="Day 0 — Build"><div class="grid">
-  <div class="reveal"><div class="kicker">DAY 0 — BUILD WITH CONFIDENCE</div>
+  <div class="reveal"><div class="kicker">Day 0: build with confidence</div>
     <h2>From idea to infrastructure.</h2>
     <p>Ask for the outcome in plain language. KYVAR plans the change, classifies the risk, parks it on a human approval when policy says so — and what lands is exactly what was approved, with the evidence to prove it.</p></div>
   <div class="visual reveal" style="padding:40px 24px"><div class="diag">
@@ -211,7 +230,7 @@
     <div class="dlink"></div>
     <div class="dstep"><span class="dnum">02</span><b>Plan</b><small>Change drafted, risk classified</small></div>
     <div class="dlink"></div>
-    <div class="dstep gate"><span class="dtag">HUMAN GATE</span><span class="dnum">03</span><b>Approve</b><small>A person signs off when policy asks</small></div>
+    <div class="dstep gate"><span class="dtag">Human gate</span><span class="dnum">03</span><b>Approve</b><small>A person signs off when policy asks</small></div>
     <div class="dlink"></div>
     <div class="dstep"><span class="dnum">04</span><b>Provision</b><small>Exactly what was approved — with evidence</small></div>
   </div></div>
@@ -219,7 +238,7 @@
 
 <!-- Day 2 -->
 <section class="section" id="day2" data-navlabel="Day 2 — Operate"><div class="center reveal">
-  <div class="kicker">DAY 2 — OPERATE WITHOUT DRAMA</div>
+  <div class="kicker">Day 2: operate without drama</div>
   <h2>Detect. Heal. Prove it.</h2>
   <p>Automatic monitoring, incidents and self-healing run as one governed loop. Down at 03:14, an incident opened, diagnosed, remediated by the runbook you already wrote and re-verified — with a human woken only when policy wants one, and the whole story on one timeline.</p>
   <div class="shots">
@@ -247,7 +266,7 @@
 
 <!-- On your phone -->
 <section class="section" id="phone" data-navlabel="On your phone"><div class="grid">
-  <div class="reveal"><div class="kicker">ON YOUR PHONE</div>
+  <div class="reveal"><div class="kicker">On your phone</div>
     <h2>The gate follows you.</h2>
     <p>An approval parks, a monitor fires, and the person who has to decide is not at a desk. KYVAR installs to the home screen and reaches the phone with push notifications — alarms for the team, finished tasks for the person who asked — without opening anything inbound.</p>
     <div class="shotframe" style="margin-top:22px">
@@ -261,7 +280,7 @@
 
 <!-- Service desk -->
 <section class="section" id="servicedesk" data-navlabel="Service desk"><div class="center reveal">
-  <div class="kicker">THE TICKET, ANSWERED</div>
+  <div class="kicker">The ticket, answered</div>
   <h2>A ticket arrives. A root cause comes back.</h2>
   <p>An issue raised in Jira Service Management or ServiceNow becomes an incident here and is investigated before anyone has read it — against a brief the control plane composes from the assets the report names, the monitors watching them, what changed in the last day, what your observability tools see right now, and what fixed this before. The agent gets a starting point, not a blank page.</p>
   <div class="cards">
@@ -278,11 +297,11 @@
 
 <!-- On-prem virtualization -->
 <section class="section" id="virtualization" data-navlabel="Virtualization"><div class="grid">
-  <div class="reveal"><div class="kicker">THE ESTATE YOU ALREADY RUN</div>
+  <div class="reveal"><div class="kicker">The estate you already run</div>
     <h2>VMware, Nutanix, Proxmox, Hyper-V.</h2>
     <p>Most estates are not only cloud. KYVAR discovers clusters, hosts, datastores and virtual machines from all four — from a runtime inside your network, because that is the only place an on-prem hypervisor answers, and because SCVMM has no REST API at all, so Hyper-V is reached over PowerShell remoting rather than pretended at.</p>
     <p>Forty-seven governed actions across them: power, snapshots, live migration, CPU and memory resize, disk growth, clone, host maintenance mode and deletion. Graceful and forced are separate verbs, never a flag — an approver reading “stop the database VM” is told which one they are authorising — and the values are in the sentence, so it says “sets the virtual machine to 8 vCPU and 16384 MB” rather than “Resize web-01”.</p>
-    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See where it executes →</a></div></div>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See where it executes</a></div></div>
   <div class="visual reveal"><div>
     <div class="check">vSphere — clusters, hosts, datastores, VMs, guest IPs and tags</div>
     <div class="check">Nutanix — Prism Central clusters, hosts and VMs</div>
@@ -295,7 +314,7 @@
 
 <!-- Endpoints -->
 <section class="section" id="endpoints" data-navlabel="Endpoints"><div class="center reveal">
-  <div class="kicker">DOWN TO THE MACHINE</div>
+  <div class="kicker">Down to the machine</div>
   <h2>Ask a server how it is. Act on a laptop.</h2>
   <p>The ticket is usually about a machine, and until you can reach it the investigation is guesswork. There are two populations and they are not reachable the same way — so KYVAR does not pretend one design serves both.</p>
   <div class="cards two">
@@ -307,7 +326,7 @@
 
 <!-- One estate -->
 <section class="section" id="estate" data-navlabel="One estate"><div class="center reveal">
-  <div class="kicker">ONE ESTATE, NOT ONE INVENTORY PER TOOL</div>
+  <div class="kicker">One estate, not one inventory per tool</div>
   <h2>Every source. One asset.</h2>
   <p>KYVAR discovers what lives behind every connector and links the rows that are the same real machine — matched on hard evidence, never a guess dressed as a fact. A security finding from one tool lands on the asset another cloud runs, and the fix flows through the connector that owns it.</p>
   <div class="shots">
@@ -323,7 +342,6 @@
 
 <!-- Proof points -->
 <section class="section tight"><div class="center reveal">
-  <div class="kicker">BUILT LIKE INFRASTRUCTURE, NOT A DEMO</div>
   <h2>The numbers behind the platform.</h2>
   <div class="stats">
     <div class="stat"><div class="num">17</div><div class="lbl">Connectors, eight categories</div><p>Cloud (AWS, Azure, Oracle Cloud), virtualization (vSphere, Nutanix, Proxmox, Hyper-V), endpoints (Linux, macOS and Windows servers), identity and devices (Entra ID + Intune), service desk (Jira, ServiceNow), observability (Datadog, Splunk), knowledge (Confluence) and delivery (Kubernetes, GitHub, with Terraform on top). The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged.</p></div>
@@ -334,10 +352,10 @@
 
 <!-- Safety -->
 <section class="section safety-band" id="safety" data-navlabel="Safety envelope"><div class="grid">
-  <div class="reveal"><div class="kicker">SAFETY IS THE ARCHITECTURE</div>
+  <div class="reveal"><div class="kicker">Safety is the architecture</div>
     <h2>Autonomy with a safety envelope.</h2>
     <p>Every meaningful action travels through a control plane built to say “not yet” when it should. And your own cloud permissions decide what you can do — on AWS, literally: the grant you were given selects the role your run receives, so an admin can do everything and the person who owns the websites is stopped by AWS, not by a filter in front of the model.</p>
-    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="security.html">Explore the security architecture →</a></div></div>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="security.html">Explore the security architecture</a></div></div>
   <div class="visual reveal safety-visual"><div>
     <div class="check">Deny by default — writes are armed, never assumed</div>
     <div class="check">Requester cannot approve their own change</div>
@@ -353,7 +371,6 @@
 
 <!-- Differentiation -->
 <section class="section"><div class="center reveal">
-  <div class="kicker">WHY THERE IS NO PRODUCT LIKE IT</div>
   <h2>Not a chatbot over your cloud.</h2>
   <div class="cards">
     <div class="card"><b>A governed operator</b><p>Chat assistants suggest commands. KYVAR executes them — inside a policy engine, an approval gate and a full audit trail. The autonomy is the product; the governance is the architecture.</p></div>
@@ -369,21 +386,20 @@
     <div class="hubstem"></div>
     <div class="hubbar"></div>
     <div class="hubrow">
-      <div class="hubnode"><b>CLOUD &amp; DELIVERY</b><small>AWS · Azure · OCI · Terraform · Kubernetes · GitHub</small></div>
-      <div class="hubnode"><b>ON-PREM</b><small>vSphere · Nutanix · Proxmox · Hyper-V · servers over SSH</small></div>
-      <div class="hubnode"><b>PEOPLE &amp; SERVICE DESK</b><small>Entra ID + Intune · Jira · ServiceNow · Datadog · Splunk</small></div>
+      <div class="hubnode"><b>Cloud and delivery</b><small>AWS · Azure · OCI · Terraform · Kubernetes · GitHub</small></div>
+      <div class="hubnode"><b>On-prem</b><small>vSphere · Nutanix · Proxmox · Hyper-V · servers over SSH</small></div>
+      <div class="hubnode"><b>People and service desk</b><small>Entra ID + Intune · Jira · ServiceNow · Datadog · Splunk</small></div>
     </div>
   </div></div>
-  <div class="reveal"><div class="kicker">ONE CONTROL PLANE</div>
+  <div class="reveal"><div class="kicker">One control plane</div>
     <h2>Where your work actually lives.</h2>
     <p>KYVAR operates across cloud, on-prem, end-user and service-desk systems through governed runtimes that return evidence, not just status. The control plane decides what may happen; runtimes execute close to the target — and each new system we connect plugs into that same decision, without a second set of rules.</p>
-    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture →</a></div>
+    <div class="cta" style="justify-content:flex-start"><a class="button ghost" href="architecture.html">See the architecture</a></div>
   </div>
 </div></section>
 
 <!-- Definitions FAQ -->
 <section class="section tight"><div class="center reveal">
-  <div class="kicker">THE TERMS, PLAINLY</div>
   <h2>Autonomous IT, defined.</h2>
   <div class="faq">
     <details>
@@ -407,12 +423,11 @@
 
 <!-- Final CTA -->
 <section class="section"><div class="center reveal">
-  <div class="kicker">START SMALL. PROVE IT.</div>
   <h2>One real workload. 30–60 days.<br><span class="grad">Evidence you can trust.</span></h2>
   <p>A focused pilot gives operations, security and leadership measurable automation, explicit control, and a complete action trail.</p>
   <div class="cta">
     <a class="button" href="contact.html">Start a pilot</a>
-    <a class="button ghost" href="pilot.html">How the pilot works →</a>
+    <a class="button ghost" href="pilot.html">How the pilot works</a>
   </div>
 </div></section>
 </main>
@@ -453,4 +468,5 @@
 </footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/record.js"></script>
 </body></html>
