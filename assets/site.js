@@ -24,7 +24,7 @@ document.querySelectorAll('.reveal').forEach(x=>o.observe(x));
         const first = document.querySelector('meta[name="theme-color"]');
         (first ? first.parentNode : document.head).insertBefore(forced, first);
       }
-      forced.content = t === 'light' ? '#f4f7fb' : '#050b17';
+      forced.content = t === 'light' ? '#eef2f6' : '#0f1b2a';
     } else if (forced) forced.remove();
   }
   const MODES = ['', 'light', 'dark'];
