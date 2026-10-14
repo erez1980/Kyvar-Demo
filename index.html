@@ -7,7 +7,7 @@
 <script src="assets/theme-init.js"></script>
 <script src="assets/consent.js"></script>
 <title>KYVAR — Governed Autonomous IT Operations &amp; Self-Healing Infrastructure</title>
-<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: AI-driven infrastructure automation, service-desk investigation and self-healing with human approval, RBAC and full audit — across AWS, Azure, OCI, VMware, Nutanix, Proxmox, Hyper-V, Kubernetes, Intune and the service desk.">
+<meta name="description" content="KYVAR is the governance plane for autonomous IT operations: AI-driven infrastructure automation, AI investigation and self-healing with human approval, ServiceNow queue handling, MSP multi-customer operations, RBAC and full audit — across AWS, Azure, OCI, VMware, Nutanix, Proxmox, Hyper-V, Kubernetes, Intune and the service desk.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -79,6 +79,10 @@
         "Read-only server diagnostics over SSH from a fixed vocabulary, with no model composing a command",
         "Governed Intune device actions on end-user laptops \u2014 sync, Defender scan, lock, restart, retire and erase",
         "Telemetry queried at investigation time from Datadog and Splunk, never copied into KYVAR",
+        "AI investigation with read-only tools under the requester's own access, evidence-ranked hypotheses and three remediation modes: recommend only, with approval, or pre-approved by an autonomy policy",
+        "Incident memory, similar incidents and a daily operational assessment, all read-only and off by default",
+        "ServiceNow queue polling per customer instance, with pull, recommend and resolve handling, Change Requests and knowledge-article drafts",
+        "MSP mode: one console across customer tenants, with a customer switcher, per-customer runtimes, MSP roles, suspension and audit on both sides",
         "An extensible connector model — 17 connectors across cloud, virtualization, endpoints, identity, service desk, observability, knowledge and delivery — where every new integration inherits the same RBAC, approvals and audit"
       ],
       "publisher": { "@id": "https://kyvar.io/#org" }
@@ -264,6 +268,26 @@
   </div>
 </div></section>
 
+<!-- AI investigation and self-healing -->
+<section class="section" id="ai" data-navlabel="AI investigation"><div class="grid">
+  <div class="reveal"><div class="kicker">AI investigation, off until you turn it on</div>
+    <h2>Evidence first. Then you choose how far it goes.</h2>
+    <p>An incident opens and KYVAR investigates it with read-only tools, under the requester’s own connector access: the alerts, the resource’s state, what changed recently, deployments, telemetry and what your team already knows. Hypotheses are ranked by the evidence each one cites. A cause the evidence does not support is not accepted, and nothing is ever called “confirmed”.</p>
+    <p>What happens to the fix is your setting, not the model’s: recommend it, run it once a person approves, or let a workflow an administrator approved in advance run on its own, inside the limits of its policy.</p></div>
+  <div class="visual reveal" style="padding:40px 24px"><div class="diag">
+    <div class="dstep"><span class="dnum">01</span><b>Recommend only</b><small>The investigation proposes, a person does the rest</small></div>
+    <div class="dlink"></div>
+    <div class="dstep gate"><span class="dtag">Human gate</span><span class="dnum">02</span><b>With approval</b><small>The fix runs as a workflow once a person approves it</small></div>
+    <div class="dlink"></div>
+    <div class="dstep"><span class="dnum">03</span><b>Pre-approved</b><small>A covered workflow runs under its autonomy policy, within a window and a daily cap</small></div>
+  </div></div>
+</div>
+<div class="cards reveal">
+  <div class="card"><b>Read-only by construction</b><p>Every tool call is a step on the record and an audit event. When your own model is asked to analyse, it gets redacted evidence on a runtime with no connector attached, so no credential can reach it. Without a model, KYVAR’s own rules produce the result.</p></div>
+  <div class="card"><b>Fixes that check themselves</b><p>A recommendation becomes a workflow: a read-only check, one governed action, and a check that it worked. Drafts are saved turned off until a person reviews them. Destructive actions are never pre-approved, a policy deny still denies, and a failed verification turns the policy off.</p></div>
+  <div class="card"><b>It learns from the record</b><p>Each investigated incident is remembered with its cause, the action taken and whether the checks verified it. The next investigation sees similar incidents with their score, never as proof, and a person can correct or invalidate a memory. A daily read-only assessment names repeated incidents, unhealthy monitors and fixes worth turning into a workflow.</p></div>
+</div></section>
+
 <!-- On your phone -->
 <section class="section" id="phone" data-navlabel="On your phone"><div class="grid">
   <div class="reveal"><div class="kicker">On your phone</div>
@@ -293,6 +317,19 @@
     <div class="card"><b>What fixed it last time</b><p>A resolved incident with a root cause becomes a draft article. A person reads it before anything else does — an article the next investigation is handed is an instruction in all but name — and once published it can go outward to Confluence or a ServiceNow knowledge base, where your service desk already looks.</p></div>
     <div class="card"><b>The problem behind the tickets</b><p>The same cause twice is a recurring problem, not two tickets: how often, on which machines, through which sources, what was done about it, and the hours it has cost. Computed from the record, with no model deciding what counts as the same problem.</p></div>
   </div>
+</div></section>
+
+<!-- Ticket queue -->
+<section class="section" id="ticketqueue" data-navlabel="Ticket queue"><div class="center reveal">
+  <div class="kicker">The whole queue, not one ticket at a time</div>
+  <h2>Pull the queue. Decide how far KYVAR goes.</h2>
+  <p>KYVAR reads ServiceNow every minute, with an OAuth client or an integration user, so nobody has to build a Business Rule on each instance. A service provider connects each customer’s own instance and filters by assignment group or company. The first pull imports the open backlog and acts on none of it. From then on, each connection says how far KYVAR goes, with a different answer per category or assignment group if you want one.</p>
+  <div class="cards">
+    <div class="card"><span class="step">1</span><b>Pull</b><p>Tickets become incidents in KYVAR, joined to the assets they name. Nothing is written back.</p></div>
+    <div class="card"><span class="step">2</span><b>Recommend</b><p>Each ticket is investigated, and the root cause and proposed fix are posted to it as a work note.</p></div>
+    <div class="card"><span class="step">3</span><b>Resolve</b><p>KYVAR matches exactly one system, opens a Change Request and waits for approval in ServiceNow, in KYVAR or both. Then it runs the fix, sets the ticket to Resolved and drafts a knowledge article for a person to approve.</p></div>
+  </div>
+  <div class="quote">“No confident match, no action. The ticket goes to a person with a work note saying why.”</div>
 </div></section>
 
 <!-- On-prem virtualization -->
@@ -340,13 +377,29 @@
   </div>
 </div></section>
 
+<!-- MSP -->
+<section class="section" id="msp" data-navlabel="For MSPs"><div class="grid">
+  <div class="reveal"><div class="kicker">Built for managed service providers</div>
+    <h2>Every customer. One console. No crossed wires.</h2>
+    <p>A managed service provider runs all its customers from one KYVAR: one sign-in, a customer switcher in the header, and each customer’s data, runtimes, approvals and incidents kept apart. The same rules apply in every customer, and the record shows which customer and which technician did what.</p>
+    <p>A company that wants KYVAR for itself gets the same product as a dedicated install, with no MSP layer in the way.</p></div>
+  <div class="visual reveal"><div>
+    <div class="check">Switch customers from the header. Access is checked again on every request</div>
+    <div class="check">A runtime inside each customer’s network, and each customer’s own Jira or ServiceNow</div>
+    <div class="check">MSP administrator, operator and viewer roles across customers, or access to one customer only</div>
+    <div class="check">A suspended customer cannot be entered, and its monitors and workflows stop</div>
+    <div class="check">Every action recorded for the customer and for the MSP</div>
+    <div class="check">An overview of every customer: runtimes, approvals waiting and open incidents</div>
+  </div></div>
+</div></section>
+
 <!-- Proof points -->
 <section class="section tight"><div class="center reveal">
   <h2>The numbers behind the platform.</h2>
   <div class="stats">
     <div class="stat"><div class="num">17</div><div class="lbl">Connectors, eight categories</div><p>Cloud (AWS, Azure, Oracle Cloud), virtualization (vSphere, Nutanix, Proxmox, Hyper-V), endpoints (Linux, macOS and Windows servers), identity and devices (Entra ID + Intune), service desk (Jira, ServiceNow), observability (Datadog, Splunk), knowledge (Confluence) and delivery (Kubernetes, GitHub, with Terraform on top). The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged.</p></div>
     <div class="stat"><div class="num">0</div><div class="lbl">Inbound ports</div><p>An on-prem runtime opens nothing. It dials out to the control plane, is enrolled by single-use invitation, and is where your credentials are used — delivered per run to that runtime alone, and never readable back through the API.</p></div>
-    <div class="stat"><div class="num">1,433</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
+    <div class="stat"><div class="num">3,400+</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
   </div>
 </div></section>
 
