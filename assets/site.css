@@ -371,13 +371,13 @@ a.card:hover{border-color:var(--brand)}
 .hubnode b{display:block;color:var(--ink);font-size:15px;font-stretch:88%;margin-bottom:7px}
 .hubnode small{display:block;color:var(--muted);font-size:14px;line-height:1.5}
 
-/* Day 0 diagram sits in a half-width column — go vertical earlier */
+/* Day 0 and AI diagrams sit in a half-width column — go vertical earlier */
 @media(max-width:1024px){
-  #day0 .diag{flex-direction:column}
-  #day0 .dlink{flex:0 0 32px;height:32px}
-  #day0 .dlink:before{left:50%;top:2px;bottom:2px;right:auto;width:2px;height:auto;transform:translateX(-50%)}
-  #day0 .dlink:after{left:50%;top:auto;bottom:4px;right:auto;transform:translateX(-50%) rotate(135deg)}
-  #day0 .dstep{padding:22px 16px}
+  #day0 .diag,#ai .diag{flex-direction:column}
+  #day0 .dlink,#ai .dlink{flex:0 0 32px;height:32px}
+  #day0 .dlink:before,#ai .dlink:before{left:50%;top:2px;bottom:2px;right:auto;width:2px;height:auto;transform:translateX(-50%)}
+  #day0 .dlink:after,#ai .dlink:after{left:50%;top:auto;bottom:4px;right:auto;transform:translateX(-50%) rotate(135deg)}
+  #day0 .dstep,#ai .dstep{padding:22px 16px}
 }
 
 @media(max-width:760px){
