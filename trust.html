@@ -213,13 +213,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
       <ul>
         <li>Encrypted at rest (Fernet) and write-only through the API — no endpoint returns a stored secret</li>
         <li>Delivered per run only to the runtime executing that run, authenticated by its own token</li>
-        <li>KYVAR's own control-plane tokens stripped from the agent's environment</li>
+        <li>The deployment's administrator token never reaches the agent: a runtime drops it as soon as it has its own per-runtime token, and KYVAR's tokens are stripped from every agent process</li>
         <li>AWS roles supported, so no long-lived key need exist at all</li>
       </ul>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Change control</span>
       <ul>
         <li>Approval gate: risky changes park until a person decides</li>
+        <li>Text from outside (an alert, a ticket, a monitored page) is fenced as data: if it reads like instructions to the agent, or asks for what a person would have to approve, an unattended run waits for a person</li>
         <li>Separation of duties — the requester cannot approve their own change</li>
         <li>Environment-scoped approver groups (production can require a different group)</li>
         <li>Approvals expire and escalate on deadlines you set</li>
