@@ -119,7 +119,7 @@
         <li>Encrypted at rest; never echoed by APIs</li>
         <li>Decryption pinned to the one enrolled runtime</li>
         <li>Per-run, memory-first delivery</li>
-        <li>Control-plane tokens stripped from agent subprocesses</li>
+        <li>Control-plane tokens stripped from agent subprocesses; the administrator token is dropped from the runtime once it has its own</li>
         <li>Customer-owned secret stores and model keys supported</li>
         <li>Credentials verified where they live: a read-only identity check runs on the runtime itself, with no model involved</li>
         <li>AWS roles supported directly — the runtime assumes a role, so no long-lived key need exist at all</li>
