@@ -1,0 +1,139 @@
+name: Auto-merge
+
+# A pull request into gh-pages merges itself once it is green:
+# - Site check passed on its head commit and every check there finished green
+# - Codex has finished reviewing the PR (it reviews when a PR is opened or
+#   marked ready, not on every push), and each finding it left is resolved
+# - nobody asked for changes and no review thread is left open
+# Merging to gh-pages publishes kyvar.io, so this is also the deploy.
+#
+# Stays out of the way when asked to: a draft, a `no-automerge` label, a
+# fork, or a Dependabot update.
+#
+# Runs after Site check finishes, when the Codex summary comment is edited
+# (Codex edits it when its review completes) and when a review is submitted
+# or dismissed, so whichever comes last re-evaluates the PR.
+on:
+  workflow_run:
+    workflows: ["Site check"]
+    types: [completed]
+  issue_comment:
+    types: [created, edited]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: read
+
+jobs:
+  merge:
+    name: Merge when green
+    runs-on: ubuntu-latest
+    if: >-
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.event == 'pull_request' &&
+       github.event.workflow_run.conclusion == 'success') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       github.event.comment.user.login == 'chatgpt-codex-connector[bot]') ||
+      (github.event_name == 'pull_request_review' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: read
+      actions: read
+      pages: write
+    concurrency:
+      group: auto-merge
+      cancel-in-progress: false
+    steps:
+      - name: Merge the pull request if everything is green
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const skip = (why) => { core.notice(`Not merging: ${why}`); };
+
+            // Find the pull request and its head commit.
+            let pr;
+            if (context.eventName === 'workflow_run') {
+              const sha = context.payload.workflow_run.head_sha;
+              const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({ owner, repo, commit_sha: sha });
+              pr = prs.find(p => p.state === 'open' && p.head.sha === sha);
+              if (!pr) return skip(`no open pull request has ${sha.slice(0, 7)} as its head.`);
+            } else {
+              const number = context.eventName === 'pull_request_review' ? context.payload.pull_request.number : context.payload.issue.number;
+              pr = (await github.rest.pulls.get({ owner, repo, pull_number: number })).data;
+              if (pr.state !== 'open') return skip(`#${pr.number} is not open.`);
+            }
+            const sha = pr.head.sha;
+            const tag = `#${pr.number}`;
+            if (pr.draft) return skip(`${tag} is a draft.`);
+            if (pr.base.ref !== 'gh-pages') return skip(`${tag} targets ${pr.base.ref}, not gh-pages.`);
+            if (pr.head.repo?.full_name !== `${owner}/${repo}`) return skip(`${tag} comes from a fork.`);
+            if (pr.user.login === 'dependabot[bot]') return skip(`${tag} is a Dependabot update; those wait for a person.`);
+            if (pr.labels.some(l => l.name === 'no-automerge')) return skip(`${tag} is labelled no-automerge.`);
+
+            // Site check itself must have passed on this exact commit.
+            const { data: sc } = await github.rest.actions.listWorkflowRuns({ owner, repo, workflow_id: 'site-check.yml', head_sha: sha, per_page: 10 });
+            if (!sc.workflow_runs.some(r => r.conclusion === 'success')) return skip(`Site check has not passed on ${sha.slice(0, 7)} yet.`);
+
+            // Every check on the head commit finished, and none failed.
+            const checks = await github.paginate(github.rest.checks.listForRef, { owner, repo, ref: sha, per_page: 100 });
+            const others = checks.filter(c => c.name !== 'Merge when green');
+            const pending = others.filter(c => c.status !== 'completed');
+            if (pending.length) return skip(`still running: ${pending.map(c => c.name).join(', ')}.`);
+            const bad = others.filter(c => !['success', 'skipped', 'neutral'].includes(c.conclusion));
+            if (bad.length) return skip(`not green: ${bad.map(c => `${c.name} (${c.conclusion})`).join(', ')}.`);
+
+            // Codex review: Codex reviews every PR in this repo when it is
+            // opened (not on every push), so its summary comment must exist and
+            // its latest review must be completed. Its findings are inline
+            // review threads, which the thread check below requires resolved.
+            // A PR Codex will not review (Codex turned off) can be released
+            // with the `no-codex-review` label.
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
+            const summary = comments.filter(c => c.user.login === 'chatgpt-codex-connector[bot]' && c.body.includes('codex-review-state')).pop();
+            const codexWaived = pr.labels.some(l => l.name === 'no-codex-review');
+            if (!summary && !codexWaived) return skip(`Codex has not posted its review of ${tag} yet.`);
+            if (summary && !codexWaived) {
+              const body = summary.body.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
+              const m = body.match(/codex-review-state:v1 (\{.*?\}) -->/s);
+              let state = null;
+              try { state = JSON.parse(m[1]).code_review; } catch (e) { /* unreadable */ }
+              if (!state) return skip(`could not read the Codex review state on ${tag}.`);
+              if (state.status !== 'completed') return skip(`the Codex review of ${tag} is ${state.status}.`);
+            }
+
+            // No reviewer's last word is "changes requested", and no review
+            // thread (a person's or a review bot's) is left unresolved.
+            const reviews = await github.paginate(github.rest.pulls.listReviews, { owner, repo, pull_number: pr.number, per_page: 100 });
+            const last = {};
+            for (const r of reviews) if (['APPROVED', 'CHANGES_REQUESTED', 'DISMISSED'].includes(r.state)) last[r.user.login] = r.state;
+            const blocking = Object.entries(last).filter(([, s]) => s === 'CHANGES_REQUESTED').map(([u]) => u);
+            if (blocking.length) return skip(`changes requested by ${blocking.join(', ')}.`);
+            const q = await github.graphql(`query($owner:String!,$repo:String!,$n:Int!){
+              repository(owner:$owner,name:$repo){ pullRequest(number:$n){ reviewThreads(first:100){ nodes{ isResolved isOutdated } } } } }`,
+              { owner, repo, n: pr.number });
+            const open = q.repository.pullRequest.reviewThreads.nodes.filter(t => !t.isResolved);
+            if (open.length) return skip(`${open.length} unresolved review thread(s).`);
+
+            // Merge exactly the commit that was checked.
+            try {
+              await github.rest.pulls.merge({ owner, repo, pull_number: pr.number, sha, merge_method: 'squash',
+                commit_title: `${pr.title} (#${pr.number})` });
+            } catch (e) {
+              return skip(`GitHub refused the merge of ${tag}: ${e.message}`);
+            }
+            core.notice(`Merged ${tag} (${sha.slice(0, 7)}).`);
+            await core.summary.addRaw(`### Auto-merged ${tag}\n\n${pr.title}\n\nHead \`${sha.slice(0, 7)}\`: Site check green, Codex done, no open review threads.\n`).write();
+
+            // Ask Pages to build the new gh-pages head, in case a merge made
+            // with this run's token does not start a build by itself.
+            try {
+              await github.request('POST /repos/{owner}/{repo}/pages/builds', { owner, repo });
+              core.notice('Requested a GitHub Pages build.');
+            } catch (e) {
+              core.warning(`Could not request a Pages build (${e.status}): ${e.message}. Check "pages build and deployment".`);
+            }

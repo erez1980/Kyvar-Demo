@@ -1,0 +1,41 @@
+name: Site check
+
+# Static checks plus a phone-width and desktop pass over every page.
+# A green run is what lets auto-merge.yml merge a pull request.
+on:
+  pull_request:
+    branches: [gh-pages]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Site check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Titles, descriptions, JSON-LD, local links, wording
+        run: python3 tools/site_check.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y >/dev/null
+          npm install --no-save playwright@1.48.2
+          npx playwright install --with-deps chromium
+      - name: No sideways scroll or console errors at 390px and 1400px
+        run: |
+          python3 -m http.server 8765 >/dev/null 2>&1 &
+          sleep 1
+          node tools/mobile_check.js
