@@ -25,12 +25,15 @@ const pages = [];
     for (const rel of pages.sort()) {
       const errors = [];
       const onError = (m) => { if (m.type() === 'error' && !/googletagmanager|google-analytics/.test(m.text())) errors.push(m.text()); };
+      const onPageError = (err) => errors.push(`uncaught: ${err.message}`);
       page.on('console', onError);
+      page.on('pageerror', onPageError);
       await page.goto(`http://localhost:8765/${rel}`, { waitUntil: 'load' });
       const sw = await page.evaluate(() => document.documentElement.scrollWidth);
       if (sw > width) problems.push(`${rel} @${width}px: page is ${sw}px wide (scrolls sideways)`);
       for (const e of errors) problems.push(`${rel} @${width}px: console error: ${e}`);
       page.off('console', onError);
+      page.off('pageerror', onPageError);
     }
     await page.close();
   }

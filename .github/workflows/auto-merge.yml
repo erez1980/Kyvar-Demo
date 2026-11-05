@@ -10,14 +10,17 @@ name: Auto-merge
 # Stays out of the way when asked to: a draft, a `no-automerge` label, a
 # fork, or a Dependabot update.
 #
-# Runs after Site check finishes, and again when the Codex summary comment is
-# edited (Codex edits it when its review completes), whichever comes last.
+# Runs after Site check finishes, when the Codex summary comment is edited
+# (Codex edits it when its review completes) and when a review is submitted
+# or dismissed, so whichever comes last re-evaluates the PR.
 on:
   workflow_run:
     workflows: ["Site check"]
     types: [completed]
   issue_comment:
     types: [created, edited]
+  pull_request_review:
+    types: [submitted, dismissed]
 
 permissions:
   contents: read
@@ -32,7 +35,9 @@ jobs:
        github.event.workflow_run.conclusion == 'success') ||
       (github.event_name == 'issue_comment' &&
        github.event.issue.pull_request &&
-       github.event.comment.user.login == 'chatgpt-codex-connector[bot]')
+       github.event.comment.user.login == 'chatgpt-codex-connector[bot]') ||
+      (github.event_name == 'pull_request_review' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
     permissions:
       contents: write
       pull-requests: write
@@ -58,7 +63,8 @@ jobs:
               pr = prs.find(p => p.state === 'open' && p.head.sha === sha);
               if (!pr) return skip(`no open pull request has ${sha.slice(0, 7)} as its head.`);
             } else {
-              pr = (await github.rest.pulls.get({ owner, repo, pull_number: context.payload.issue.number })).data;
+              const number = context.eventName === 'pull_request_review' ? context.payload.pull_request.number : context.payload.issue.number;
+              pr = (await github.rest.pulls.get({ owner, repo, pull_number: number })).data;
               if (pr.state !== 'open') return skip(`#${pr.number} is not open.`);
             }
             const sha = pr.head.sha;
@@ -81,11 +87,15 @@ jobs:
             const bad = others.filter(c => !['success', 'skipped', 'neutral'].includes(c.conclusion));
             if (bad.length) return skip(`not green: ${bad.map(c => `${c.name} (${c.conclusion})`).join(', ')}.`);
 
-            // Codex review: when its summary comment exists, it must be about
-            // this commit, completed, with nothing unresolved.
+            // Codex review: Codex reviews every PR in this repo, so its summary
+            // comment must exist, be about this commit, be completed and have
+            // nothing unresolved. A PR Codex will not review (Codex turned off)
+            // can be released with the `no-codex-review` label.
             const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
             const summary = comments.filter(c => c.user.login === 'chatgpt-codex-connector[bot]' && c.body.includes('codex-review-state')).pop();
-            if (summary) {
+            const codexWaived = pr.labels.some(l => l.name === 'no-codex-review');
+            if (!summary && !codexWaived) return skip(`Codex has not posted its review of ${tag} yet.`);
+            if (summary && !codexWaived) {
               const body = summary.body.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
               const m = body.match(/codex-review-state:v1 (\{.*?\}) -->/s);
               let state = null;
@@ -106,7 +116,7 @@ jobs:
             const q = await github.graphql(`query($owner:String!,$repo:String!,$n:Int!){
               repository(owner:$owner,name:$repo){ pullRequest(number:$n){ reviewThreads(first:100){ nodes{ isResolved isOutdated } } } } }`,
               { owner, repo, n: pr.number });
-            const open = q.repository.pullRequest.reviewThreads.nodes.filter(t => !t.isResolved && !t.isOutdated);
+            const open = q.repository.pullRequest.reviewThreads.nodes.filter(t => !t.isResolved);
             if (open.length) return skip(`${open.length} unresolved review thread(s).`);
 
             // Merge exactly the commit that was checked.
