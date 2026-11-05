@@ -183,6 +183,18 @@ def main() -> int:
     for rel in HOME_LINKS:
         if (ROOT / rel).resolve() not in home_targets:
             problems.append(f"index.html: no link to {rel}")
+    # GitHub Pages has no _redirects. These two files are also the directory
+    # indexes, so a static meta refresh would loop. The redirect lives in the
+    # first head script and fires only for an explicit /index.html URL.
+    init = (ROOT / "assets/theme-init.js").read_text(encoding="utf-8")
+    if "httpEquiv" not in init or "location.replace" not in init or "index.html" not in init:
+        problems.append("assets/theme-init.js: /index.html must meta-refresh to the directory URL")
+    for name in ("index.html", "insights/index.html"):
+        page = (ROOT / name).read_text(encoding="utf-8")
+        if "theme-init.js" not in page:
+            problems.append(f"{name}: must load theme-init.js so /index.html can redirect")
+        if re.search(r"http-equiv=[\"']refresh", page, re.I):
+            problems.append(f"{name}: static meta refresh also reloads the directory URL")
     for p in problems:
         print(p)
     print(f"{len(pages)} pages checked, {len(problems)} problem(s)")
