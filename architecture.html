@@ -6,8 +6,8 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script src="assets/theme-init.js"></script>
 <script src="assets/consent.js"></script>
-<title>Multi-Cloud &amp; On-Prem IT Automation Architecture — KYVAR</title>
-<meta name="description" content="KYVAR's architecture: a cloud control plane for governance and enrolled runtimes that execute close to the target — zero inbound exposure for on-prem, Docker Compose to Helm, AWS, Azure, Oracle Cloud, VMware, Nutanix, Proxmox, Hyper-V, Kubernetes, Intune and the service desk.">
+<title>IT Automation Architecture for Multi-Cloud and On-Prem | KYVAR</title>
+<meta name="description" content="IT automation architecture for multi-cloud and on-prem: a control plane for policy and approval, and runtimes that execute with no inbound exposure.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -19,15 +19,15 @@
 <meta property="og:site_name" content="KYVAR">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kyvar.io/architecture.html">
-<meta property="og:title" content="Cloud control plane. Runtime where the work lives. | KYVAR">
-<meta property="og:description" content="Governance separated from execution: zero inbound exposure for on-prem, one-time enrollment, Docker Compose to Helm.">
+<meta property="og:title" content="IT Automation Architecture for Multi-Cloud and On-Prem | KYVAR">
+<meta property="og:description" content="IT automation architecture for multi-cloud and on-prem: a control plane for policy and approval, and runtimes that execute with no inbound exposure.">
 <meta property="og:image" content="https://kyvar.io/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="KYVAR — Let AI operate infrastructure. Keep humans in control.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cloud control plane. Runtime where the work lives. | KYVAR">
-<meta name="twitter:description" content="Governance separated from execution: zero inbound exposure for on-prem, one-time enrollment, Docker Compose to Helm.">
+<meta name="twitter:title" content="IT Automation Architecture for Multi-Cloud and On-Prem | KYVAR">
+<meta name="twitter:description" content="IT automation architecture for multi-cloud and on-prem: a control plane for policy and approval, and runtimes that execute with no inbound exposure.">
 <meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
 <script type="application/ld+json">
 {
@@ -55,12 +55,12 @@
 </head><body><div class="glow"></div>
 
 <nav class="nav">
-  <a class="brand" href="index.html">
+  <a class="brand" href="/">
     <img src="branding/kyvar-mark.png" alt="">
     <span>KYVAR</span>
   </a>
   <div class="navlinks">
-    <a href="index.html#platform">Platform</a>
+    <a href="/#platform">Platform</a>
     <a href="security.html">Security</a>
     <a href="trust.html">Trust</a>
     <a class="active" href="architecture.html">Architecture</a>
@@ -75,7 +75,7 @@
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
-    <a class="login" href="https://app.kyvar.io/login">Log in</a>
+    <a class="login" href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
     <a class="pilotcta" href="contact.html">Start a pilot</a>
   </div>
 </nav>
@@ -83,7 +83,7 @@
 <main>
 <header class="pagehero reveal">
   <div class="eyebrow">Architecture &amp; deployment</div>
-  <h1>Cloud control plane.<br><span>Runtime where the work lives.</span></h1>
+  <h1>IT automation architecture.<br><span>Runtime where the work lives.</span></h1>
   <p class="lede">KYVAR separates governance from execution. The control plane decides what may happen; enrolled runtimes execute close to the target — in a cloud account, data center, branch, or isolated network.</p>
 </header>
 
@@ -158,6 +158,13 @@
   </div>
 </div></section>
 
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Where the work runs</div>
+  <h2>One governance model. Execution next to the target.</h2>
+  <p>Every action is executed by an enrolled runtime close to the target: in a cloud account, a data center, a branch, or an isolated network. On-prem virtualization — VMware vSphere, Nutanix, Proxmox VE, and Hyper-V through SCVMM — and servers over SSH are reached by a runtime inside that network. The runtime polls KYVAR over outbound HTTPS. It does not need an inbound firewall rule, and credentials can stay on the runtime.</p>
+  <p>The control plane keeps the decision: who is asking, which connector they may use, whether policy requires a second person, and the hash-chained record of what ran. Binding each connector to one approved runtime keeps production, development, and separate network zones from sharing an execution path. Those gates are described in the <a href="/security.html">security architecture</a>, what a review should expect is in the <a href="/trust.html">trust center</a>, and a <a href="/pilot.html">30–60 day pilot</a> starts read-only before any write path is opened.</p>
+</div></section>
+
 <section class="section"><div class="center reveal">
   <div class="kicker">Run it where you run</div>
   <h2>An afternoon to evaluate.<br>A cluster for production.</h2>
@@ -172,12 +179,12 @@
 <footer class="footer">
   <div class="footgrid">
     <div>
-      <a class="brand" href="index.html"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
+      <a class="brand" href="/"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
       <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
     </div>
     <div>
       <h4>Platform</h4>
-      <a href="index.html#platform">How it works</a>
+      <a href="/#platform">How it works</a>
       <a href="security.html">Security &amp; Compliance</a>
       <a href="trust.html">Trust Center</a>
       <a href="architecture.html">Architecture</a>
@@ -186,9 +193,17 @@
       <a href="insights/">Insights</a>
     </div>
     <div>
+      <h4>Insights</h4>
+      <a href="/insights/what-is-self-healing-infrastructure.html">Self-healing infrastructure</a>
+      <a href="/insights/day-0-vs-day-2-operations.html">Day 0 vs Day 2 operations</a>
+      <a href="/insights/autonomous-it-operations-governance.html">Autonomous IT and governance</a>
+      <a href="/insights/automatic-monitoring-auto-remediation.html">Monitoring and auto-remediation</a>
+      <a href="/insights/aiops-agentic-ai-governed-operator.html">AIOps and agentic AI</a>
+    </div>
+    <div>
       <h4>Get started</h4>
       <a href="contact.html">Start a pilot</a>
-      <a href="https://app.kyvar.io/login">Log in</a>
+      <a href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
       <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
     </div>
     <div>

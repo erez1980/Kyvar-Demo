@@ -243,6 +243,8 @@ body.navopen .cbanner{display:none}
 .section h2{font-size:clamp(34px,4.4vw,60px);font-stretch:80%;line-height:.98;margin:12px 0 20px;max-width:16em}
 .section h2 span{color:var(--muted)}
 .section p{font-size:18px;color:var(--ink-soft);line-height:1.6;max-width:36em}
+.pagehero p a,.section p a{text-decoration:underline;text-underline-offset:3px}
+#explore .postgrid{max-width:none;margin-top:36px}
 .center{max-width:1240px;margin:auto;width:100%;text-align:left}
 .section>.center{min-width:0}
 .safety-band{background:var(--bg-2)}
@@ -429,7 +431,7 @@ a.card:hover{border-color:var(--brand)}
 
 /* ---------- Footer ---------- */
 .footer{padding:88px 5% 56px;border-top:1px solid var(--line-faint);color:var(--muted);background:var(--bg-2)}
-.footgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto 48px}
+.footgrid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr 1.15fr;gap:32px 28px;max-width:1240px;margin:0 auto 48px}
 .footgrid .brand{margin-bottom:14px}
 .footgrid p{font-size:15.5px;line-height:1.6;max-width:340px;margin:0}
 .footgrid h4{color:var(--ink);font-size:15px;font-weight:650;margin:0 0 14px}
@@ -451,6 +453,9 @@ a.card:hover{border-color:var(--brand)}
   .pipestep:before{top:2px;left:-8px}
   .pipestep.gate{border-left-color:var(--person)}
   .pipestep:last-child{border-left-color:transparent;padding-bottom:0}
+}
+@media(max-width:1100px){
+  .footgrid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:1000px){
   .cards,.cards.four{grid-template-columns:1fr 1fr}

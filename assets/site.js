@@ -149,7 +149,7 @@ document.querySelectorAll('.reveal').forEach(x=>o.observe(x));
       jumps.map(j => `<a href="#${j.id}">${esc(j.label)}</a>`).join('') + '</div>' : '') +
     '<div class="panelcta">' +
       (cta ? `<a class="p" href="${cta.getAttribute('href')}">${esc(cta.textContent.trim())}</a>` : '') +
-      (login ? `<a class="s" href="${login.getAttribute('href')}">${esc(login.textContent.trim())}</a>` : '') +
+      (login ? `<a class="s" href="${login.getAttribute('href')}" rel="${esc(login.getAttribute('rel') || 'nofollow')}">${esc(login.textContent.trim())}</a>` : '') +
     '</div>';
   document.body.appendChild(panel);
 

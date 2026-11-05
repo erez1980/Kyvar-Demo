@@ -1,3 +1,15 @@
+# Origin robots.txt for kyvar.io.
+# Googlebot needs HTML, CSS, and JavaScript to render the site. Do not disallow /assets/.
+# Cloudflare may prepend a managed block that disallows AI crawlers, including
+# Google-Extended and GoogleOther. That block is not defined here. Google Search
+# crawls with Googlebot, which stays allowed.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 User-agent: *
 Allow: /
 
