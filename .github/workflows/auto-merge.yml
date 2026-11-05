@@ -2,8 +2,8 @@ name: Auto-merge
 
 # A pull request into gh-pages merges itself once it is green:
 # - Site check passed on its head commit and every check there finished green
-# - the Codex review of that commit (when Codex reviews this repo) finished
-#   with no unresolved findings
+# - Codex has finished reviewing the PR (it reviews when a PR is opened or
+#   marked ready, not on every push), and each finding it left is resolved
 # - nobody asked for changes and no review thread is left open
 # Merging to gh-pages publishes kyvar.io, so this is also the deploy.
 #
@@ -87,10 +87,12 @@ jobs:
             const bad = others.filter(c => !['success', 'skipped', 'neutral'].includes(c.conclusion));
             if (bad.length) return skip(`not green: ${bad.map(c => `${c.name} (${c.conclusion})`).join(', ')}.`);
 
-            // Codex review: Codex reviews every PR in this repo, so its summary
-            // comment must exist, be about this commit, be completed and have
-            // nothing unresolved. A PR Codex will not review (Codex turned off)
-            // can be released with the `no-codex-review` label.
+            // Codex review: Codex reviews every PR in this repo when it is
+            // opened (not on every push), so its summary comment must exist and
+            // its latest review must be completed. Its findings are inline
+            // review threads, which the thread check below requires resolved.
+            // A PR Codex will not review (Codex turned off) can be released
+            // with the `no-codex-review` label.
             const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
             const summary = comments.filter(c => c.user.login === 'chatgpt-codex-connector[bot]' && c.body.includes('codex-review-state')).pop();
             const codexWaived = pr.labels.some(l => l.name === 'no-codex-review');
@@ -101,9 +103,7 @@ jobs:
               let state = null;
               try { state = JSON.parse(m[1]).code_review; } catch (e) { /* unreadable */ }
               if (!state) return skip(`could not read the Codex review state on ${tag}.`);
-              if (state.commit_sha !== sha) return skip(`Codex has not reviewed ${sha.slice(0, 7)} yet.`);
-              if (state.status !== 'completed') return skip(`the Codex review of ${sha.slice(0, 7)} is ${state.status}.`);
-              if (state.has_unresolved_findings) return skip(`Codex has unresolved findings on ${tag}.`);
+              if (state.status !== 'completed') return skip(`the Codex review of ${tag} is ${state.status}.`);
             }
 
             // No reviewer's last word is "changes requested", and no review
