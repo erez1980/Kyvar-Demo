@@ -152,7 +152,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
   <div class="eyebrow">Trust Center</div>
   <h1>Security you can verify,<br><span>not just read about.</span></h1>
   <p class="lede">For security reviewers and procurement teams: where we stand on compliance, where your data lives, the controls built into the product, and who else touches it. Stated plainly — including what is not done yet.</p>
-  <p class="updated">Last updated 23 September 2026 · For the product architecture in depth, see <a href="security.html" style="color:var(--link);text-decoration:none">Security &amp; Compliance</a>.</p>
+  <p class="updated">Last updated 5 November 2026 · For the product architecture in depth, see <a href="security.html" style="color:var(--link);text-decoration:none">Security &amp; Compliance</a>.</p>
 </header>
 
 <section class="section tight" data-navlabel="Compliance status"><div class="center reveal">
@@ -178,7 +178,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
     <div class="stcard">
       <span class="badge plan">Planned</span>
       <b>Penetration test</b>
-      <p>An independent test is planned. A results summary will be available under NDA once complete. Internal authenticated reviews already run today.</p>
+      <p>An independent test is planned. A results summary will be available under NDA once complete. An AI red team and an external AI security assessment are done today, and every finding is fixed.</p>
     </div>
   </div>
 </div></section>
@@ -206,7 +206,9 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
         <li>TOTP multi-factor authentication with single-use recovery codes</li>
         <li>Roles (admin, operator, viewer) enforced on every API route</li>
         <li>Per-connector access grants: who may use which account, and how far</li>
-        <li>Tenant isolation — another tenant's record is a 404, never a 403</li>
+        <li>Tenant isolation — another tenant's record is a 404, never a 403, and PostgreSQL row-level security refuses it beneath the application</li>
+        <li>An auditor role that reads everything and changes nothing</li>
+        <li>Sign in only through single sign-on, with the identity provider required to assert MFA</li>
       </ul>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Credentials &amp; secrets</span>
@@ -224,12 +226,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
         <li>Separation of duties — the requester cannot approve their own change</li>
         <li>Environment-scoped approver groups (production can require a different group)</li>
         <li>Approvals expire and escalate on deadlines you set</li>
+        <li>An emergency stop: no runtime gets work, credentials or an approval until a person releases it</li>
+        <li>Compliance profiles for PCI, HIPAA, GDPR and critical infrastructure tighten these gates</li>
         <li>Risk judged from the environment of the credentials, not a label the client sends</li>
       </ul>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Audit &amp; monitoring</span>
       <ul>
-        <li>Hash-chained, tamper-evident audit trail, verifiable on demand</li>
+        <li>Hash-chained, tamper-evident audit trail, verifiable on demand; the database refuses edits and deletes</li>
         <li>Streamed to your SIEM as it is written — HTTP collector or syslog (RFC 5424)</li>
         <li>CSV export with each event's hash</li>
         <li>Per-tenant data retention policies — off by default, every purge recorded</li>
@@ -242,6 +246,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
         <li>Command output never goes on the run record — the command and its outcome do</li>
         <li>KYVAR does not train models on your data</li>
         <li>A daily token budget caps model spend</li>
+        <li>54 AI red-team attacks on every path where outside text reaches an agent, run as tests on every change</li>
       </ul>
     </div>
     <div class="card"><span class="cardtitle" style="font-weight:800">Application &amp; operations</span>
@@ -317,7 +322,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
     <li>Security whitepaper and architecture overview</li>
     <li>Answers to your security questionnaire</li>
     <li>Data Processing Agreement (hosted option)</li>
-    <li>Summary of our authenticated security reviews and the regression tests they produced</li>
+    <li>Summary of our authenticated security reviews, the AI red team and the external AI security assessment, and the regression tests they produced</li>
     <li>Sample hash-chained audit export</li>
     <li>Penetration test summary, under NDA, once complete</li>
   </ul>

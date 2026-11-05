@@ -83,6 +83,14 @@
         "Incident memory, similar incidents and a daily operational assessment, all read-only and off by default",
         "ServiceNow queue polling per customer instance, with pull, recommend and resolve handling, Change Requests and knowledge-article drafts",
         "MSP mode: one console across customer tenants, with a customer switcher, per-customer runtimes, MSP roles, suspension and audit on both sides",
+        "Impact map: what else stops if an asset goes down, up to three hops through the inventory",
+        "Alert noise reduction: repeating alerts folded into one incident, flapping detectors named with a suggested threshold",
+        "Root-cause accuracy measured on the organization's own incidents, from what a person or a verified fix said",
+        "A2A intake: another vendor's agent can hand KYVAR an incident; the fix still waits for a person",
+        "Emergency stop per tenant and for the platform: no runtime gets work, credentials or approvals until a person releases it",
+        "Compliance profiles for PCI, HIPAA, GDPR and critical infrastructure that tighten the existing gates",
+        "Auditor role, administrator-only approvals, SSO-only sign-in with identity-provider MFA, and PostgreSQL row-level security",
+        "An AI red-team suite of 54 attacks on every path where outside text reaches an agent, run on every change",
         "An extensible connector model — 30 connectors across cloud, virtualization, virtual desktops, servers, identity and devices, network security, service desk, observability, knowledge and delivery — where every new integration inherits the same RBAC, approvals and audit"
       ],
       "publisher": { "@id": "https://kyvar.io/#org" }
@@ -295,6 +303,19 @@
   <div class="card"><b>One trace, trigger to last call</b><p>One id follows the work from the alert or ticket to the last tool call. If you run OpenTelemetry, KYVAR can send its own spans to your collector, without prompts, answers or credentials.</p></div>
 </div></section>
 
+<!-- Sharper investigations (impact, noise, accuracy, A2A) -->
+<section class="section" id="signal" data-navlabel="Impact and accuracy"><div class="center reveal">
+  <div class="kicker">Sharper investigations</div>
+  <h2>Know the blast radius. Know the hit rate.</h2>
+  <p>An investigation is only as good as what it knows about the estate and how often it has been right. KYVAR now shows both.</p>
+  <div class="cards two">
+    <div class="card"><b>If this goes down</b><p>From any asset, KYVAR follows what depends on it through the inventory, up to three hops, and the investigation says how far a failure reaches. A link that was inferred, not discovered, is marked as one.</p></div>
+    <div class="card"><b>Less noise, same signal</b><p>A repeating alert with no known asset folds into the open incident it belongs to. Monitors and alert rules that keep recovering by themselves are named, with a suggested threshold. Advice only: nothing is muted for you.</p></div>
+    <div class="card"><b>Was the root cause right</b><p>Counted on your own incidents, from what a person said or what a verified fix proved. No verdict, no count. Below ten verdicts there is no rate at all, because a small number would mislead.</p></div>
+    <div class="card"><b>Other agents can hand over</b><p>Another vendor’s agent can send KYVAR an incident over the open A2A protocol. It is investigated like any other incident, and nothing runs for the other agent: the fix waits for a person in KYVAR.</p></div>
+  </div>
+</div></section>
+
 <!-- On your phone -->
 <section class="section" id="phone" data-navlabel="On your phone"><div class="grid">
   <div class="reveal"><div class="kicker">On your phone</div>
@@ -410,7 +431,7 @@
   <div class="stats">
     <div class="stat"><div class="num">30</div><div class="lbl">Connectors, ten categories</div><p>Cloud (AWS, Azure, Oracle Cloud), virtualization (vSphere, Nutanix, Proxmox, Hyper-V), virtual desktops (Citrix, Horizon), servers (Linux, Windows), identity and devices (Active Directory, Entra ID and Intune, Okta, SailPoint, Google Workspace, Jamf, SCCM), network security (Palo Alto Networks), service desk (Jira, ServiceNow), observability (Datadog, Dynatrace, Grafana, Prometheus, Splunk, PagerDuty), knowledge (Confluence) and delivery (Kubernetes, GitHub, with Terraform on top). Microsoft, GitHub and Atlassian connect by signing in, not by pasting a secret, and any connector can be connected for monitoring only. The governed pipeline is the product, not the list: a new connector brings its own credentials and discovery, and inherits RBAC, approvals, credential delivery and audit unchanged.</p></div>
     <div class="stat"><div class="num">0</div><div class="lbl">Inbound ports</div><p>An on-prem runtime opens nothing. It dials out to the control plane, is enrolled by single-use invitation, and is where your credentials are used — delivered per run to that runtime alone, and never readable back through the API.</p></div>
-    <div class="stat"><div class="num">3,400+</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, abuse cases and the UI’s own regressions are tested like the product they protect.</p></div>
+    <div class="stat"><div class="num">4,100+</div><div class="lbl">Automated tests</div><p>The backend suite runs twice per change — SQLite and PostgreSQL — plus a browser sweep of every page on a live stack. Gates, tenancy, credentials, 54 AI red-team attacks and the UI’s own regressions are tested like the product they protect.</p></div>
   </div>
 </div></section>
 
@@ -432,7 +453,21 @@
     <div class="check">Rehearse any request against policy before it is sent — nothing recorded</div>
     <div class="check">TOTP second factor, sessions you can see and revoke, single-use invitations, SCIM provisioning from your directory</div>
     <div class="check">A hash-chained audit trail you can verify, streamed to your SIEM as it is written</div>
+    <div class="check">One emergency stop: no runtime gets work, credentials or an approval until a person releases it</div>
+    <div class="check">Compliance profiles for PCI, HIPAA, GDPR and critical infrastructure tighten the gates already there</div>
   </div></div>
+</div></section>
+
+<!-- Red team -->
+<section class="section" id="redteam" data-navlabel="Red-teamed"><div class="center reveal">
+  <div class="kicker">Attacked on purpose</div>
+  <h2>We try to break it first.</h2>
+  <p>An alert, a ticket or another agent can carry text written to steer the AI. So we attack every path where outside text reaches an agent, and keep each attack as a test that runs on every change.</p>
+  <div class="cards">
+    <div class="card"><b>54 attacks, nine doors</b><p>Alert triggers, armed self-heals, investigations, ticket titles, A2A, the request grader, governed tools, the action catalog and another tenant’s incident memory. Hidden characters, look-alike letters, Hebrew phrasing and forged report lines included. Every gap the first run found is closed.</p></div>
+    <div class="card"><b>An outside assessment, closed</b><p>Seven findings from an external AI security assessment, all fixed: invisible characters hiding code from the Terraform scan, file reads during a plan, a credential repeated in run output, a quoted report taken as the agent’s own.</p></div>
+    <div class="card"><b>A person still decides</b><p>When an attack does get a change asked for, it lands where every change lands: on the approval gate, graded by what it would do, waiting for a person.</p></div>
+  </div>
 </div></section>
 
 <!-- Differentiation -->
