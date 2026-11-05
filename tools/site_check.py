@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -71,9 +72,47 @@ def local_target(page: Path, link: str) -> Path | None:
     return target
 
 
+CANON_RE = re.compile(r'<link rel="canonical" href="([^"]+)"')
+ROBOTS_RE = re.compile(r'<meta name="robots" content="([^"]*)"', re.I)
+DESC_RE = re.compile(r'<meta name="description" content="([^"]*)"')
+TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)
+SITEMAP_LOC_RE = re.compile(r"<loc>\s*([^<]+?)\s*</loc>")
+SITEMAP_LASTMOD_RE = re.compile(r"<loc>\s*([^<]+?)\s*</loc>\s*<lastmod>\s*(\d{4}-\d{2}-\d{2})\s*</lastmod>")
+LOGIN_RE = re.compile(r"<a\b[^>]*href=\"https://app\.kyvar\.io/login\"[^>]*>")
+
+# Every indexable URL should be one click from the homepage, not only in the nav.
+HOME_LINKS = [
+    "architecture.html",
+    "security.html",
+    "trust.html",
+    "pilot.html",
+    "pricing.html",
+    "contact.html",
+    "insights/index.html",
+    "insights/what-is-self-healing-infrastructure.html",
+    "insights/day-0-vs-day-2-operations.html",
+    "insights/autonomous-it-operations-governance.html",
+    "insights/automatic-monitoring-auto-remediation.html",
+    "insights/aiops-agentic-ai-governed-operator.html",
+    "privacy.html",
+    "cookies.html",
+]
+
+
+def expected_canonical(rel: Path) -> str:
+    posix = rel.as_posix()
+    if posix == "index.html":
+        return "https://kyvar.io/"
+    if posix.endswith("/index.html"):
+        return "https://kyvar.io/" + posix[: -len("index.html")]
+    return "https://kyvar.io/" + posix
+
+
 def main() -> int:
     problems: list[str] = []
     pages = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts and p.name not in SKIP)
+    indexable: set[str] = set()
+    home_targets: set[Path] = set()
     for page in pages:
         rel = page.relative_to(ROOT)
         text = page.read_text(encoding="utf-8")
@@ -92,10 +131,58 @@ def main() -> int:
             target = local_target(page, link)
             if target is not None and not target.exists():
                 problems.append(f"{rel}: broken local link {link}")
+            path = unquote(urlparse(link).path)
+            if path == "index.html" or path.endswith("/index.html"):
+                problems.append(f"{rel}: link to {link} publishes a duplicate of the canonical URL")
+            if page.name == "index.html" and target is not None:
+                home_targets.add(target.resolve())
+        robots = " ".join(ROBOTS_RE.findall(text)).lower()
+        noindex = "noindex" in robots
+        if page.name == "404.html" and not noindex:
+            problems.append(f"{rel}: 404 must be noindex")
+        if not noindex:
+            canons = CANON_RE.findall(text)
+            expected = expected_canonical(rel)
+            if canons != [expected]:
+                problems.append(f"{rel}: canonical {canons or 'missing'}, expected {expected}")
+            else:
+                indexable.add(expected)
+            title = unescape(TITLE_RE.search(text).group(1)).strip() if TITLE_RE.search(text) else ""
+            if not 15 <= len(title) <= 70:
+                problems.append(f"{rel}: title length {len(title)} (want 15–70)")
+            desc_m = DESC_RE.search(text)
+            desc = unescape(desc_m.group(1)).strip() if desc_m else ""
+            if not 50 <= len(desc) <= 170:
+                problems.append(f"{rel}: meta description length {len(desc)} (want 50–170)")
+        for tag in LOGIN_RE.findall(text):
+            if "nofollow" not in tag:
+                problems.append(f"{rel}: login link must be rel=nofollow so the app login is not nominated for indexing")
         for rx in BANNED:
             for m in rx.finditer(text):
                 line = text.count("\n", 0, m.start()) + 1
                 problems.append(f"{rel}:{line}: avoid the word '{m.group(0)}'")
+    tom = ROOT / "tom-solution.html"
+    tom_text = tom.read_text(encoding="utf-8")
+    if "noindex" not in tom_text.lower():
+        problems.append("tom-solution.html: standalone puzzle page must be noindex")
+    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    locs = SITEMAP_LOC_RE.findall(sitemap)
+    dated = {loc: last for loc, last in SITEMAP_LASTMOD_RE.findall(sitemap)}
+    if set(locs) != indexable:
+        missing = sorted(indexable - set(locs))
+        extra = sorted(set(locs) - indexable)
+        if missing:
+            problems.append("sitemap.xml: missing " + ", ".join(missing))
+        if extra:
+            problems.append("sitemap.xml: not an indexable canonical: " + ", ".join(extra))
+    if len(locs) != len(set(locs)):
+        problems.append("sitemap.xml: duplicate <loc>")
+    for loc in locs:
+        if loc not in dated:
+            problems.append(f"sitemap.xml: {loc} needs <lastmod> YYYY-MM-DD")
+    for rel in HOME_LINKS:
+        if (ROOT / rel).resolve() not in home_targets:
+            problems.append(f"index.html: no link to {rel}")
     for p in problems:
         print(p)
     print(f"{len(pages)} pages checked, {len(problems)} problem(s)")
