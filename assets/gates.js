@@ -1,82 +1,68 @@
 /* ---------- Home: one ServiceNow incident through the seven gates ----------
-   The markup is the finished run, so a reader without JS sees every gate and
-   what it did. Here the run is rewound and played once when the section is
-   on screen: each gate lights up and its part of the example appears beside
-   it. The run waits a moment at the approval gate, because that pause is the
-   product. It plays once and then offers Replay; while it plays, the same
-   control shows every step at once. Reduced motion never rewinds. */
+   Each gate has a real screen beside it, from ServiceNow or KYVAR. Without JS
+   every gate and its example are readable and the first screen shows. Here
+   the screens play once when the section is on screen, waiting longer at the
+   approval gate, because that pause is the product. A visitor can pick any
+   gate to see its screen; that stops the play. Reduced motion never plays:
+   the gates are still there to pick. */
 (function () {
   var box = document.getElementById('gates');
   if (!box) return;
   var rows = [].slice.call(box.querySelectorAll('.g'));
-  var gate = box.querySelector('[data-gate]');
-  var gateText = box.querySelector('[data-gatetext]');
-  var status = box.querySelector('[data-status]');
-  var ctl = box.querySelector('[data-ctl]');
-  var gi = rows.indexOf(gate);
+  var picks = rows.map(function (r) { return r.querySelector('.gpick'); });
+  var screen = document.getElementById('gscreen');
+  var imgs = [].slice.call(screen.querySelectorAll('.gshot img'));
+  var sys = screen.querySelector('[data-systag]');
+  var name = screen.querySelector('[data-stepname]');
+  var status = screen.querySelector('[data-status]');
+  var ctl = screen.querySelector('[data-ctl]');
   var doneText = status.textContent;
+  var gi = rows.indexOf(box.querySelector('[data-gate]'));
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var STEP = 1500, HOLD = 2600;
-  var timers = [], running = false;
+  var STEP = 2600, HOLD = 4200;
+  var timers = [], playing = false;
 
-  if (still || !('IntersectionObserver' in window)) return;
-
-  status.setAttribute('role', 'status');
-  status.setAttribute('aria-live', 'polite');
-
-  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function need(i) { var im = imgs[i]; if (im && im.loading === 'lazy') im.loading = 'eager'; }
+  function set(i) {
+    need(i); need(i + 1);
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); });
+    rows.forEach(function (r, k) { r.classList.toggle('on', k === i); r.classList.toggle('seen', k < i); });
+    picks.forEach(function (p, k) { p.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+    var s = imgs[i].dataset.sys;
+    sys.textContent = s;
+    sys.classList.toggle('kyvar', s === 'KYVAR');
+    name.textContent = imgs[i].dataset.step;
+    screen.classList.toggle('person', i === gi);
+  }
   function clear() { timers.forEach(clearTimeout); timers = []; }
-  function show(i) {
-    rows.forEach(function (el, n) {
-      el.classList.remove('waiting');
-      el.classList.toggle('pending', n > i);
-      el.classList.toggle('now', n === i);
-    });
-  }
-
-  function end() {
-    clear(); running = false;
-    rows.forEach(function (el) { el.classList.remove('pending', 'now', 'waiting'); });
-    gateText.textContent = gateText.dataset.done;
+  function stop() {
+    clear(); playing = false;
     status.textContent = doneText;
-    ctl.textContent = 'Replay';
+    ctl.hidden = false; ctl.textContent = 'Replay';
   }
-
-  function run() {
-    clear(); running = true;
-    ctl.hidden = false;
-    ctl.textContent = 'Show all steps';
-    status.textContent = 'Running';
-    gateText.textContent = gateText.dataset.wait;
-    show(-1);
-    var t = 400;
-    rows.forEach(function (el, i) {
-      later(function () {
-        show(i);
-        if (i === gi) { el.classList.add('waiting'); status.textContent = 'Held at the approval gate'; }
-      }, t);
-      if (i === gi) {
-        t += HOLD;
-        later(function () {
-          el.classList.remove('waiting');
-          gateText.textContent = gateText.dataset.done;
-          status.textContent = 'Approved. Running';
-        }, t);
-        t += 900;
-      } else t += STEP;
+  function play() {
+    clear(); playing = true;
+    ctl.hidden = false; ctl.textContent = 'Stop';
+    var t = 0;
+    rows.forEach(function (r, i) {
+      timers.push(setTimeout(function () {
+        set(i);
+        status.textContent = i === gi ? 'Held until a person approves. Nothing has changed yet.' : doneText;
+      }, t));
+      t += i === gi ? HOLD : STEP;
     });
-    later(end, t);
+    timers.push(setTimeout(stop, t - STEP + 600));
   }
 
-  ctl.addEventListener('click', function () { if (running) end(); else run(); });
+  picks.forEach(function (p, i) {
+    p.addEventListener('click', function () { if (playing) stop(); set(i); });
+  });
+  ctl.addEventListener('click', function () { if (playing) stop(); else play(); });
+  set(0);
 
-  // Rewind only once the script is certain it will play, then start when the
-  // gates are on screen, so a visitor who lands lower down does not miss it.
-  show(-1);
-  gateText.textContent = gateText.dataset.wait;
-  status.textContent = '';
+  if (still || !('IntersectionObserver' in window)) { ctl.hidden = true; return; }
   var io = new IntersectionObserver(function (es) {
-    if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); run(); }
-  }, { threshold: 0.3 });
+    if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); play(); }
+  }, { threshold: 0.35 });
   io.observe(box);
 })();
