@@ -197,32 +197,43 @@
 <!-- Governed pipeline -->
 <section class="section" id="platform" data-navlabel="How it works"><div class="center reveal">
   <h2>Seven gates between intent and change.</h2>
-  <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence. Follow one ServiceNow incident through all seven.</p>
+  <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence. Follow one ServiceNow incident through all seven, on the real ServiceNow and KYVAR screens.</p>
 
-  <!-- The finished run is the static markup; assets/gates.js rewinds it and
-       plays it once, one gate at a time, when the section scrolls into view. -->
+  <!-- Real screens from the KYVAR demo: one ServiceNow incident at an MSP's
+       customer, walked through the seven gates. Without JS every gate and its
+       example are readable and the first screen shows; assets/gates.js plays
+       the screens once when the section is on screen, and any gate can be
+       picked to show its screen. -->
   <div class="gx" id="gates">
-    <div class="gticket">
-      <span class="gsrc"><span>ServiceNow incident INC0052230</span><span>Priority 1, Cloud Operations</span></span>
-      <q>Employee portal returns 502 since 08:40.</q>
-    </div>
     <ol class="gates">
-      <li class="g"><div class="gstep"><b>1</b><span>Intent</span><small>Ask in plain language, pick from the catalog, or let a ticket ask</small></div>
-        <div class="gex"><div class="gin"><span class="gl">From ServiceNow</span>KYVAR pulls the incident from the Cloud Operations queue and opens an investigation.</div></div></li>
-      <li class="g"><div class="gstep"><b>2</b><span>Scope</span><small>Who is asking, and on which connectors they may act</small></div>
-        <div class="gex"><div class="gin"><span class="gl">Read-only, inside the assignee's grant</span>On the AKS cluster: 1 of 3 pods ready, 27 restarts, each killed for memory.</div></div></li>
-      <li class="g"><div class="gstep"><b>3</b><span>Classify</span><small>Risk from policy and the environment it touches</small></div>
-        <div class="gex"><div class="gin"><span class="gl">Root cause and risk</span>Release 4.2.0 needs more than the 512 Mi limit. The fix changes a production cluster: high risk.</div></div></li>
-      <li class="g gate" data-gate><div class="gstep"><b>4</b><span>Approve</span><small>A second person decides when policy says so</small></div>
-        <div class="gex"><div class="gin"><span class="gl">A person decides</span><span data-gatetext data-wait="Waiting for a second person. Nothing has changed yet." data-done="Approved by Eitan B., cloud lead, with the exact commands in view.">Approved by Eitan B., cloud lead, with the exact commands in view.</span></div></div></li>
-      <li class="g"><div class="gstep"><b>5</b><span>Run</span><small>On a bounded runtime, with the requester's identity</small></div>
-        <div class="gex"><div class="gin"><span class="gl">Only what was approved</span><code>kubectl set resources deploy/portal-api --limits=memory=1Gi</code><code>kubectl rollout restart deploy/portal-api</code></div></div></li>
-      <li class="g verified"><div class="gstep"><b>6</b><span>Verify</span><small>Check the outcome, roll back if it did not hold</small></div>
-        <div class="gex"><div class="gin"><span class="gl">Checked again</span>3 of 3 pods ready, no new restarts, the portal answers 200.</div></div></li>
-      <li class="g"><div class="gstep"><b>7</b><span>Record</span><small>Evidence from every step, hash-chained</small></div>
-        <div class="gex"><div class="gin"><span class="gl">Written back</span>INC0052230 resolved in ServiceNow with the cause, the change and the proof. Audit entry 51907.</div></div></li>
+      <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="0"><span class="gstep"><b>1</b><span class="gn">Intent</span><small>Ask in plain language, pick from the catalog, or let a ticket ask</small></span>
+        <span class="gex"><span class="gl">The incident arrives</span>Brightwater’s patient portal returns 502. KYVAR pulls the ticket from the customer’s own ServiceNow.</span></button></li>
+      <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="1"><span class="gstep"><b>2</b><span class="gn">Scope</span><small>Who is asking, and on which connectors they may act</small></span>
+        <span class="gex"><span class="gl">The right customer, the right grant</span>The ticket lands in Brightwater’s tenant. The engineer may operate there; everything so far is read-only.</span></button></li>
+      <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="2"><span class="gstep"><b>3</b><span class="gn">Classify</span><small>Risk from policy and the environment it touches</small></span>
+        <span class="gex"><span class="gl">Root cause and risk</span>Release 4.2.0 needs more than the 512 Mi memory limit. The fix changes a production cluster, so policy holds it.</span></button></li>
+      <li class="g gate" data-gate><button type="button" class="gpick" aria-controls="gscreen" data-i="3"><span class="gstep"><b>4</b><span class="gn">Approve</span><small>A second person decides when policy says so</small></span>
+        <span class="gex"><span class="gl">A person decides</span>Eitan reads exactly what will run, on which cluster, and approves.</span></button></li>
+      <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="4"><span class="gstep"><b>5</b><span class="gn">Run</span><small>On a bounded runtime, with the requester’s identity</small></span>
+        <span class="gex"><span class="gl">Only what was approved</span>The customer’s own runtime raises the limit to 1 Gi and restarts the pods.</span></button></li>
+      <li class="g verified"><button type="button" class="gpick" aria-controls="gscreen" data-i="5"><span class="gstep"><b>6</b><span class="gn">Verify</span><small>Check the outcome, roll back if it did not hold</small></span>
+        <span class="gex"><span class="gl">Checked again</span>3 of 3 pods ready, no new restarts, the portal answers 200.</span></button></li>
+      <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="6"><span class="gstep"><b>7</b><span class="gn">Record</span><small>Evidence from every step, hash-chained</small></span>
+        <span class="gex"><span class="gl">Written back</span>Resolved in Brightwater’s ServiceNow with the cause, the change request and the proof.</span></button></li>
     </ol>
-    <div class="gfoot"><span data-status>Resolved in 6 min 40 s, one decision by a person</span><button type="button" data-ctl hidden>Replay</button></div>
+    <figure class="gscreen" id="gscreen" aria-live="polite">
+      <figcaption class="gbar"><span class="gsys" data-systag>ServiceNow</span><span data-stepname>1 · Intent</span><span class="gtag">INC0052230 · Brightwater Health Clinics</span></figcaption>
+      <div class="gshot">
+        <img src="assets/screenshots/gates/step-1.webp" width="1280" height="604" alt="The ServiceNow incident INC0052230: patient portal returns 502, priority 1" data-sys="ServiceNow" data-step="1 · Intent" class="on" loading="eager" decoding="async">
+        <img src="assets/screenshots/gates/step-2.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR Customers page: Brightwater Health Clinics, the engineer’s role and its open incident" data-sys="KYVAR" data-step="2 · Scope" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-3.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR incident card: root cause, evidence from the cluster and the proposed fix" data-sys="KYVAR" data-step="3 · Classify" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-4.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR Approvals page: the waiting fix with its three steps and the Approve button" data-sys="KYVAR" data-step="4 · Approve" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-5.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR run page: the kubectl commands it ran, each completed" data-sys="KYVAR" data-step="5 · Run" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-6.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR run page: the answer, with pods ready and the portal answering 200" data-sys="KYVAR" data-step="6 · Verify" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-7.webp" width="1280" height="604" aria-hidden="true" alt="The ServiceNow incident, now Resolved, with change request CHG0030001 and the resolution notes" data-sys="ServiceNow" data-step="7 · Record" loading="lazy" decoding="async">
+      </div>
+      <div class="gfoot"><span data-status>Resolved in 6 min 40 s, one decision by a person. Screens from the KYVAR demo with simulated ServiceNow.</span><button type="button" data-ctl hidden>Replay</button></div>
+    </figure>
   </div>
   <div class="quote">“The agent is replaceable. The governance around it is the product.”</div>
 </div></section>
