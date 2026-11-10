@@ -25,7 +25,7 @@
   function need(i) { var im = imgs[i]; if (im && im.loading === 'lazy') im.loading = 'eager'; }
   function set(i) {
     need(i); need(i + 1);
-    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); });
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); if (k === i) im.removeAttribute('aria-hidden'); else im.setAttribute('aria-hidden', 'true'); });
     rows.forEach(function (r, k) { r.classList.toggle('on', k === i); r.classList.toggle('seen', k < i); });
     picks.forEach(function (p, k) { p.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
     var s = imgs[i].dataset.sys;
