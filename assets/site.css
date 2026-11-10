@@ -343,7 +343,9 @@ a.card:hover{border-color:var(--brand)}
   .gx{grid-template-columns:1fr;gap:20px}
   .gscreen{grid-row:1;top:72px;z-index:2}
   .gtag{display:none}
-  .gfoot{display:none}
+  .gfoot{justify-content:flex-end;padding:8px 14px}
+  .gfoot [data-status]{display:none}
+  .gfoot:not(:has(button:not([hidden]))){display:none}
 }
 @media(prefers-reduced-motion:reduce){.gpick,.gpick:before,.gshot img{transition:none}}
 
