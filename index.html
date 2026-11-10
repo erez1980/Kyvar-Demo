@@ -197,15 +197,32 @@
 <!-- Governed pipeline -->
 <section class="section" id="platform" data-navlabel="How it works"><div class="center reveal">
   <h2>Seven gates between intent and change.</h2>
-  <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence.</p>
-  <div class="pipeline">
-    <div class="pipestep"><b>1</b><span>Intent</span><small>Ask in plain language or pick from the catalog</small></div>
-    <div class="pipestep"><b>2</b><span>Scope</span><small>Who is asking, and on which connectors they may act</small></div>
-    <div class="pipestep"><b>3</b><span>Classify</span><small>Risk from policy and the environment it touches</small></div>
-    <div class="pipestep gate"><b>4</b><span>Approve</span><small>A second person decides when policy says so</small></div>
-    <div class="pipestep"><b>5</b><span>Run</span><small>On a bounded runtime, with the requester's identity</small></div>
-    <div class="pipestep"><b>6</b><span>Verify</span><small>Check the outcome, roll back if it did not hold</small></div>
-    <div class="pipestep"><b>7</b><span>Record</span><small>Evidence from every step, hash-chained</small></div>
+  <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence. Follow one ServiceNow incident through all seven.</p>
+
+  <!-- The finished run is the static markup; assets/gates.js rewinds it and
+       plays it once, one gate at a time, when the section scrolls into view. -->
+  <div class="gx" id="gates">
+    <div class="gticket">
+      <span class="gsrc"><span>ServiceNow incident INC0052230</span><span>Priority 1, Cloud Operations</span></span>
+      <q>Employee portal returns 502 since 08:40.</q>
+    </div>
+    <ol class="gates">
+      <li class="g"><div class="gstep"><b>1</b><span>Intent</span><small>Ask in plain language, pick from the catalog, or let a ticket ask</small></div>
+        <div class="gex"><div class="gin"><span class="gl">From ServiceNow</span>KYVAR pulls the incident from the Cloud Operations queue and opens an investigation.</div></div></li>
+      <li class="g"><div class="gstep"><b>2</b><span>Scope</span><small>Who is asking, and on which connectors they may act</small></div>
+        <div class="gex"><div class="gin"><span class="gl">Read-only, inside the assignee's grant</span>On the AKS cluster: 1 of 3 pods ready, 27 restarts, each killed for memory.</div></div></li>
+      <li class="g"><div class="gstep"><b>3</b><span>Classify</span><small>Risk from policy and the environment it touches</small></div>
+        <div class="gex"><div class="gin"><span class="gl">Root cause and risk</span>Release 4.2.0 needs more than the 512 Mi limit. The fix changes a production cluster: high risk.</div></div></li>
+      <li class="g gate" data-gate><div class="gstep"><b>4</b><span>Approve</span><small>A second person decides when policy says so</small></div>
+        <div class="gex"><div class="gin"><span class="gl">A person decides</span><span data-gatetext data-wait="Waiting for a second person. Nothing has changed yet." data-done="Approved by Eitan B., cloud lead, with the exact commands in view.">Approved by Eitan B., cloud lead, with the exact commands in view.</span></div></div></li>
+      <li class="g"><div class="gstep"><b>5</b><span>Run</span><small>On a bounded runtime, with the requester's identity</small></div>
+        <div class="gex"><div class="gin"><span class="gl">Only what was approved</span><code>kubectl set resources deploy/portal-api --limits=memory=1Gi</code><code>kubectl rollout restart deploy/portal-api</code></div></div></li>
+      <li class="g verified"><div class="gstep"><b>6</b><span>Verify</span><small>Check the outcome, roll back if it did not hold</small></div>
+        <div class="gex"><div class="gin"><span class="gl">Checked again</span>3 of 3 pods ready, no new restarts, the portal answers 200.</div></div></li>
+      <li class="g"><div class="gstep"><b>7</b><span>Record</span><small>Evidence from every step, hash-chained</small></div>
+        <div class="gex"><div class="gin"><span class="gl">Written back</span>INC0052230 resolved in ServiceNow with the cause, the change and the proof. Audit entry 51907.</div></div></li>
+    </ol>
+    <div class="gfoot"><span data-status>Resolved in 6 min 40 s, one decision by a person</span><button type="button" data-ctl hidden>Replay</button></div>
   </div>
   <div class="quote">“The agent is replaceable. The governance around it is the product.”</div>
 </div></section>
@@ -607,4 +624,5 @@
 
 <script src="assets/site.js"></script>
 <script src="assets/record.js"></script>
+<script src="assets/gates.js"></script>
 </body></html>
