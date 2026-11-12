@@ -88,6 +88,10 @@ HOME_LINKS = [
     "pilot.html",
     "pricing.html",
     "contact.html",
+    "solutions/index.html",
+    "solutions/msp-ai-operations.html",
+    "solutions/alert-noise-auto-remediation.html",
+    "solutions/servicenow-jira-ticket-investigation.html",
     "insights/index.html",
     "insights/what-is-self-healing-infrastructure.html",
     "insights/day-0-vs-day-2-operations.html",
@@ -189,7 +193,7 @@ def main() -> int:
     init = (ROOT / "assets/theme-init.js").read_text(encoding="utf-8")
     if "httpEquiv" not in init or "location.replace" not in init or "index.html" not in init:
         problems.append("assets/theme-init.js: /index.html must meta-refresh to the directory URL")
-    for name in ("index.html", "insights/index.html"):
+    for name in ("index.html", "insights/index.html", "solutions/index.html"):
         page = (ROOT / name).read_text(encoding="utf-8")
         if "theme-init.js" not in page:
             problems.append(f"{name}: must load theme-init.js so /index.html can redirect")

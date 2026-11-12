@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="/assets/theme-init.js"></script>
+<script src="/assets/consent.js"></script>
+<title>AI Operations for MSPs Across Customer Tenants | KYVAR</title>
+<meta name="description" content="One governed console for an MSP’s customers: per-customer runtimes and ServiceNow, AI investigation, human approval and audit on both sides.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://kyvar.io/solutions/msp-ai-operations.html">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1b2a">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2f6">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KYVAR">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://kyvar.io/solutions/msp-ai-operations.html">
+<meta property="og:title" content="AI Operations for MSPs Across Customer Tenants | KYVAR">
+<meta property="og:description" content="One governed console for an MSP’s customers: per-customer runtimes and ServiceNow, AI investigation, human approval and audit on both sides.">
+<meta property="og:image" content="https://kyvar.io/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KYVAR — Agentic AI for IT operations. Keep humans in control.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Operations for MSPs Across Customer Tenants | KYVAR">
+<meta name="twitter:description" content="One governed console for an MSP’s customers: per-customer runtimes and ServiceNow, AI investigation, human approval and audit on both sides.">
+<meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://kyvar.io/solutions/msp-ai-operations.html",
+      "url": "https://kyvar.io/solutions/msp-ai-operations.html",
+      "name": "AI Operations for MSPs Across Customer Tenants | KYVAR",
+      "description": "One governed console for an MSP’s customers: per-customer runtimes and ServiceNow, AI investigation, human approval and audit on both sides.",
+      "isPartOf": {
+        "@id": "https://kyvar.io/#website"
+      },
+      "publisher": {
+        "@id": "https://kyvar.io/#org"
+      },
+      "dateModified": "2026-11-12"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "KYVAR",
+          "item": "https://kyvar.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Solutions",
+          "item": "https://kyvar.io/solutions/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI operations for MSPs",
+          "item": "https://kyvar.io/solutions/msp-ai-operations.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can one customer’s data reach another customer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Tenant and role are resolved from the database per request, cross-tenant objects return 404, and PostgreSQL row-level security refuses another tenant’s rows beneath the application’s own checks. Each connector and credential belongs to one customer’s runtime."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does each customer need their own ServiceNow instance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KYVAR works with each customer’s own ServiceNow instance, and the handling mode is set per customer and per category: pull and investigate, recommend, or approve and then execute, with closing tickets and drafting knowledge articles as options."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can our customers sign in with their own identity provider?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Each MSP and customer can configure its own OIDC sign-in with group mapping, and support access to a customer is approved by that customer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a large customer get a dedicated deployment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The same product runs as one service for several MSPs or as a dedicated deployment, with the same governance either way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is KYVAR priced for an MSP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MSP pricing is agreed per partner. See the pricing page or talk to us about your customer base."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head><body><div class="glow"></div>
+
+<nav class="nav">
+  <a class="brand" href="/">
+    <img src="/branding/kyvar-mark.png" alt="">
+    <span>KYVAR</span>
+  </a>
+  <div class="navlinks">
+    <a href="/#platform">Platform</a>
+    <a class="active" href="/solutions/">Solutions</a>
+    <a href="/security.html">Security</a>
+    <a href="/trust.html">Trust</a>
+    <a href="/architecture.html">Architecture</a>
+    <a href="/pilot.html">Pilot</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/insights/">Insights</a>
+    <button class="navtoggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <button class="themetoggle" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
+      <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="login" href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
+    <a class="pilotcta" href="/contact.html">Start a pilot</a>
+  </div>
+</nav>
+
+<main>
+<header class="pagehero reveal">
+  <div class="eyebrow">For managed service providers</div>
+  <h1>AI operations for MSPs.<br><span>Every customer kept apart.</span></h1>
+  <p class="lede">One governed console across your customers: each with its own tenant, runtime, ServiceNow and sign-in. AI investigates the queue, a person approves the fix, and both you and the customer can read the record.</p>
+</header>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">The problem</div>
+  <h2>More customers, the same engineers.</h2>
+  <p>An MSP engineer works across many customers in one shift, each with its own service desk, credentials, change rules and escalation path. Scripts get copied from one customer to the next, and so do mistakes. When a customer asks what was done on their systems last night, the answer is spread across a ticket, a chat thread and somebody&rsquo;s shell history.</p>
+  <div class="cards" style="text-align:left">
+    <div class="card"><b>Context switching</b><p>Every ticket starts with finding the right customer, console and credential before any real work begins.</p></div>
+    <div class="card"><b>Cross-customer risk</b><p>One automation with the wrong target, or one credential used in the wrong tenant, is a contract problem, not a bug.</p></div>
+    <div class="card"><b>Proof for the customer</b><p>Customers increasingly ask for evidence of who changed what, who approved it, and whether it worked.</p></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">The approach</div>
+  <h2>One console. A boundary per customer.</h2>
+  <div class="cards two" style="text-align:left">
+    <div class="card"><b>A tenant per customer</b><p>A customer switcher in one console, with per-customer runtimes, connectors and policy. MSP roles decide who works on which customers.</p></div>
+    <div class="card"><b>The customer&rsquo;s own ServiceNow</b><p>KYVAR polls each customer&rsquo;s ServiceNow queue and handles tickets per customer and category: pull and investigate, recommend a fix, or approve and then execute. Change Requests and knowledge-article drafts are written back.</p></div>
+    <div class="card"><b>Investigation before action</b><p>The AI investigates with read-only tools under the requester&rsquo;s own access and posts evidence-ranked findings. A fix it proposes still crosses the approval gate.</p></div>
+    <div class="card"><b>Audit on both sides</b><p>The MSP sees everything it did across customers; each customer sees the record for its own tenant, including any support access it approved.</p></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Architecture</div>
+  <h2>A runtime next to each customer&rsquo;s systems.</h2>
+  <p>The control plane keeps identity, policy, approvals and audit. A runtime installed inside each customer&rsquo;s network executes the work and polls KYVAR over outbound HTTPS 443, so no inbound firewall rule or VPN into the customer is needed. Each connector is bound to one approved runtime, and credentials can stay on that runtime. The same product runs as one service for several MSPs or as a dedicated deployment. More detail is on the <a href="/architecture.html">architecture page</a>.</p>
+
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Security</div>
+  <h2>Isolation the database enforces too.</h2>
+  <div class="cards" style="text-align:left">
+    <div class="card"><b>Tenant boundaries</b><p>Role and tenant are resolved from the database on every request; another customer&rsquo;s objects return 404, and PostgreSQL row-level security refuses their rows beneath the application.</p></div>
+    <div class="card"><b>Sign-in per customer</b><p>Each MSP and customer can bring its own OIDC sign-in with group mapping. Support access to a customer is something the customer approves.</p></div>
+    <div class="card"><b>Suspend in one step</b><p>An MSP can suspend a customer, and an emergency stop halts every runtime for a tenant until a person releases it.</p></div>
+  </div>
+  <p>The full list is on the <a href="/security.html">security page</a>.</p>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">An example</div>
+  <h2>One night, one customer, one record.</h2>
+  <p>An illustrative run, as an MSP would see it:</p>
+  <div class="callout" style="text-align:left"><ol style="margin:0;padding-left:22px;line-height:1.7">
+    <li>A high-priority incident lands in one customer&rsquo;s ServiceNow queue at night. KYVAR pulls it because that customer and category are set to investigate.</li>
+    <li>The investigation runs read-only on that customer&rsquo;s runtime, inside their network, and writes its findings and confidence back to the ticket.</li>
+    <li>It proposes a fix. Policy says a person must approve, so the on-call engineer gets the request and approves it.</li>
+    <li>The runtime carries out the change, the original check is run again, and the ticket is updated with what ran and the result.</li>
+    <li>The customer can open the same record in their own tenant. A knowledge-article draft waits for review so the next one is faster.</li>
+  </ol></div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Frequently asked</div>
+  <h2>Questions buyers ask first.</h2>
+  <div class="faq">
+    <details>
+      <summary>Can one customer&rsquo;s data reach another customer?</summary>
+      <p>No. Tenant and role are resolved from the database per request, cross-tenant objects return 404, and PostgreSQL row-level security refuses another tenant&rsquo;s rows beneath the application&rsquo;s own checks. Each connector and credential belongs to one customer&rsquo;s runtime.</p>
+    </details>
+    <details>
+      <summary>Does each customer need their own ServiceNow instance?</summary>
+      <p>KYVAR works with each customer&rsquo;s own ServiceNow instance, and the handling mode is set per customer and per category: pull and investigate, recommend, or approve and then execute, with closing tickets and drafting knowledge articles as options.</p>
+    </details>
+    <details>
+      <summary>Can our customers sign in with their own identity provider?</summary>
+      <p>Yes. Each MSP and customer can configure its own OIDC sign-in with group mapping, and support access to a customer is approved by that customer.</p>
+    </details>
+    <details>
+      <summary>Can a large customer get a dedicated deployment?</summary>
+      <p>Yes. The same product runs as one service for several MSPs or as a dedicated deployment, with the same governance either way.</p>
+    </details>
+    <details>
+      <summary>How is KYVAR priced for an MSP?</summary>
+      <p>MSP pricing is agreed per partner. See the <a href="/pricing.html">pricing page</a> or <a href="/contact.html">talk to us</a> about your customer base.</p>
+    </details>
+  </div>
+</div></section>
+
+<section class="section"><div class="center reveal">
+  <div class="kicker">See it on your own estate</div>
+  <h2>One real workload. 30–60 days.</h2>
+  <p>Start read-only, open one narrow write path with a person on the approval, and judge it on the record.</p>
+  <div class="cta">
+    <a class="button" href="/contact.html">Start a pilot</a>
+    <a class="button ghost" href="/pilot.html">How the pilot works</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="footgrid">
+    <div>
+      <a class="brand" href="/"><img src="/branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
+      <p>Agentic AI operations for IT infrastructure, with a person on every decision that matters. From Day 0 to Day 2, across every cloud and on-prem.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="/#platform">How it works</a>
+      <a href="/security.html">Security &amp; Compliance</a>
+      <a href="/trust.html">Trust Center</a>
+      <a href="/architecture.html">Architecture</a>
+      <a href="/pilot.html">Customer Pilot</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/insights/">Insights</a>
+    </div>
+    <div>
+      <h4>Solutions</h4>
+      <a href="/solutions/">All solutions</a>
+      <a href="/solutions/msp-ai-operations.html">For MSPs</a>
+      <a href="/solutions/alert-noise-auto-remediation.html">Alert noise and auto-remediation</a>
+      <a href="/solutions/servicenow-jira-ticket-investigation.html">ServiceNow and Jira tickets</a>
+    </div>
+    <div>
+      <h4>Insights</h4>
+      <a href="/insights/what-is-self-healing-infrastructure.html">Self-healing infrastructure</a>
+      <a href="/insights/day-0-vs-day-2-operations.html">Day 0 vs Day 2 operations</a>
+      <a href="/insights/autonomous-it-operations-governance.html">Autonomous IT and governance</a>
+      <a href="/insights/automatic-monitoring-auto-remediation.html">Monitoring and auto-remediation</a>
+      <a href="/insights/aiops-agentic-ai-governed-operator.html">AIOps and agentic AI</a>
+    </div>
+    <div>
+      <h4>Get started</h4>
+      <a href="/contact.html">Start a pilot</a>
+      <a href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
+      <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/cookies.html">Cookie Policy</a>
+      <a href="#" data-cookie-settings>Cookie settings</a>
+    </div>
+  </div>
+  <div class="footnote">
+    <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
+    <span>AWS · Azure · OCI · On-prem</span>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+</body></html>
