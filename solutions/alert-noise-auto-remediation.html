@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="/assets/theme-init.js"></script>
+<script src="/assets/consent.js"></script>
+<title>Reduce Alert Noise with Governed Auto-Remediation | KYVAR</title>
+<meta name="description" content="Fold duplicate alerts into one incident, find the likely cause with evidence, and run known fixes behind approvals. Built for lean IT teams.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://kyvar.io/solutions/alert-noise-auto-remediation.html">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1b2a">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2f6">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KYVAR">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://kyvar.io/solutions/alert-noise-auto-remediation.html">
+<meta property="og:title" content="Reduce Alert Noise with Governed Auto-Remediation | KYVAR">
+<meta property="og:description" content="Fold duplicate alerts into one incident, find the likely cause with evidence, and run known fixes behind approvals. Built for lean IT teams.">
+<meta property="og:image" content="https://kyvar.io/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KYVAR — Agentic AI for IT operations. Keep humans in control.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reduce Alert Noise with Governed Auto-Remediation | KYVAR">
+<meta name="twitter:description" content="Fold duplicate alerts into one incident, find the likely cause with evidence, and run known fixes behind approvals. Built for lean IT teams.">
+<meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://kyvar.io/solutions/alert-noise-auto-remediation.html",
+      "url": "https://kyvar.io/solutions/alert-noise-auto-remediation.html",
+      "name": "Reduce Alert Noise with Governed Auto-Remediation | KYVAR",
+      "description": "Fold duplicate alerts into one incident, find the likely cause with evidence, and run known fixes behind approvals. Built for lean IT teams.",
+      "isPartOf": {
+        "@id": "https://kyvar.io/#website"
+      },
+      "publisher": {
+        "@id": "https://kyvar.io/#org"
+      },
+      "dateModified": "2026-11-12"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "KYVAR",
+          "item": "https://kyvar.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Solutions",
+          "item": "https://kyvar.io/solutions/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alert noise and auto-remediation",
+          "item": "https://kyvar.io/solutions/alert-noise-auto-remediation.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does KYVAR replace our monitoring tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It takes alerts from the tools you already run and queries telemetry from Datadog or Splunk at investigation time. What it adds is the governed step from an alert to a verified fix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can auto-remediation run without a person approving it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only where you armed it, one monitor at a time, and only within risk policy. It is off by default, high-risk real writes are refused, and change requests that an alert starts wait for human approval."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does KYVAR reduce alert noise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alerts about the same asset from a probe, a monitor and a ticket are correlated into one incident, repeating alerts fold into it, and flapping detectors are named with a suggested threshold."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What stops a fix from looping?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every armed remediation has thresholds and cooldowns, and the original check runs again after the fix. A fix that does not restore health is not repeated without limit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which alert sources are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CloudWatch, Azure Monitor, Google Cloud, New Relic, Zabbix, Elastic, Sentry, Alertmanager and Opsgenie, plus KYVAR’s own probes and monitors."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head><body><div class="glow"></div>
+
+<nav class="nav">
+  <a class="brand" href="/">
+    <img src="/branding/kyvar-mark.png" alt="">
+    <span>KYVAR</span>
+  </a>
+  <div class="navlinks">
+    <a href="/#platform">Platform</a>
+    <a class="active" href="/solutions/">Solutions</a>
+    <a href="/security.html">Security</a>
+    <a href="/trust.html">Trust</a>
+    <a href="/architecture.html">Architecture</a>
+    <a href="/pilot.html">Pilot</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/insights/">Insights</a>
+    <button class="navtoggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <button class="themetoggle" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
+      <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="login" href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
+    <a class="pilotcta" href="/contact.html">Start a pilot</a>
+  </div>
+</nav>
+
+<main>
+<header class="pagehero reveal">
+  <div class="eyebrow">For lean IT teams</div>
+  <h1>Fewer alerts. Fewer night pages.<br><span>Fixes that wait for a person.</span></h1>
+  <p class="lede">A mid-size IT team cannot staff a NOC. KYVAR folds duplicate alerts into one incident, explains the likely cause, and runs the known fix only where you armed it and policy allows.</p>
+</header>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">The problem</div>
+  <h2>Every tool can alert. Nobody has time to fix.</h2>
+  <p>A team of a few engineers runs cloud, virtualization, servers and the service desk. A probe, a monitor and a ticket all report the same server, a flapping detector pages twice an hour, and half the night pages end with the same restart someone has done twenty times before. Detection is not the bottleneck. The time between knowing and fixing is.</p>
+
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">The approach</div>
+  <h2>From an alert to a verified fix.</h2>
+  <div class="cards two" style="text-align:left">
+    <div class="card"><b>One incident, not five alerts</b><p>A probe, a monitor and a ticket about the same asset become one incident. Repeating alerts fold into it, and flapping detectors are named with a suggested threshold.</p></div>
+    <div class="card"><b>A cause, with evidence</b><p>Investigation produces a root-cause report with confidence and evidence, and similar past incidents. Telemetry from Datadog or Splunk is queried at investigation time, not copied into KYVAR.</p></div>
+    <div class="card"><b>Monitors that may act</b><p>Armed per monitor and off by default, an unhealthy verdict can launch a bounded fix, a named runbook or a workflow, behind thresholds, cooldowns and approvals.</p></div>
+    <div class="card"><b>Proof it worked</b><p>The original check runs again after the fix. Recurring-problem analysis shows which assets keep failing and the time lost to them, and the impact map shows what else stops if an asset goes down.</p></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Architecture</div>
+  <h2>Keep your monitoring. Add the loop.</h2>
+  <p>KYVAR takes alerts from the tools you already run, including CloudWatch, Azure Monitor, Google Cloud, New Relic, Zabbix, Elastic, Sentry, Alertmanager and Opsgenie, and its own probes and monitors. A runtime close to the target, in a cloud account or inside your network, carries out the work over outbound HTTPS only. See the <a href="/architecture.html">architecture page</a>.</p>
+
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Security</div>
+  <h2>Automation gets no governance discount.</h2>
+  <div class="cards" style="text-align:left">
+    <div class="card"><b>Off until armed</b><p>Self-healing is armed one monitor at a time, never with a global switch, and an emergency stop halts all of it.</p></div>
+    <div class="card"><b>The same gates as a person</b><p>A monitor-triggered fix travels the same risk policy, approvals and audit as an operator&rsquo;s change. Change requests started by an alert wait for a person.</p></div>
+    <div class="card"><b>Loops are bounded</b><p>Thresholds and cooldowns stop a fix that repeats. High-risk real writes are refused outright.</p></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">An example</div>
+  <h2>A stopped server, handled before morning.</h2>
+  <p>An illustrative run:</p>
+  <div class="callout" style="text-align:left"><ol style="margin:0;padding-left:22px;line-height:1.7">
+    <li>A monitor finds a cloud instance stopped. A probe on the same server fails too, and both become one incident.</li>
+    <li>The monitor is armed with a start-or-reboot remediation, inside its cooldown and threshold.</li>
+    <li>KYVAR reads the live instance state, starts it, and runs the original health check again: healthy.</li>
+    <li>The incident is resolved on the record with every step, and the engineer reads it in the morning instead of being woken.</li>
+  </ol></div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Frequently asked</div>
+  <h2>Questions buyers ask first.</h2>
+  <div class="faq">
+    <details>
+      <summary>Does KYVAR replace our monitoring tools?</summary>
+      <p>No. It takes alerts from the tools you already run and queries telemetry from Datadog or Splunk at investigation time. What it adds is the governed step from an alert to a verified fix.</p>
+    </details>
+    <details>
+      <summary>Can auto-remediation run without a person approving it?</summary>
+      <p>Only where you armed it, one monitor at a time, and only within risk policy. It is off by default, high-risk real writes are refused, and change requests that an alert starts wait for human approval.</p>
+    </details>
+    <details>
+      <summary>How does KYVAR reduce alert noise?</summary>
+      <p>Alerts about the same asset from a probe, a monitor and a ticket are correlated into one incident, repeating alerts fold into it, and flapping detectors are named with a suggested threshold.</p>
+    </details>
+    <details>
+      <summary>What stops a fix from looping?</summary>
+      <p>Every armed remediation has thresholds and cooldowns, and the original check runs again after the fix. A fix that does not restore health is not repeated without limit.</p>
+    </details>
+    <details>
+      <summary>Which alert sources are supported?</summary>
+      <p>CloudWatch, Azure Monitor, Google Cloud, New Relic, Zabbix, Elastic, Sentry, Alertmanager and Opsgenie, plus KYVAR&rsquo;s own probes and monitors.</p>
+    </details>
+  </div>
+</div></section>
+
+<section class="section"><div class="center reveal">
+  <div class="kicker">See it on your own estate</div>
+  <h2>One real workload. 30–60 days.</h2>
+  <p>Start read-only, open one narrow write path with a person on the approval, and judge it on the record.</p>
+  <div class="cta">
+    <a class="button" href="/contact.html">Start a pilot</a>
+    <a class="button ghost" href="/pilot.html">How the pilot works</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="footgrid">
+    <div>
+      <a class="brand" href="/"><img src="/branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
+      <p>Agentic AI operations for IT infrastructure, with a person on every decision that matters. From Day 0 to Day 2, across every cloud and on-prem.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="/#platform">How it works</a>
+      <a href="/security.html">Security &amp; Compliance</a>
+      <a href="/trust.html">Trust Center</a>
+      <a href="/architecture.html">Architecture</a>
+      <a href="/pilot.html">Customer Pilot</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/insights/">Insights</a>
+    </div>
+    <div>
+      <h4>Solutions</h4>
+      <a href="/solutions/">All solutions</a>
+      <a href="/solutions/msp-ai-operations.html">For MSPs</a>
+      <a href="/solutions/alert-noise-auto-remediation.html">Alert noise and auto-remediation</a>
+      <a href="/solutions/servicenow-jira-ticket-investigation.html">ServiceNow and Jira tickets</a>
+    </div>
+    <div>
+      <h4>Insights</h4>
+      <a href="/insights/what-is-self-healing-infrastructure.html">Self-healing infrastructure</a>
+      <a href="/insights/day-0-vs-day-2-operations.html">Day 0 vs Day 2 operations</a>
+      <a href="/insights/autonomous-it-operations-governance.html">Autonomous IT and governance</a>
+      <a href="/insights/automatic-monitoring-auto-remediation.html">Monitoring and auto-remediation</a>
+      <a href="/insights/aiops-agentic-ai-governed-operator.html">AIOps and agentic AI</a>
+    </div>
+    <div>
+      <h4>Get started</h4>
+      <a href="/contact.html">Start a pilot</a>
+      <a href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
+      <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/cookies.html">Cookie Policy</a>
+      <a href="#" data-cookie-settings>Cookie settings</a>
+    </div>
+  </div>
+  <div class="footnote">
+    <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
+    <span>AWS · Azure · OCI · On-prem</span>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+</body></html>

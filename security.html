@@ -38,14 +38,87 @@
       "@id": "https://kyvar.io/security.html",
       "url": "https://kyvar.io/security.html",
       "name": "Security & Compliance — KYVAR",
-      "isPartOf": { "@id": "https://kyvar.io/#website" },
+      "isPartOf": {
+        "@id": "https://kyvar.io/#website"
+      },
       "description": "How KYVAR keeps autonomous IT operations safe: write-gate chain, identity and tenant boundaries, controlled credentials, and audit that security teams can use."
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "KYVAR", "item": "https://kyvar.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Security & Compliance", "item": "https://kyvar.io/security.html" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "KYVAR",
+          "item": "https://kyvar.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Security & Compliance",
+          "item": "https://kyvar.io/security.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is KYVAR SOC 2 or ISO 27001 certified?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not yet, and we do not claim it. KYVAR is preparing for a SOC 2 Type I audit, with ISO 27001 planned after that. The Trust Center shows where each stands, and a self-hosted deployment runs under the controls your organization already holds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are credentials encrypted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Credentials are encrypted at rest with Fernet authenticated encryption, with the key kept outside the database and optionally wrapped by AWS KMS, Azure Key Vault or HashiCorp Vault. They are never returned by an API and are decrypted only for the one enrolled runtime that owns the connector, per run."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is KYVAR hosted, and where does our data live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By default KYVAR runs in your own environment, so your data stays there. A hosted option is available, where KYVAR acts as a processor under a Data Processing Agreement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI model sees our data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The model provider you configure, with your own key, which lives on the runtime. Compliance profiles for PCI, HIPAA, GDPR and critical infrastructure can restrict providers and redact regulated data. Nothing else leaves your environment beyond the integrations you configure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the AI change production without a person approving?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Writes are deny-by-default. Risk policy decides when a person must approve, the requester can never approve their own change, high-risk real writes are refused, and change requests started by an alert wait for human approval."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is one tenant kept from another?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Role and tenant are resolved from the database on every request, cross-tenant objects return 404, and PostgreSQL row-level security refuses another tenant’s rows beneath the application’s own checks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if an alert or a ticket contains instructions aimed at the AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Outside text is treated as data. A 54-attack red-team suite covers every path where outside text reaches an agent and runs on every change, and the architecture keeps investigations read-only with a person on the approval gate."
+          }
+        }
       ]
     }
   ]
@@ -61,6 +134,7 @@
   </a>
   <div class="navlinks">
     <a href="/#platform">Platform</a>
+    <a href="/solutions/">Solutions</a>
     <a class="active" href="security.html">Security</a>
     <a href="trust.html">Trust</a>
     <a href="architecture.html">Architecture</a>
@@ -243,6 +317,51 @@
   </div>
 </div></section>
 
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Encryption and hosting</div>
+  <h2>Where it runs, and how secrets are kept.</h2>
+  <div class="cards" style="text-align:left">
+    <div class="card"><b>Encryption</b><p>TLS for every connection, with HSTS. Credentials, MFA seeds and identity-provider secrets are encrypted at rest with authenticated encryption (Fernet: AES with an HMAC-SHA256 check). The key is kept outside the database and can be wrapped by AWS KMS, Azure Key Vault or HashiCorp Vault, and it can be rotated without an outage.</p></div>
+    <div class="card"><b>Hosting</b><p>Self-hosted by default, in your own cloud account or data center: one VM with Docker Compose, a VM with managed PostgreSQL, or Kubernetes with Helm. A hosted option exists for teams that would rather not run the control plane, under a Data Processing Agreement.</p></div>
+    <div class="card"><b>Models and data</b><p>Bring your own model provider and key; the key lives on the runtime, not in KYVAR&rsquo;s database. Compliance profiles can restrict which providers may be used and redact regulated data before it reaches a model.</p></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Frequently asked</div>
+  <h2>Security questions, answered plainly.</h2>
+  <div class="faq">
+    <details>
+      <summary>Is KYVAR SOC 2 or ISO 27001 certified?</summary>
+      <p>Not yet, and we do not claim it. KYVAR is preparing for a SOC 2 Type I audit, with ISO 27001 planned after that. The <a href="trust.html">Trust Center</a> shows where each stands, and a self-hosted deployment runs under the controls your organization already holds.</p>
+    </details>
+    <details>
+      <summary>How are credentials encrypted?</summary>
+      <p>Credentials are encrypted at rest with Fernet authenticated encryption, with the key kept outside the database and optionally wrapped by AWS KMS, Azure Key Vault or HashiCorp Vault. They are never returned by an API and are decrypted only for the one enrolled runtime that owns the connector, per run.</p>
+    </details>
+    <details>
+      <summary>Where is KYVAR hosted, and where does our data live?</summary>
+      <p>By default KYVAR runs in your own environment, so your data stays there. A hosted option is available, where KYVAR acts as a processor under a Data Processing Agreement.</p>
+    </details>
+    <details>
+      <summary>Which AI model sees our data?</summary>
+      <p>The model provider you configure, with your own key, which lives on the runtime. Compliance profiles for PCI, HIPAA, GDPR and critical infrastructure can restrict providers and redact regulated data. Nothing else leaves your environment beyond the integrations you configure.</p>
+    </details>
+    <details>
+      <summary>Can the AI change production without a person approving?</summary>
+      <p>Writes are deny-by-default. Risk policy decides when a person must approve, the requester can never approve their own change, high-risk real writes are refused, and change requests started by an alert wait for human approval.</p>
+    </details>
+    <details>
+      <summary>How is one tenant kept from another?</summary>
+      <p>Role and tenant are resolved from the database on every request, cross-tenant objects return 404, and PostgreSQL row-level security refuses another tenant&rsquo;s rows beneath the application&rsquo;s own checks.</p>
+    </details>
+    <details>
+      <summary>What if an alert or a ticket contains instructions aimed at the AI?</summary>
+      <p>Outside text is treated as data. A 54-attack red-team suite covers every path where outside text reaches an agent and runs on every change, and the architecture keeps investigations read-only with a person on the approval gate.</p>
+    </details>
+  </div>
+</div></section>
+
 <section class="section"><div class="center reveal">
   <div class="kicker">Put it to the test</div>
   <h2>Let your security team try to break it.</h2>
@@ -258,7 +377,7 @@
   <div class="footgrid">
     <div>
       <a class="brand" href="/"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
-      <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
+      <p>Agentic AI operations for IT infrastructure, with a person on every decision that matters. From Day 0 to Day 2, across every cloud and on-prem.</p>
     </div>
     <div>
       <h4>Platform</h4>
@@ -269,6 +388,13 @@
       <a href="pilot.html">Customer Pilot</a>
       <a href="pricing.html">Pricing</a>
       <a href="insights/">Insights</a>
+    </div>
+    <div>
+      <h4>Solutions</h4>
+      <a href="/solutions/">All solutions</a>
+      <a href="/solutions/msp-ai-operations.html">For MSPs</a>
+      <a href="/solutions/alert-noise-auto-remediation.html">Alert noise and auto-remediation</a>
+      <a href="/solutions/servicenow-jira-ticket-investigation.html">ServiceNow and Jira tickets</a>
     </div>
     <div>
       <h4>Insights</h4>

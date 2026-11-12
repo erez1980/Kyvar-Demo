@@ -38,14 +38,79 @@
       "@id": "https://kyvar.io/architecture.html",
       "url": "https://kyvar.io/architecture.html",
       "name": "Architecture & Deployment — KYVAR",
-      "isPartOf": { "@id": "https://kyvar.io/#website" },
+      "isPartOf": {
+        "@id": "https://kyvar.io/#website"
+      },
       "description": "KYVAR separates governance from execution: a cloud control plane decides what may happen; enrolled runtimes execute close to the target with zero inbound exposure."
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "KYVAR", "item": "https://kyvar.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Architecture & Deployment", "item": "https://kyvar.io/architecture.html" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "KYVAR",
+          "item": "https://kyvar.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Architecture & Deployment",
+          "item": "https://kyvar.io/architecture.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can KYVAR be self-hosted, or is it SaaS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both, with the same governance. Self-hosted is the default: in your own cloud account or data center. A hosted control plane is available for teams that would rather not run it, while runtimes still execute inside your network."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a runtime need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2 vCPU, 4 GB RAM, 20 GB disk, Docker with Compose, and outbound HTTPS to KYVAR and the model provider you choose."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does KYVAR need inbound ports, a VPN or a message broker?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Runtimes poll the control plane over outbound HTTPS 443, so no inbound firewall rule, DMZ or VPN is needed. PostgreSQL is both the state store and the work queue, so there is no broker to run or secure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do we run it in production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evaluate on one VM with Docker Compose. For production, run the control plane on a VM with managed PostgreSQL, or on Kubernetes with the Helm chart: several replicas, horizontal autoscaling, migration jobs and TLS ingress."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which platforms can a runtime reach?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AWS, Azure and Oracle Cloud; VMware vSphere, Nutanix, Proxmox VE and Hyper-V through SCVMM; Linux and Windows servers; identity and devices; the service desk; and observability tools. A runtime inside your network reaches everything on-prem."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are backups and upgrades handled?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Runs are persisted and workers reconnect safely. A database backup is taken before each deploy, restores are drilled, and releases ship as prebuilt images with rolling upgrades."
+          }
+        }
       ]
     }
   ]
@@ -61,6 +126,7 @@
   </a>
   <div class="navlinks">
     <a href="/#platform">Platform</a>
+    <a href="/solutions/">Solutions</a>
     <a href="security.html">Security</a>
     <a href="trust.html">Trust</a>
     <a class="active" href="architecture.html">Architecture</a>
@@ -165,6 +231,37 @@
   <p>The control plane keeps the decision: who is asking, which connector they may use, whether policy requires a second person, and the hash-chained record of what ran. Binding each connector to one approved runtime keeps production, development, and separate network zones from sharing an execution path. Those gates are described in the <a href="/security.html">security architecture</a>, what a review should expect is in the <a href="/trust.html">trust center</a>, and a <a href="/pilot.html">30–60 day pilot</a> starts read-only before any write path is opened.</p>
 </div></section>
 
+<section class="section tight"><div class="center reveal">
+  <div class="kicker">Frequently asked</div>
+  <h2>Architecture questions, answered.</h2>
+  <div class="faq">
+    <details>
+      <summary>Can KYVAR be self-hosted, or is it SaaS?</summary>
+      <p>Both, with the same governance. Self-hosted is the default: in your own cloud account or data center. A hosted control plane is available for teams that would rather not run it, while runtimes still execute inside your network.</p>
+    </details>
+    <details>
+      <summary>What does a runtime need?</summary>
+      <p>2 vCPU, 4 GB RAM, 20 GB disk, Docker with Compose, and outbound HTTPS to KYVAR and the model provider you choose.</p>
+    </details>
+    <details>
+      <summary>Does KYVAR need inbound ports, a VPN or a message broker?</summary>
+      <p>No. Runtimes poll the control plane over outbound HTTPS 443, so no inbound firewall rule, DMZ or VPN is needed. PostgreSQL is both the state store and the work queue, so there is no broker to run or secure.</p>
+    </details>
+    <details>
+      <summary>How do we run it in production?</summary>
+      <p>Evaluate on one VM with Docker Compose. For production, run the control plane on a VM with managed PostgreSQL, or on Kubernetes with the Helm chart: several replicas, horizontal autoscaling, migration jobs and TLS ingress.</p>
+    </details>
+    <details>
+      <summary>Which platforms can a runtime reach?</summary>
+      <p>AWS, Azure and Oracle Cloud; VMware vSphere, Nutanix, Proxmox VE and Hyper-V through SCVMM; Linux and Windows servers; identity and devices; the service desk; and observability tools. A runtime inside your network reaches everything on-prem.</p>
+    </details>
+    <details>
+      <summary>How are backups and upgrades handled?</summary>
+      <p>Runs are persisted and workers reconnect safely. A database backup is taken before each deploy, restores are drilled, and releases ship as prebuilt images with rolling upgrades.</p>
+    </details>
+  </div>
+</div></section>
+
 <section class="section"><div class="center reveal">
   <div class="kicker">Run it where you run</div>
   <h2>An afternoon to evaluate.<br>A cluster for production.</h2>
@@ -180,7 +277,7 @@
   <div class="footgrid">
     <div>
       <a class="brand" href="/"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
-      <p>The governance plane for autonomous IT operations. From Day 0 to Day 2 — safely, across every cloud and on-prem.</p>
+      <p>Agentic AI operations for IT infrastructure, with a person on every decision that matters. From Day 0 to Day 2, across every cloud and on-prem.</p>
     </div>
     <div>
       <h4>Platform</h4>
@@ -191,6 +288,13 @@
       <a href="pilot.html">Customer Pilot</a>
       <a href="pricing.html">Pricing</a>
       <a href="insights/">Insights</a>
+    </div>
+    <div>
+      <h4>Solutions</h4>
+      <a href="/solutions/">All solutions</a>
+      <a href="/solutions/msp-ai-operations.html">For MSPs</a>
+      <a href="/solutions/alert-noise-auto-remediation.html">Alert noise and auto-remediation</a>
+      <a href="/solutions/servicenow-jira-ticket-investigation.html">ServiceNow and Jira tickets</a>
     </div>
     <div>
       <h4>Insights</h4>
