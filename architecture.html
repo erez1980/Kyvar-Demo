@@ -121,18 +121,15 @@
 
 <nav class="nav">
   <a class="brand" href="/">
-    <img src="branding/kyvar-mark.png" alt="">
+    <img src="/branding/kyvar-mark.png" alt="">
     <span>KYVAR</span>
   </a>
   <div class="navlinks">
-    <a href="/#platform">Platform</a>
+    <a href="/platform.html">Platform</a>
     <a href="/solutions/">Solutions</a>
-    <a href="security.html">Security</a>
-    <a href="trust.html">Trust</a>
-    <a class="active" href="architecture.html">Architecture</a>
-    <a href="pilot.html">Pilot</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="insights/">Insights</a>
+    <a href="/security.html">Security</a>
+    <a href="/trust.html">Trust</a>
+    <a href="/insights/">Insights</a>
     <button class="navtoggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
@@ -142,7 +139,7 @@
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
     <a class="login" href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
-    <a class="pilotcta" href="contact.html">Start a pilot</a>
+    <span class="soon" title="KYVAR opens to new customers soon">Coming soon</span>
   </div>
 </nav>
 
@@ -228,7 +225,7 @@
   <div class="kicker">Where the work runs</div>
   <h2>One governance model. Execution next to the target.</h2>
   <p>Every action is executed by an enrolled runtime close to the target: in a cloud account, a data center, a branch, or an isolated network. On-prem virtualization — VMware vSphere, Nutanix, Proxmox VE, and Hyper-V through SCVMM — and servers over SSH are reached by a runtime inside that network. The runtime polls KYVAR over outbound HTTPS. It does not need an inbound firewall rule, and credentials can stay on the runtime.</p>
-  <p>The control plane keeps the decision: who is asking, which connector they may use, whether policy requires a second person, and the hash-chained record of what ran. Binding each connector to one approved runtime keeps production, development, and separate network zones from sharing an execution path. Those gates are described in the <a href="/security.html">security architecture</a>, what a review should expect is in the <a href="/trust.html">trust center</a>, and a <a href="/pilot.html">30–60 day pilot</a> starts read-only before any write path is opened.</p>
+  <p>The control plane keeps the decision: who is asking, which connector they may use, whether policy requires a second person, and the hash-chained record of what ran. Binding each connector to one approved runtime keeps production, development, and separate network zones from sharing an execution path. Those gates are described in the <a href="/security.html">security architecture</a>, what a review should expect is in the <a href="/trust.html">trust center</a>, and a <a href="/contact.html">conversation with the team</a> starts read-only before any write path is opened.</p>
 </div></section>
 
 <section class="section tight"><div class="center reveal">
@@ -267,8 +264,8 @@
   <h2>An afternoon to evaluate.<br>A cluster for production.</h2>
   <p>Start with Docker Compose on one VM, prove the loop on a real workload, then graduate to Helm on your cluster — the governance model never changes.</p>
   <div class="cta">
-    <a class="button" href="contact.html">Start a pilot</a>
-    <a class="button ghost" href="pilot.html">How the pilot works</a>
+    <a class="button" href="/contact.html">Talk to us</a>
+    <a class="button ghost" href="/platform.html">See how it works</a>
   </div>
 </div></section>
 </main>
@@ -276,18 +273,15 @@
 <footer class="footer">
   <div class="footgrid">
     <div>
-      <a class="brand" href="/"><img src="branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
+      <a class="brand" href="/"><img src="/branding/kyvar-mark.png" alt="" style="height:34px;margin-right:10px"><span>KYVAR</span></a>
       <p>Agentic AI operations for IT infrastructure, with a person on every decision that matters. From Day 0 to Day 2, across every cloud and on-prem.</p>
     </div>
     <div>
       <h4>Platform</h4>
-      <a href="/#platform">How it works</a>
-      <a href="security.html">Security &amp; Compliance</a>
-      <a href="trust.html">Trust Center</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="pilot.html">Customer Pilot</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="insights/">Insights</a>
+      <a href="/platform.html">How it works</a>
+      <a href="/architecture.html">Architecture</a>
+      <a href="/security.html">Security &amp; Compliance</a>
+      <a href="/trust.html">Trust Center</a>
     </div>
     <div>
       <h4>Solutions</h4>
@@ -305,15 +299,15 @@
       <a href="/insights/aiops-agentic-ai-governed-operator.html">AIOps and agentic AI</a>
     </div>
     <div>
-      <h4>Get started</h4>
-      <a href="contact.html">Start a pilot</a>
+      <h4>Company</h4>
+      <a href="/contact.html">Contact</a>
       <a href="https://app.kyvar.io/login" rel="nofollow">Log in</a>
       <a href="mailto:hello@kyvar.io">hello@kyvar.io</a>
     </div>
     <div>
       <h4>Legal</h4>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="cookies.html">Cookie Policy</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/cookies.html">Cookie Policy</a>
       <a href="#" data-cookie-settings>Cookie settings</a>
     </div>
   </div>
@@ -321,7 +315,9 @@
     <span>© 2026 KYVAR. Autonomous IT, governed by design.</span>
     <span>AWS · Azure · OCI · On-prem</span>
   </div>
+  <canvas class="wordmark" data-thread="word" aria-hidden="true"></canvas>
 </footer>
 
 <script src="assets/site.js"></script>
+<script src="/assets/thread.js"></script>
 </body></html>
