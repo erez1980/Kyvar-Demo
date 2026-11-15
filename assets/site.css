@@ -819,7 +819,7 @@ html{scroll-padding-top:92px}
   .k-ruler ol{font-size:9.5px;letter-spacing:-.02em}
 }
 .k-blocks h2,.k-band h2,.k-ins h2{font-size:clamp(40px,6vw,84px);line-height:.94}
-@media(max-width:760px){.k-hero canvas{opacity:.35}}
+@media(max-width:760px){.k-hero canvas{opacity:.55}}
 /* The approval dot on the hero ruler breathes: the run is waiting for a person. */
 @media (prefers-reduced-motion: no-preference){
   .k-ruler li.wait:before{animation:kwait 2s ease-in-out infinite}

@@ -61,8 +61,8 @@
   function sway(p, T, k, amp) {
     if (!T) return p;
     return [p[0],
-      [p[1][0] + Math.sin(T * 0.35 + k) * amp, p[1][1] + Math.cos(T * 0.28 + k * 1.7) * amp],
-      [p[2][0] + Math.cos(T * 0.31 + k * 2.3) * amp, p[2][1] + Math.sin(T * 0.4 + k) * amp],
+      [p[1][0] + Math.sin(T * 0.5 + k) * amp, p[1][1] + Math.cos(T * 0.4 + k * 1.7) * amp],
+      [p[2][0] + Math.cos(T * 0.45 + k * 2.3) * amp, p[2][1] + Math.sin(T * 0.55 + k) * amp],
       p[3]];
   }
   // A ribbon: n strands spread across the normal of a cubic bezier.
@@ -95,11 +95,11 @@
     for (var i = 0; i < count; i++) {
       var t = ((T * speed + off + i / count) % 1 + 1) % 1;
       var q = bez(p, t), fade = Math.sin(Math.PI * t);
-      var g = x.createRadialGradient(q[0], q[1], 0, q[0], q[1], 10);
+      var g = x.createRadialGradient(q[0], q[1], 0, q[0], q[1], 14);
       g.addColorStop(0, P.c); g.addColorStop(1, P.cClear);
       x.globalAlpha = 0.9 * fade;
-      x.fillStyle = g; x.beginPath(); x.arc(q[0], q[1], 10, 0, 7); x.fill();
-      x.fillStyle = P.c; x.beginPath(); x.arc(q[0], q[1], 2.2, 0, 7); x.fill();
+      x.fillStyle = g; x.beginPath(); x.arc(q[0], q[1], 14, 0, 7); x.fill();
+      x.fillStyle = P.c; x.beginPath(); x.arc(q[0], q[1], 2.8, 0, 7); x.fill();
     }
     x.globalAlpha = 1;
   }
@@ -122,7 +122,7 @@
   // ---------- drawings (T = seconds, 0 = static) ----------
   var draw = {
     hero: function (c, T) {
-      var o = size(c), x = o.x, W = o.w, H = o.h, s = Math.min(1, W / 1200), A = 34 * s;
+      var o = size(c), x = o.x, W = o.w, H = o.h, s = Math.min(1, W / 1200), A = Math.max(26, 44 * s);
       var par = T ? Math.min(window.scrollY, H) * 0.12 : 0; // gentle parallax while scrolling past
       var r1 = sway([[-40, H * .26], [W * .2, H * .06], [W * .04, H * .72], [W * .27, H * .9 - par]], T, 0, A);
       var r2 = sway([[-60, H * .6], [W * .13, H * .38], [W * .22, H * .98], [W * .02, H * 1.05]], T, 1.3, A * .8);
@@ -132,8 +132,10 @@
       ribbon(x, r2, 50 * s, 30, .42, 1, T);
       ribbon(x, r3, 70 * s, 46, .6, 1.2, T);
       ribbon(x, r4, 44 * s, 28, .4, 1, T);
-      pulses(x, r1, T, 2, 0.07, 0);
-      pulses(x, r3, T, 2, 0.06, 0.4);
+      pulses(x, r1, T, 3, 0.09, 0);
+      pulses(x, r3, T, 3, 0.08, 0.4);
+      pulses(x, r2, T, 1, 0.07, 0.2);
+      pulses(x, r4, T, 1, 0.07, 0.7);
       var rot = T ? T * 0.02 : 0;
       orbit(x, W * .1, H * .5, 190 * s, 92 * s, -.5 + rot, P.line, .3);
       orbit(x, W * .1, H * .5, 260 * s, 140 * s, -.3 - rot * .7, P.line, .14);
