@@ -820,3 +820,8 @@ html{scroll-padding-top:92px}
 }
 .k-blocks h2,.k-band h2,.k-ins h2{font-size:clamp(40px,6vw,84px);line-height:.94}
 @media(max-width:760px){.k-hero canvas{opacity:.35}}
+/* The approval dot on the hero ruler breathes: the run is waiting for a person. */
+@media (prefers-reduced-motion: no-preference){
+  .k-ruler li.wait:before{animation:kwait 2s ease-in-out infinite}
+}
+@keyframes kwait{0%,100%{box-shadow:0 0 0 4px var(--person-soft)}50%{box-shadow:0 0 0 10px rgba(242,179,61,0)}}
