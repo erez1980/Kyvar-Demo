@@ -334,7 +334,7 @@ a.card:hover{border-color:var(--brand)}
 :root[data-theme="light"] .gsys.kyvar{background:#e4eff9;color:#14507f;border-color:#bcd3e8}
 @media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .gsys{background:#e3f4ea;color:#1c5c3c;border-color:#b7dcc6}:root:not([data-theme="dark"]) .gsys.kyvar{background:#e4eff9;color:#14507f;border-color:#bcd3e8}}
 .gtag{margin-left:auto;color:var(--faint);font-size:13px}
-.gshot{position:relative;aspect-ratio:1280/604;background:#0b1622}
+.gshot{position:relative;aspect-ratio:1600/896;background:#0b1622}
 .gshot img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .35s}
 .gshot img.on{opacity:1}
 .gfoot{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:11px 16px;border-top:1px solid var(--line-soft);font-size:13px;color:var(--faint)}

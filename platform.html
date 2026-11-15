@@ -166,40 +166,40 @@
   <h2>Seven gates between intent and change.</h2>
   <p>Every meaningful action travels the same governed pipeline. Nothing skips a step, and every step leaves evidence. Follow one ServiceNow incident through all seven, on the real ServiceNow and KYVAR screens.</p>
 
-  <!-- Real screens from the KYVAR demo: one ServiceNow incident at an MSP's
-       customer, walked through the seven gates. Without JS every gate and its
+  <!-- Real screens from the KYVAR demo: one ServiceNow incident from the
+       Service Desk queue, walked through the seven gates. Without JS every gate and its
        example are readable and the first screen shows; assets/gates.js plays
        the screens once when the section is on screen, and any gate can be
        picked to show its screen. -->
   <div class="gx" id="gates">
     <ol class="gates">
       <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="0"><span class="gstep"><b>1</b><span class="gn">Intent</span><small>Ask in plain language, pick from the catalog, or let a ticket ask</small></span>
-        <span class="gex"><span class="gl">The incident arrives</span>Brightwater’s patient portal returns 502. KYVAR pulls the ticket from the customer’s own ServiceNow.</span></button></li>
+        <span class="gex"><span class="gl">The incident arrives</span>The Tel Aviv office can’t open the ERP portal. KYVAR picks up the ServiceNow ticket and starts investigating, read-only.</span></button></li>
       <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="1"><span class="gstep"><b>2</b><span class="gn">Scope</span><small>Who is asking, and on which connectors they may act</small></span>
-        <span class="gex"><span class="gl">The right customer, the right grant</span>The ticket lands in Brightwater’s tenant. The engineer may operate there; everything so far is read-only.</span></button></li>
+        <span class="gex"><span class="gl">The right queue, the right person</span>It lands in the Service Desk queue. Noa may operate on these connectors; nothing has changed yet.</span></button></li>
       <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="2"><span class="gstep"><b>3</b><span class="gn">Classify</span><small>Risk from policy and the environment it touches</small></span>
-        <span class="gex"><span class="gl">Root cause and risk</span>Release 4.2.0 needs more than the 512 Mi memory limit. The fix changes a production cluster, so policy holds it.</span></button></li>
+        <span class="gex"><span class="gl">Root cause and risk</span>nginx on lb-erp-2 still points at a retired app server, the same cause as a published article. The fix is a change, so policy holds it.</span></button></li>
       <li class="g gate" data-gate><button type="button" class="gpick" aria-controls="gscreen" data-i="3"><span class="gstep"><b>4</b><span class="gn">Approve</span><small>A second person decides when policy says so</small></span>
-        <span class="gex"><span class="gl">A person decides</span>Eitan reads exactly what will run, on which cluster, and approves.</span></button></li>
+        <span class="gex"><span class="gl">A person decides</span>Noa asks to apply the fix. Ron reads exactly what will run, gives a reason, and approves.</span></button></li>
       <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="4"><span class="gstep"><b>5</b><span class="gn">Run</span><small>On a bounded runtime, with the requester’s identity</small></span>
-        <span class="gex"><span class="gl">Only what was approved</span>The customer’s own runtime raises the limit to 1 Gi and restarts the pods.</span></button></li>
+        <span class="gex"><span class="gl">Only what was approved</span>Three commands on lb-erp-2: switch the upstream, test and reload nginx, check the portal.</span></button></li>
       <li class="g verified"><button type="button" class="gpick" aria-controls="gscreen" data-i="5"><span class="gstep"><b>6</b><span class="gn">Verify</span><small>Check the outcome, roll back if it did not hold</small></span>
-        <span class="gex"><span class="gl">Checked again</span>3 of 3 pods ready, no new restarts, the portal answers 200.</span></button></li>
+        <span class="gex"><span class="gl">Checked again</span>The ERP portal answers 200 for the Tel Aviv office. What changed is written down.</span></button></li>
       <li class="g"><button type="button" class="gpick" aria-controls="gscreen" data-i="6"><span class="gstep"><b>7</b><span class="gn">Record</span><small>Evidence from every step, hash-chained</small></span>
-        <span class="gex"><span class="gl">Written back</span>Resolved in Brightwater’s ServiceNow with the cause, the change request and the proof.</span></button></li>
+        <span class="gex"><span class="gl">Written back</span>ServiceNow gets the cause, who asked, who approved and the proof, and the incident is resolved.</span></button></li>
     </ol>
     <figure class="gscreen" id="gscreen" aria-live="polite">
-      <figcaption class="gbar"><span class="gsys" data-systag>ServiceNow</span><span data-stepname>1 · Intent</span><span class="gtag">INC0052230 · Brightwater Health Clinics</span></figcaption>
+      <figcaption class="gbar"><span class="gsys" data-systag>ServiceNow</span><span data-stepname>1 · Intent</span><span class="gtag">INC0042117 · Tel Aviv office</span></figcaption>
       <div class="gshot">
-        <img src="assets/screenshots/gates/step-1.webp" width="1280" height="604" alt="The ServiceNow incident INC0052230: patient portal returns 502, priority 1" data-sys="ServiceNow" data-step="1 · Intent" class="on" loading="eager" decoding="async">
-        <img src="assets/screenshots/gates/step-2.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR Customers page: Brightwater Health Clinics, the engineer’s role and its open incident" data-sys="KYVAR" data-step="2 · Scope" loading="lazy" decoding="async">
-        <img src="assets/screenshots/gates/step-3.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR incident card: root cause, evidence from the cluster and the proposed fix" data-sys="KYVAR" data-step="3 · Classify" loading="lazy" decoding="async">
-        <img src="assets/screenshots/gates/step-4.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR Approvals page: the waiting fix with its three steps and the Approve button" data-sys="KYVAR" data-step="4 · Approve" loading="lazy" decoding="async">
-        <img src="assets/screenshots/gates/step-5.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR run page: the kubectl commands it ran, each completed" data-sys="KYVAR" data-step="5 · Run" loading="lazy" decoding="async">
-        <img src="assets/screenshots/gates/step-6.webp" width="1280" height="604" aria-hidden="true" alt="KYVAR run page: the answer, with pods ready and the portal answering 200" data-sys="KYVAR" data-step="6 · Verify" loading="lazy" decoding="async">
-        <img src="assets/screenshots/gates/step-7.webp" width="1280" height="604" aria-hidden="true" alt="The ServiceNow incident, now Resolved, with change request CHG0030001 and the resolution notes" data-sys="ServiceNow" data-step="7 · Record" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-1.webp" width="1600" height="896" alt="The ServiceNow incident INC0042117: the Tel Aviv office can’t open the ERP portal, with KYVAR’s first work notes" data-sys="ServiceNow" data-step="1 · Intent" class="on" loading="eager" decoding="async">
+        <img src="assets/screenshots/gates/step-2.webp" width="1600" height="896" aria-hidden="true" alt="KYVAR Service Desk queue signed in as Noa: the ServiceNow incident with its root cause, evidence and proposed fix" data-sys="KYVAR" data-step="2 · Scope" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-3.webp" width="1600" height="896" aria-hidden="true" alt="KYVAR incident card: root cause with high confidence, the evidence, the proposed fix, the policy hold and the Approve &amp; apply button" data-sys="KYVAR" data-step="3 · Classify" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-4.webp" width="1600" height="896" aria-hidden="true" alt="KYVAR Approvals: the held fix, why it is waiting, who asked, the approver’s reason and the Approve button" data-sys="KYVAR" data-step="4 · Approve" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-5.webp" width="1600" height="896" aria-hidden="true" alt="KYVAR run: the three commands it ran on lb-erp-2, each completed with exit 0, and the timeline" data-sys="KYVAR" data-step="5 · Run" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-6.webp" width="1600" height="896" aria-hidden="true" alt="KYVAR run: the answer, the ERP portal answers 200 for the Tel Aviv office, and what changed" data-sys="KYVAR" data-step="6 · Verify" loading="lazy" decoding="async">
+        <img src="assets/screenshots/gates/step-7.webp" width="1600" height="896" aria-hidden="true" alt="The ServiceNow incident’s work notes: remediation completed and resolved, with who asked and who approved" data-sys="ServiceNow" data-step="7 · Record" loading="lazy" decoding="async">
       </div>
-      <div class="gfoot"><span data-status>Resolved in 6 min 40 s, one decision by a person. Screens from the KYVAR demo with simulated ServiceNow.</span><button type="button" data-ctl hidden>Replay</button></div>
+      <div class="gfoot"><span data-status>Resolved in about two minutes, after a person approved. Screens from the KYVAR demo with simulated ServiceNow.</span><button type="button" data-ctl hidden>Replay</button></div>
     </figure>
   </div>
   <div class="quote">“The agent is replaceable. The governance around it is the product.”</div>
@@ -325,10 +325,10 @@
     <p>An approval parks, a monitor fires, and the person who has to decide is not at a desk. KYVAR installs to the home screen and reaches the phone with push notifications — alarms for the team, finished tasks for the person who asked — without opening anything inbound.</p>
     <div class="shotframe" style="margin-top:22px">
       <div class="shotbar"><i></i><i></i><i></i><span>app.kyvar.io — Security · Push notifications</span></div>
-      <picture><source srcset="assets/screenshots/security-push-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/security-push.webp" alt="KYVAR push notifications: alarms and finished chat turns as system notifications on a phone or computer" width="1600" height="245" loading="lazy"></picture>
+      <picture><source srcset="assets/screenshots/security-push-light.webp" media="(prefers-color-scheme: light)"><img src="assets/screenshots/security-push.webp" alt="KYVAR push notifications: incidents, approvals waiting and failed runs, and your own finished chat turns, as system notifications on a phone or computer" width="1600" height="262" loading="lazy"></picture>
     </div></div>
   <div class="visual reveal phone-visual"><div class="phoneframe">
-    <img src="assets/screenshots/chat-phone.webp" alt="KYVAR on a phone: a governed run's steps, what changed, and the next change waiting for approval" width="780" height="1576" loading="lazy">
+    <img src="assets/screenshots/chat-phone.webp" alt="KYVAR on a phone: a change waiting for approval, what it will do, why it waits, who asked, and the Approve button" width="780" height="1576" loading="lazy">
   </div></div>
 </div></section>
 
