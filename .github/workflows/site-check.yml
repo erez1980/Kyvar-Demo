@@ -17,7 +17,7 @@ concurrency:
 jobs:
   check:
     name: Site check
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, kyvar-demo]
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
         run: |
           npm init -y >/dev/null
           npm install --no-save playwright@1.48.2
-          npx playwright install --with-deps chromium
+          npx playwright install chromium
       - name: No sideways scroll or console errors at 390px and 1400px
         run: |
           python3 -m http.server 8765 >/dev/null 2>&1 &
