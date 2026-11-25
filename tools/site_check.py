@@ -111,6 +111,47 @@ def expected_canonical(rel: Path) -> str:
     return "https://kyvar.io/" + posix
 
 
+def check_security_txt() -> list[str]:
+    """/.well-known/security.txt (RFC 9116), which trust.html and privacy.html
+    link to. ARTEX (2026-11) found it answering 404: GitHub Pages builds with
+    Jekyll, which drops every dot-directory, so the file was in the repo but
+    never published. `.nojekyll` turns that build off."""
+    from datetime import datetime, timedelta, timezone
+
+    out: list[str] = []
+    if not (ROOT / ".nojekyll").exists():
+        out.append(".nojekyll: missing — Jekyll would drop .well-known/ from the published site")
+    path = ROOT / ".well-known" / "security.txt"
+    if not path.exists():
+        return out + [".well-known/security.txt: missing"]
+    fields: dict[str, list[str]] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip() and not line.startswith("#") and ":" in line:
+            name, value = line.split(":", 1)
+            fields.setdefault(name.strip().lower(), []).append(value.strip())
+    for required in ("contact", "expires", "preferred-languages", "canonical"):
+        if required not in fields:
+            out.append(f".well-known/security.txt: no {required.title()}:")
+    if fields.get("canonical") != ["https://kyvar.io/.well-known/security.txt"]:
+        out.append(".well-known/security.txt: Canonical must be https://kyvar.io/.well-known/security.txt")
+    for contact in fields.get("contact", []):
+        if not contact.startswith(("mailto:", "https://")):
+            out.append(f".well-known/security.txt: Contact {contact} is neither mailto: nor https://")
+    try:
+        expires = datetime.fromisoformat(fields["expires"][0].replace("Z", "+00:00"))
+        now = datetime.now(timezone.utc)
+        if expires <= now + timedelta(days=30):
+            out.append(".well-known/security.txt: Expires is past or within 30 days — renew it")
+        if expires > now + timedelta(days=366):
+            out.append(".well-known/security.txt: Expires is more than a year ahead (RFC 9116 advises against)")
+    except (KeyError, IndexError, ValueError):
+        out.append(".well-known/security.txt: Expires is not an RFC 3339 date")
+    langs = {v.strip().lower() for v in ",".join(fields.get("preferred-languages", [])).split(",")}
+    if not {"he", "en"} <= langs:
+        out.append(".well-known/security.txt: Preferred-Languages must list he and en")
+    return out
+
+
 def main() -> int:
     problems: list[str] = []
     pages = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts and p.name not in SKIP)
@@ -186,6 +227,7 @@ def main() -> int:
     for rel in HOME_LINKS:
         if (ROOT / rel).resolve() not in home_targets:
             problems.append(f"index.html: no link to {rel}")
+    problems.extend(check_security_txt())
     # GitHub Pages has no _redirects. These two files are also the directory
     # indexes, so a static meta refresh would loop. The redirect lives in the
     # first head script and fires only for an explicit /index.html URL.
