@@ -1,4 +1,6 @@
+# Security contact for KYVAR (kyvar.io, app.kyvar.io). RFC 9116.
 Contact: mailto:hello@kyvar.io
-Expires: 2027-08-30T00:00:00.000Z
-Preferred-Languages: en, he
+Expires: 2027-11-01T00:00:00.000Z
+Preferred-Languages: he, en
 Canonical: https://kyvar.io/.well-known/security.txt
+Policy: https://kyvar.io/trust.html#disclosure
