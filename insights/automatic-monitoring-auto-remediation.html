@@ -6,8 +6,8 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script src="/assets/theme-init.js"></script>
 <script src="/assets/consent.js"></script>
-<title>From Monitoring to Auto-Remediation | KYVAR</title>
-<meta name="description" content="Automatic monitoring that stops at an alert still pages a person. The ladder from health checks to governed auto-remediation.">
+<title>Auto-Remediation: What It Is and How to Do It Safely | KYVAR</title>
+<meta name="description" content="What auto-remediation is, how automated, guided and continuous remediation differ, why it sometimes breaks production, and a safe path from monitoring to fixes.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -19,15 +19,15 @@
 <meta property="og:site_name" content="KYVAR">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kyvar.io/insights/automatic-monitoring-auto-remediation.html">
-<meta property="og:title" content="From Monitoring to Auto-Remediation | KYVAR">
-<meta property="og:description" content="Automatic monitoring that stops at an alert still pages a person. The ladder from health checks to governed auto-remediation.">
+<meta property="og:title" content="Auto-Remediation: What It Is and How to Do It Safely | KYVAR">
+<meta property="og:description" content="What auto-remediation is, how automated, guided and continuous remediation differ, why it sometimes breaks production, and a safe path from monitoring to fixes.">
 <meta property="og:image" content="https://kyvar.io/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="KYVAR — Agentic AI for IT operations. Keep humans in control.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="From Monitoring to Auto-Remediation | KYVAR">
-<meta name="twitter:description" content="Automatic monitoring that stops at an alert still pages a person. The ladder from health checks to governed auto-remediation.">
+<meta name="twitter:title" content="Auto-Remediation: What It Is and How to Do It Safely | KYVAR">
+<meta name="twitter:description" content="What auto-remediation is, how automated, guided and continuous remediation differ, why it sometimes breaks production, and a safe path from monitoring to fixes.">
 <meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
 <script type="application/ld+json">
 {
@@ -36,10 +36,10 @@
     {
       "@type": "Article",
       "@id": "https://kyvar.io/insights/automatic-monitoring-auto-remediation.html",
-      "headline": "From Automatic Monitoring to Auto-Remediation: Closing the Loop Safely",
-      "description": "Automatic monitoring that stops at an alert still pages a person. The ladder from health checks to governed auto-remediation.",
+      "headline": "Auto-Remediation: What It Is and How to Do It Safely",
+      "description": "What auto-remediation is, how automated, guided and continuous remediation differ, why it sometimes breaks production, and a safe path from monitoring to fixes.",
       "datePublished": "2026-08-30",
-      "dateModified": "2026-11-05",
+      "dateModified": "2026-11-27",
       "author": {
         "@type": "Organization",
         "name": "KYVAR",
@@ -72,8 +72,46 @@
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "From Automatic Monitoring to Auto-Remediation: Closing the Loop Safely",
+          "name": "Auto-Remediation: What It Is and How to Do It Safely",
           "item": "https://kyvar.io/insights/automatic-monitoring-auto-remediation.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kyvar.io/insights/automatic-monitoring-auto-remediation.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is auto-remediation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Auto-remediation is fixing a detected problem automatically: a failed check or alert triggers a predefined action such as a restart, failover or patch, and the result is verified without a person doing each step."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between automated and guided remediation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Automated remediation runs a known fix as soon as the check fails, inside preset limits. Guided remediation proposes the fix with evidence and waits for a person to approve it before it runs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can auto-remediation break production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, when it flaps, acts on the wrong host, interrupts a recovery or reports success without checking. Cooldowns, alert correlation, preconditions, verification and an audit trail prevent each of these."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you start with auto-remediation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pick one workload with a boring, reversible fix, run the monitor unarmed for two weeks to see what it would have done, then arm that one fix and measure incidents resolved and pages avoided."
+          }
         }
       ]
     }
@@ -109,13 +147,15 @@
 
 <main>
 <header class="pagehero reveal">
-  <div class="artmeta">Day 2, August 2026. 6 minute read.</div>
-  <h1>Monitoring that acts:<br><span>closing the loop safely.</span></h1>
+  <div class="artmeta">Day 2, August 2026. Updated November 2026. 6 minute read.</div>
+  <h1>Auto-remediation:<br><span>closing the loop safely.</span></h1>
   <p class="lede">The industry got very good at detecting problems and stayed mediocre at fixing them. Automatic monitoring is table stakes — the differentiator is what happens in the sixty seconds after the check fails.</p>
 </header>
 
 <article class="prose reveal">
 <p>Every monitoring pitch ends the same way: a dashboard turns red and someone gets paged. That model has a name — <strong>alert-driven operations</strong> — and its output is measured in woken humans. The average enterprise added observability tools for a decade and watched MTTR barely move, because detection was never the bottleneck. The bottleneck is the loop between <em>knowing</em> and <em>fixing</em>.</p>
+
+<p><strong>Auto-remediation</strong> (automated remediation) is the practice of fixing a detected problem automatically: an alert or failed check triggers a predefined action, such as a restart, a failover, a patch or a configuration fix, and the result is verified without a person doing each step. It is the step after monitoring and alerting, and the one most teams have not taken.</p>
 
 <h2>The maturity ladder</h2>
 <p>Teams climb four rungs, and most are stuck between two and three:</p>
@@ -138,15 +178,53 @@
 
 <div class="takeaway"><b>03:14, replayed:</b> a web tier goes unhealthy. The monitor's verdict hands the incident to its armed remediation: drain from the load balancer, restart, re-register, re-check — 2/2 healthy. The on-call engineer reads about it at 09:00 in the audit trail, with the verification attached. That is the entire pitch of governed Day 2 operations.</div>
 
+<h2 id="types">Automated, guided and continuous remediation</h2>
+<p>The terms overlap in vendor material. In practice they describe how much a person is involved:</p>
+<ul>
+<li><strong>Guided remediation</strong> proposes the fix with evidence and waits. A person reviews the exact plan and approves it, and the system carries it out and verifies it.</li>
+<li><strong>Automated remediation</strong> runs a known fix as soon as the check fails, inside limits set in advance. No one approves each run, so the action must be narrow and reversible.</li>
+<li><strong>Continuous remediation</strong> keeps comparing the real state with the desired state, for example configuration or patch level, and corrects drift on a schedule. It suits compliance baselines more than incidents.</li>
+</ul>
+<p>Most teams need all three, chosen per action by risk: automated for a stateless web tier restart, guided for anything that touches data, continuous for baselines.</p>
+
+<h2 id="when-it-breaks">When auto-remediation breaks production</h2>
+<p>Auto-remediation earns its bad reputation in a few repeatable ways. Each has a structural fix:</p>
+<ul>
+<li><strong>Flapping.</strong> A fix that restarts the same service every two minutes hides the real fault. Cooldowns and a heal budget stop it and escalate.</li>
+<li><strong>Wrong target.</strong> The symptom shows on one host, the cause is on another. Correlating alerts into one incident before acting avoids fixing the wrong thing.</li>
+<li><strong>Fixing during recovery.</strong> Restarting a database that is already replaying its log makes things worse. Checks for in-progress work belong in the action's preconditions.</li>
+<li><strong>Unverified success.</strong> The script exits 0 and the service is still down. Re-running the original check after every fix is the only proof.</li>
+<li><strong>No record.</strong> Nobody can say what the automation changed. Every run needs the same audit trail as a human change.</li>
+</ul>
+
 <h2>Arming your first monitor</h2>
 <p>Pick the workload where the remediation is boring and the baseline is measurable — a stateless web tier is the classic. Run the monitor unarmed for two weeks and review what it <em>would</em> have done. If the verdicts hold up, arm that one monitor with its one bounded fix, and measure: incidents resolved before user impact, pages avoided, zero ungoverned changes. Then repeat, one monitor at a time. This is how KYVAR is meant to be adopted for Day 2 (see <a href="/platform.html">how it works</a>); the conceptual grounding is in <a href="/insights/what-is-self-healing-infrastructure.html">What Is Self-Healing Infrastructure?</a>.</p>
+<h2 id="faq">Common questions</h2>
+<div class="faq">
+  <details>
+    <summary>What is auto-remediation?</summary>
+    <p>Auto-remediation is fixing a detected problem automatically: a failed check or alert triggers a predefined action such as a restart, failover or patch, and the result is verified without a person doing each step.</p>
+  </details>
+  <details>
+    <summary>What is the difference between automated and guided remediation?</summary>
+    <p>Automated remediation runs a known fix as soon as the check fails, inside preset limits. Guided remediation proposes the fix with evidence and waits for a person to approve it before it runs.</p>
+  </details>
+  <details>
+    <summary>Can auto-remediation break production?</summary>
+    <p>Yes, when it flaps, acts on the wrong host, interrupts a recovery or reports success without checking. Cooldowns, alert correlation, preconditions, verification and an audit trail prevent each of these.</p>
+  </details>
+  <details>
+    <summary>How do you start with auto-remediation?</summary>
+    <p>Pick one workload with a boring, reversible fix, run the monitor unarmed for two weeks to see what it would have done, then arm that one fix and measure incidents resolved and pages avoided.</p>
+  </details>
+</div>
 </article>
 
 <section class="section tight"><div class="center reveal">
   <div class="kicker">Keep reading</div>
   <div class="postgrid" style="margin-top:26px">
-    <a class="card post" href="/insights/what-is-self-healing-infrastructure.html"><span class="tag">Fundamentals</span><h3>What Is Self-Healing Infrastructure? A Practical Guide</h3><p>The honest definition, what gets mislabeled as self-healing, and what it takes to trust it in production.</p><span class="readmore">Read</span></a>
-    <a class="card post" href="/insights/day-0-vs-day-2-operations.html"><span class="tag">Operations</span><h3>Day 0 vs Day 2 Operations: Why Automation Breaks at the Handoff</h3><p>What Day 0 and Day 2 mean, why the tooling split creates drift, and the case for one governed pipeline.</p><span class="readmore">Read</span></a>
+    <a class="card post" href="/insights/what-is-self-healing-infrastructure.html"><span class="tag">Fundamentals</span><h3>What Is Self-Healing Infrastructure? Definition and Design Patterns</h3><p>The honest definition, what gets mislabeled as self-healing, and what it takes to trust it in production.</p><span class="readmore">Read</span></a>
+    <a class="card post" href="/insights/day-0-vs-day-2-operations.html"><span class="tag">Operations</span><h3>Day 0, Day 1 and Day 2 Operations Explained</h3><p>What Day 0 and Day 2 mean, why the tooling split creates drift, and the case for one governed pipeline.</p><span class="readmore">Read</span></a>
   </div>
 </div></section>
 
@@ -184,10 +262,10 @@
     <div>
       <h4>Insights</h4>
       <a href="/insights/what-is-self-healing-infrastructure.html">Self-healing infrastructure</a>
-      <a href="/insights/day-0-vs-day-2-operations.html">Day 0 vs Day 2 operations</a>
+      <a href="/insights/day-0-vs-day-2-operations.html">Day 0, Day 1 and Day 2 operations</a>
       <a href="/insights/autonomous-it-operations-governance.html">Autonomous IT and governance</a>
-      <a href="/insights/automatic-monitoring-auto-remediation.html">Monitoring and auto-remediation</a>
-      <a href="/insights/aiops-agentic-ai-governed-operator.html">AIOps and agentic AI</a>
+      <a href="/insights/automatic-monitoring-auto-remediation.html">Auto-remediation</a>
+      <a href="/insights/aiops-agentic-ai-governed-operator.html">Agentic AIOps</a>
     </div>
     <div>
       <h4>Company</h4>
