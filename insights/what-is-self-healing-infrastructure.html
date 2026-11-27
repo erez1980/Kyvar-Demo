@@ -6,8 +6,8 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script src="/assets/theme-init.js"></script>
 <script src="/assets/consent.js"></script>
-<title>What Is Self-Healing Infrastructure? | KYVAR</title>
-<meta name="description" content="Self-healing infrastructure detects, diagnoses, remediates, and re-checks a failure without waiting on a person. What that requires in production.">
+<title>What Is Self-Healing Infrastructure? Design Patterns | KYVAR</title>
+<meta name="description" content="Self-healing infrastructure explained: the detect, diagnose, heal and verify loop, eight common design patterns, and what it takes to run it safely in production.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -19,15 +19,15 @@
 <meta property="og:site_name" content="KYVAR">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kyvar.io/insights/what-is-self-healing-infrastructure.html">
-<meta property="og:title" content="What Is Self-Healing Infrastructure? | KYVAR">
-<meta property="og:description" content="Self-healing infrastructure detects, diagnoses, remediates, and re-checks a failure without waiting on a person. What that requires in production.">
+<meta property="og:title" content="What Is Self-Healing Infrastructure? Design Patterns | KYVAR">
+<meta property="og:description" content="Self-healing infrastructure explained: the detect, diagnose, heal and verify loop, eight common design patterns, and what it takes to run it safely in production.">
 <meta property="og:image" content="https://kyvar.io/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="KYVAR — Agentic AI for IT operations. Keep humans in control.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="What Is Self-Healing Infrastructure? | KYVAR">
-<meta name="twitter:description" content="Self-healing infrastructure detects, diagnoses, remediates, and re-checks a failure without waiting on a person. What that requires in production.">
+<meta name="twitter:title" content="What Is Self-Healing Infrastructure? Design Patterns | KYVAR">
+<meta name="twitter:description" content="Self-healing infrastructure explained: the detect, diagnose, heal and verify loop, eight common design patterns, and what it takes to run it safely in production.">
 <meta name="twitter:image" content="https://kyvar.io/assets/og-card.png">
 <script type="application/ld+json">
 {
@@ -36,10 +36,10 @@
     {
       "@type": "Article",
       "@id": "https://kyvar.io/insights/what-is-self-healing-infrastructure.html",
-      "headline": "What Is Self-Healing Infrastructure? A Practical Guide",
-      "description": "Self-healing infrastructure detects, diagnoses, remediates, and re-checks a failure without waiting on a person. What that requires in production.",
+      "headline": "What Is Self-Healing Infrastructure? Definition, Design Patterns and Safe Adoption",
+      "description": "Self-healing infrastructure explained: the detect, diagnose, heal and verify loop, eight common design patterns, and what it takes to run it safely in production.",
       "datePublished": "2026-08-30",
-      "dateModified": "2026-11-05",
+      "dateModified": "2026-11-27",
       "author": {
         "@type": "Organization",
         "name": "KYVAR",
@@ -72,8 +72,46 @@
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "What Is Self-Healing Infrastructure? A Practical Guide",
+          "name": "What Is Self-Healing Infrastructure? Definition, Design Patterns and Safe Adoption",
           "item": "https://kyvar.io/insights/what-is-self-healing-infrastructure.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kyvar.io/insights/what-is-self-healing-infrastructure.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is self-healing infrastructure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Infrastructure that detects a failure, diagnoses it, applies a bounded fix and then re-runs the original health check to prove the fix worked, without waiting for a person to be paged first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are common self-healing design patterns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Health check and restart, drain and replace, failover, rollback on a failed deploy, desired-state reconciliation, circuit breakers, capacity scaling and resource cleanup. Each needs limits such as restart budgets and cooldowns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is autoscaling the same as self-healing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Autoscaling fixes one class of problem, too little capacity. It does nothing for a bad deploy, a full disk, an expired certificate or a stuck process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you make self-healing safe in production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Limit each heal to an allowlisted action, add thresholds and cooldowns so it cannot flap, require human approval on risky paths, verify the result and record every step as you would a human change."
+          }
         }
       ]
     }
@@ -109,9 +147,9 @@
 
 <main>
 <header class="pagehero reveal">
-  <div class="artmeta">Fundamentals, August 2026. 6 minute read.</div>
+  <div class="artmeta">Fundamentals, August 2026. Updated November 2026. 6 minute read.</div>
   <h1>What is self-healing<br><span>infrastructure?</span></h1>
-  <p class="lede">The honest definition, what usually gets mislabeled as self-healing, and the four requirements that separate a demo from something you can trust in production.</p>
+  <p class="lede">The honest definition, eight design patterns that do the healing, what usually gets mislabeled as self-healing, and what it takes to trust it in production.</p>
 </header>
 
 <article class="prose reveal">
@@ -125,6 +163,21 @@
 <li><strong>Heal</strong> — apply a bounded remediation: drain, restart, fail over, roll back, patch. Bounded is the operative word — the action set is finite and known in advance.</li>
 <li><strong>Verify</strong> — re-run the original health check and confirm the symptom is gone. The fix is proven, not assumed.</li>
 </ul>
+
+<h2 id="design-patterns">Self-healing infrastructure design patterns</h2>
+<p>Most production self-healing is built from a small set of well-known patterns. Each one heals a specific class of failure, and each needs its own limits:</p>
+<div class="tablewrap"><table>
+<tr><th>Pattern</th><th>Heals</th><th>Limit to set</th></tr>
+<tr><td><strong>Health check and restart</strong></td><td>Crashed or hung processes</td><td>A restart budget, then escalate instead of looping</td></tr>
+<tr><td><strong>Drain and replace</strong></td><td>One bad node behind a load balancer</td><td>Never drain below the healthy minimum</td></tr>
+<tr><td><strong>Failover</strong></td><td>A primary that stops answering</td><td>Fence the old primary first to avoid split brain</td></tr>
+<tr><td><strong>Rollback on failed deploy</strong></td><td>A release that breaks health checks</td><td>Roll back only to a version that passed the same checks</td></tr>
+<tr><td><strong>Desired-state reconciliation</strong></td><td>Configuration drift</td><td>Report drift on sensitive resources before reverting it</td></tr>
+<tr><td><strong>Circuit breaker</strong></td><td>A failing dependency that drags callers down</td><td>Half-open probes, not a permanent cut</td></tr>
+<tr><td><strong>Capacity scaling</strong></td><td>Load beyond current capacity</td><td>Hard ceilings on count and cost</td></tr>
+<tr><td><strong>Resource cleanup</strong></td><td>Full disks, stuck queues, expired certificates</td><td>An allowlist of what may be deleted or renewed</td></tr>
+</table></div>
+<p>Whatever the pattern, the same loop applies: the action is chosen from a known list, the original check runs again afterwards, and a failed verification stops the automation and calls a person.</p>
 
 <h2>What self-healing is not</h2>
 <p>Three things get mislabeled as self-healing so often that it's worth naming them:</p>
@@ -146,14 +199,33 @@
 </ul>
 
 <h2>Where to start</h2>
-<p>Don't start by automating your scariest incident. Pick one non-critical workload with a measurable baseline — a web tier with a known restart-and-drain remediation is the classic choice. Run detection read-only for two weeks so the team sees what the system <em>would</em> have done. Then arm one narrow write path with approval, and count: incidents caught before user impact, minutes of toil removed, and — critically — zero ungoverned changes. That's the number a security team and a CFO can both read. This staged path is how KYVAR is meant to be adopted (see <a href="/platform.html">how it works</a>), and the per-monitor arming model is described in <a href="/insights/automatic-monitoring-auto-remediation.html">From Automatic Monitoring to Auto-Remediation</a>.</p>
+<p>Don't start by automating your scariest incident. Pick one non-critical workload with a measurable baseline — a web tier with a known restart-and-drain remediation is the classic choice. Run detection read-only for two weeks so the team sees what the system <em>would</em> have done. Then arm one narrow write path with approval, and count: incidents caught before user impact, minutes of toil removed, and — critically — zero ungoverned changes. That's the number a security team and a CFO can both read. This staged path is how KYVAR is meant to be adopted (see <a href="/platform.html">how it works</a>), and the per-monitor arming model is described in <a href="/insights/automatic-monitoring-auto-remediation.html">Auto-Remediation: What It Is and How to Do It Safely</a>.</p>
+<h2 id="faq">Common questions</h2>
+<div class="faq">
+  <details>
+    <summary>What is self-healing infrastructure?</summary>
+    <p>Infrastructure that detects a failure, diagnoses it, applies a bounded fix and then re-runs the original health check to prove the fix worked, without waiting for a person to be paged first.</p>
+  </details>
+  <details>
+    <summary>What are common self-healing design patterns?</summary>
+    <p>Health check and restart, drain and replace, failover, rollback on a failed deploy, desired-state reconciliation, circuit breakers, capacity scaling and resource cleanup. Each needs limits such as restart budgets and cooldowns.</p>
+  </details>
+  <details>
+    <summary>Is autoscaling the same as self-healing?</summary>
+    <p>No. Autoscaling fixes one class of problem, too little capacity. It does nothing for a bad deploy, a full disk, an expired certificate or a stuck process.</p>
+  </details>
+  <details>
+    <summary>How do you make self-healing safe in production?</summary>
+    <p>Limit each heal to an allowlisted action, add thresholds and cooldowns so it cannot flap, require human approval on risky paths, verify the result and record every step as you would a human change.</p>
+  </details>
+</div>
 </article>
 
 <section class="section tight"><div class="center reveal">
   <div class="kicker">Keep reading</div>
   <div class="postgrid" style="margin-top:26px">
-    <a class="card post" href="/insights/day-0-vs-day-2-operations.html"><span class="tag">Operations</span><h3>Day 0 vs Day 2 Operations: Why Automation Breaks at the Handoff</h3><p>What Day 0 and Day 2 mean, why the tooling split creates drift, and the case for one governed pipeline.</p><span class="readmore">Read</span></a>
-    <a class="card post" href="/insights/autonomous-it-operations-governance.html"><span class="tag">Strategy</span><h3>Autonomous IT Operations: Why Governance Is the Product</h3><p>The agent is replaceable; the governance around it is not. A framework for safely allowing autonomy in production.</p><span class="readmore">Read</span></a>
+    <a class="card post" href="/insights/day-0-vs-day-2-operations.html"><span class="tag">Operations</span><h3>Day 0, Day 1 and Day 2 Operations Explained</h3><p>What Day 0 and Day 2 mean, why the tooling split creates drift, and the case for one governed pipeline.</p><span class="readmore">Read</span></a>
+    <a class="card post" href="/insights/autonomous-it-operations-governance.html"><span class="tag">Strategy</span><h3>Autonomous IT Operations: A Governance Framework</h3><p>The agent is replaceable; the governance around it is not. A framework for safely allowing autonomy in production.</p><span class="readmore">Read</span></a>
   </div>
 </div></section>
 
@@ -191,10 +263,10 @@
     <div>
       <h4>Insights</h4>
       <a href="/insights/what-is-self-healing-infrastructure.html">Self-healing infrastructure</a>
-      <a href="/insights/day-0-vs-day-2-operations.html">Day 0 vs Day 2 operations</a>
+      <a href="/insights/day-0-vs-day-2-operations.html">Day 0, Day 1 and Day 2 operations</a>
       <a href="/insights/autonomous-it-operations-governance.html">Autonomous IT and governance</a>
-      <a href="/insights/automatic-monitoring-auto-remediation.html">Monitoring and auto-remediation</a>
-      <a href="/insights/aiops-agentic-ai-governed-operator.html">AIOps and agentic AI</a>
+      <a href="/insights/automatic-monitoring-auto-remediation.html">Auto-remediation</a>
+      <a href="/insights/aiops-agentic-ai-governed-operator.html">Agentic AIOps</a>
     </div>
     <div>
       <h4>Company</h4>

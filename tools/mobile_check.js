@@ -13,7 +13,9 @@ const pages = [];
     if (e.name.startsWith('.') || e.name === 'node_modules') continue;
     const full = path.join(dir, e.name);
     if (e.isDirectory()) walk(full);
-    else if (e.name.endsWith('.html') && !skip.has(e.name)) pages.push(path.relative(root, full));
+    // Redirect stubs for retired URLs (meta refresh) navigate away at once.
+    else if (e.name.endsWith('.html') && !skip.has(e.name)
+      && !/http-equiv="refresh"/.test(fs.readFileSync(full, 'utf8'))) pages.push(path.relative(root, full));
   }
 })(root);
 
